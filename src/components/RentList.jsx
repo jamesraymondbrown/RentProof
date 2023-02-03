@@ -1,9 +1,20 @@
-import React from 'react';
 import "./RentList.scss";
+import React from 'react';
+import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
+
 
 const RentList = () => {
   return (
-    <div class="RentList-container">
+    <div class="RentList">
+      
+    <div className="slider-container">
+        <MultiRangeSlider
+      min={0}
+      max={5000}
+      onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+      style={{ height: "20px" }}
+    />
+      </div>
       <img src="https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg" alt="Rent List" class="thumbnail"/>
       <table>
         <thead>
