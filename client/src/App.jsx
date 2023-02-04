@@ -22,7 +22,7 @@ function App() {
     <div className="App" style={{ display: "flex" }}>
       <Map style={{ flex: 3 }} />
       <RentList style={{ flex: 1, width: "25%" }} />
-      <p>{!data ? "Loading..." : data}</p>
+      <p>{!data ? "Database not connected" : data}</p>
     </div>
   );
 }
