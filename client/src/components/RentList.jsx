@@ -5,7 +5,7 @@ import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 
 const RentList = () => {
   return (
-    <div class="RentList">
+    <div className="RentList">
       
     <div className="slider-container">
         <MultiRangeSlider
@@ -15,7 +15,7 @@ const RentList = () => {
       style={{ height: "20px" }}
     />
       </div>
-      <img src="https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg" alt="Rent List" class="thumbnail"/>
+      <img src="https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg" alt="Rent List" className="thumbnail"/>
       <table>
         <thead>
           <tr>
