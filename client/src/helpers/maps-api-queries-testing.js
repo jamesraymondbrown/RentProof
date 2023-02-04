@@ -42,6 +42,8 @@ const generateAddresses = (latLong, radius, keyword) => {
 
 };
 
+// console.log('key'. process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+
 // git filter-branch --force --index-filter \
 // "git rm --cached --ignore-unmatch rent-tracker/client/src/helpers/maps-api-queries-testing.js" \
 // --prune-empty --tag-name-filter cat -- --all
