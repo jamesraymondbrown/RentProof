@@ -36,11 +36,19 @@ const newWest = { latLong: "49.21882%2C-122.92029", radius: "2000", keyword: "ap
 
 const generateAddresses = (latLong, radius, keyword) => {
   const apiCall = `https://maps.googleapis.com/maps/api/place/nearbysearch/json
-  ?location=${latLong}&radius=${radius}&keyword=${keyword}&key=AIzaSyBfkx6vtTumqm093rkUn36xfiNjmWRKeTk`
+  ?location=${latLong}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
 
   return apiCall;
 
 };
+
+// git filter-branch --force --index-filter \
+// "git rm --cached --ignore-unmatch rent-tracker/client/src/helpers/maps-api-queries-testing.js" \
+// --prune-empty --tag-name-filter cat -- --all
+// git push --force --verbose --dry-run
+// git push --force
+
+// I'm looking into how we can get co-ordinates to place markers on the map from addresses. Google's APIs have a way of doing this, but it's technically not free (it's $5 USD for 1000 api calls, and you get a credit of $200 USD per month, so technically we'd 
 
 console.log("cityHallApts:", generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword));
 console.log("downtownTowers:", generateAddresses(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
