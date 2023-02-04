@@ -1,6 +1,7 @@
 import "./RentList.scss";
 import React from 'react';
 import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
+import BedFilter from "./BedFilter";
 
 
 const RentList = () => {
@@ -14,6 +15,7 @@ const RentList = () => {
       onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
       style={{ height: "20px" }}
     />
+    <BedFilter/>
       </div>
       <img src="https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg" alt="Rent List" class="thumbnail"/>
       <table>
