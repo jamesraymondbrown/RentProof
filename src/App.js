@@ -1,14 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import Map from './components/Map.jsx';
+import "./App.css";
+import Map from "./components/Map.jsx";
 import RentList from "./components/RentList";
+import TopBar from "./components/TopBar";
 
 function App() {
-
   return (
-    <div className="App" style={{ display: "flex" }}>
-      <Map style={{ flex: 3 }} />
-      <RentList style={{ flex: 1, width: "25%" }} />
+    <div className="App" style={{ display: "flex", flexDirection: "column" }}>
+      <TopBar />
+      <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
+        <Map />
+        <RentList style={{ width: "30%" }} />
+      </div>
     </div>
   );
 }
