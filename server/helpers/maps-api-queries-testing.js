@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // We can use the following query to pull addresses from the maps API. 
 // The "keyword" refers to a search term. So "tower" will get a building with the name tower,
 // "apartments" would get results with a building containing the name/term "apartments".
@@ -8,6 +10,11 @@
 
   // https://maps.googleapis.com/maps/api/place/nearbysearch/json
   //   ?location=49.28%2C-123.2&radius=50000&keyword=tower&key=API_KEY
+
+
+// Each const refers to a neighbourhood in vancouver. We're querying google maps and pulling 20 addresses of apartment
+// buildings from each query. Plugging these consts into the generateAddress function produces a URL where you get a response
+// from google maps API listing building addresses, coordinates, etc.
 
 const cityHall = { latLong: "49.260120%2C-123.116130", radius: "1000", keyword: "apartments"};
 const downtownTowers = { latLong: "49.28395%2C-123.12404", radius: "1700", keyword: "tower"};
@@ -26,7 +33,6 @@ const newWest = { latLong: "49.21882%2C-122.92029", radius: "2000", keyword: "ap
 
 
 
-
 const generateAddresses = (latLong, radius, keyword) => {
   const apiCall = `https://maps.googleapis.com/maps/api/place/nearbysearch/json
   ?location=${latLong}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
@@ -34,10 +40,6 @@ const generateAddresses = (latLong, radius, keyword) => {
   return apiCall;
 
 };
-
-// console.log('key'. process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
-
-// I'm looking into how we can get co-ordinates to place markers on the map from addresses. Google's APIs have a way of doing this, but it's technically not free (it's $5 USD for 1000 api calls, and you get a credit of $200 USD per month, so technically we'd 
 
 console.log("cityHallApts:", generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword));
 console.log("downtownTowers:", generateAddresses(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
@@ -53,3 +55,4 @@ console.log("westVanApartments:", generateAddresses(westVan.latLong, westVan.rad
 console.log("southCambieApartments:", generateAddresses(southCambie.latLong, southCambie.radius, southCambie.keyword));
 console.log("burnabyApartments:", generateAddresses(burnaby.latLong, burnaby.radius, burnaby.keyword));
 console.log("newWestApartments:", generateAddresses(newWest.latLong, newWest.radius, newWest.keyword));
+
