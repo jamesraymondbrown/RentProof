@@ -6,7 +6,7 @@ import BedFilter from "./BedFilter";
 
 const RentList = () => {
   return (
-    <div classname="RentList">
+    <div className="RentList">
       
     <div className="slider-container">
         <MultiRangeSlider
@@ -17,7 +17,7 @@ const RentList = () => {
     />
     <BedFilter/>
       </div>
-      <img src="https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg" alt="Rent List" classname="picture" 
+      <img src="https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg" alt="Rent List" className="picture" 
       style={{width: "100%"}} />
 
       <table>
