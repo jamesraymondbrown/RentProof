@@ -4,9 +4,7 @@ dotenv.config()
 import express from 'express'
 
 
-const address = "111 Wellington St, Ottawa, ON K1A 0A9, Canada";
-
-console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+const address = "909 Burrard St, Vancouver";
 
 fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
 .then((response) => {
