@@ -10,24 +10,24 @@ CREATE TABLE properties (
   postcode VARCHAR(255)
 );
 
-CREATE TABLE prices (
-  id SERIAL PRIMARY KEY NOT NULL,
-  property_id INTEGER REFERENCES properties(id),
-  user_id INTEGER REFERENCES users(id),
-  admin_status VARCHAR(255) NOT NULL DEFAULT "pending",
-  date DATE NOT NULL,
-  price NUMERIC NOT NULL,
-  documentation VARCHAR(255) NOT NULL, --url
-  photo VARCHAR(255), --url 
-  property_type VARCHAR(255) NOT NULL,
-  square_footage INTEGER NOT NULL,
-  number_of_bedrooms INTEGER NOT NULL,
-  number_of_bathrooms INTEGER NOT NULL,  
-);
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
-)
+);
+
+CREATE TABLE prices (
+  id SERIAL PRIMARY KEY NOT NULL,
+  property_id INTEGER REFERENCES properties(id),
+  user_id INTEGER REFERENCES users(id),
+  admin_status VARCHAR(255) NOT NULL DEFAULT 'pending',
+  date DATE NOT NULL,
+  price NUMERIC NOT NULL,
+  documentation VARCHAR(255) NOT NULL,
+  photo VARCHAR(255),
+  property_type VARCHAR(255) NOT NULL,
+  square_footage INTEGER NOT NULL,
+  number_of_bedrooms INTEGER NOT NULL,
+  number_of_bathrooms INTEGER NOT NULL
+);

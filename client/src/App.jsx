@@ -6,15 +6,34 @@ import RentList from "./components/RentList";
 
 function App() {
 
-  const [data, setData] = useState(null);
+  const [user, setUser] = useState(null);
+  const [property, setProperty] = useState(null);
+  const [price, setPrice] = useState(null);
 
   useEffect(() => {
-
-    axios.get("/api")
+    axios.get("/users")
       .then((res) => {
-        console.log(res.data.message)  
-        let serverMessage = res.data.message
-        setData(serverMessage)             
+        console.log(res.data[0].email)  
+        let exampleEmail = res.data[0].email
+        setUser(exampleEmail)             
+      })
+  }, []);
+
+  useEffect(() => {
+  axios.get("/properties")
+      .then((res) => {
+        console.log(res.data)  
+        let exampleProperty = res.data[0].postcode
+        setProperty(exampleProperty)             
+      })
+  }, []);
+
+  useEffect(() => {
+  axios.get("/prices")
+      .then((res) => {
+        console.log(res.data)  
+        let examplePrice = res.data[0].price
+        setPrice(examplePrice)             
       })
   }, []);
 
@@ -22,7 +41,11 @@ function App() {
     <div className="App" style={{ display: "flex" }}>
       <Map style={{ flex: 3 }} />
       <RentList style={{ flex: 1, width: "25%" }} />
-      <p>{!data ? "Database not connected" : data}</p>
+      <div>
+        <p>{!user ? "Cannot access users." : user}</p>
+        <p>{!property ? "Cannot access properties." : property}</p>
+        <p>{!price ? "Cannot access prices." : price}</p>
+      </div>
     </div>
   );
 }
