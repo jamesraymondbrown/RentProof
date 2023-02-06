@@ -7,6 +7,7 @@ import Map from './components/Map';
 import RentList from "./components/RentList";
 import AddProperty from "./components/AddProperty";
 import PropertyList from "./components/PropertyList";
+import PropertyDetails from "./components/PropertyDetails";
 
 function App() {
 
@@ -50,7 +51,10 @@ function App() {
             <Route path="/admin">
               <AddProperty />
               {state.properties && <PropertyList properties={state.properties} />}
-            </Route>            
+            </Route>
+            <Route path="/:propertyid">
+              <PropertyDetails />
+            </Route>
           </Switch>
         </div>   
       </div>
