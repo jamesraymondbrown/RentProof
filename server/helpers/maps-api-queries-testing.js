@@ -23,7 +23,7 @@ const axios = require("axios");
 const addresses = [];
 const mapsApiUrls = [];
 
-const generateAddresses = (latLong, radius, keyword) => {
+const generateAddressUrls = (latLong, radius, keyword) => {
   const apiCall = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLong}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
   return apiCall;
 };
@@ -45,20 +45,20 @@ const newWest = { latLong: "49.21882%2C-122.92029", radius: "2000", keyword: "ap
 
 // Create URLs for maps API calls, to retrieve addresses. Push those URLs into an array. 
 
-mapsApiUrls.push(generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword));
-mapsApiUrls.push(generateAddresses(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
-mapsApiUrls.push(generateAddresses(downtown.latLong, downtown.radius, downtown.keyword));
-mapsApiUrls.push(generateAddresses(mainScience.latLong, mainScience.radius, mainScience.keyword));
-mapsApiUrls.push(generateAddresses(kitsilano.latLong, kitsilano.radius, kitsilano.keyword));
-mapsApiUrls.push(generateAddresses(eastVan.latLong, eastVan.radius, eastVan.keyword));
-mapsApiUrls.push(generateAddresses(newBrighton.latLong, newBrighton.radius, newBrighton.keyword));
-mapsApiUrls.push(generateAddresses(loLo.latLong, loLo.radius, loLo.keyword));
-mapsApiUrls.push(generateAddresses(upperLonsdale.latLong, upperLonsdale.radius, upperLonsdale.keyword));
-mapsApiUrls.push(generateAddresses(northgate.latLong, northgate.radius, northgate.keyword));
-mapsApiUrls.push(generateAddresses(westVan.latLong, westVan.radius, westVan.keyword));
-mapsApiUrls.push(generateAddresses(southCambie.latLong, southCambie.radius, southCambie.keyword));
-mapsApiUrls.push(generateAddresses(burnaby.latLong, burnaby.radius, burnaby.keyword));
-mapsApiUrls.push(generateAddresses(newWest.latLong, newWest.radius, newWest.keyword));
+mapsApiUrls.push(generateAddressUrls(cityHall.latLong, cityHall.radius, cityHall.keyword));
+mapsApiUrls.push(generateAddressUrls(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
+mapsApiUrls.push(generateAddressUrls(downtown.latLong, downtown.radius, downtown.keyword));
+mapsApiUrls.push(generateAddressUrls(mainScience.latLong, mainScience.radius, mainScience.keyword));
+mapsApiUrls.push(generateAddressUrls(kitsilano.latLong, kitsilano.radius, kitsilano.keyword));
+mapsApiUrls.push(generateAddressUrls(eastVan.latLong, eastVan.radius, eastVan.keyword));
+mapsApiUrls.push(generateAddressUrls(newBrighton.latLong, newBrighton.radius, newBrighton.keyword));
+mapsApiUrls.push(generateAddressUrls(loLo.latLong, loLo.radius, loLo.keyword));
+mapsApiUrls.push(generateAddressUrls(upperLonsdale.latLong, upperLonsdale.radius, upperLonsdale.keyword));
+mapsApiUrls.push(generateAddressUrls(northgate.latLong, northgate.radius, northgate.keyword));
+mapsApiUrls.push(generateAddressUrls(westVan.latLong, westVan.radius, westVan.keyword));
+mapsApiUrls.push(generateAddressUrls(southCambie.latLong, southCambie.radius, southCambie.keyword));
+mapsApiUrls.push(generateAddressUrls(burnaby.latLong, burnaby.radius, burnaby.keyword));
+mapsApiUrls.push(generateAddressUrls(newWest.latLong, newWest.radius, newWest.keyword));
 
 // console.log(mapsApiUrls);
 
@@ -66,41 +66,50 @@ mapsApiUrls.push(generateAddresses(newWest.latLong, newWest.radius, newWest.keyw
 
 
 
-// app.get(generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword), (req, res) => {
+// app.get(generateAddressUrls(cityHall.latLong, cityHall.radius, cityHall.keyword), (req, res) => {
 //   console.log(JSON.stringify(res));
 // });
 
-// console.log("cityHallApts:", generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword));
-// console.log("downtownTowers:", generateAddresses(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
-// console.log("downtownApartments:", generateAddresses(downtown.latLong, downtown.radius, downtown.keyword));
-// console.log("mainScienceApartments:", generateAddresses(mainScience.latLong, mainScience.radius, mainScience.keyword));
-// console.log("kitsilanoApartments:", generateAddresses(kitsilano.latLong, kitsilano.radius, kitsilano.keyword));
-// console.log("eastVanApartments:", generateAddresses(eastVan.latLong, eastVan.radius, eastVan.keyword));
-// console.log("newBrightonApartments:", generateAddresses(newBrighton.latLong, newBrighton.radius, newBrighton.keyword));
-// console.log("loLoApartments:", generateAddresses(loLo.latLong, loLo.radius, loLo.keyword));
-// console.log("upperLonsdaleApartments:", generateAddresses(upperLonsdale.latLong, upperLonsdale.radius, upperLonsdale.keyword));
-// console.log("northgateApartments:", generateAddresses(northgate.latLong, northgate.radius, northgate.keyword));
-// console.log("westVanApartments:", generateAddresses(westVan.latLong, westVan.radius, westVan.keyword));
-// console.log("southCambieApartments:", generateAddresses(southCambie.latLong, southCambie.radius, southCambie.keyword));
-// console.log("burnabyApartments:", generateAddresses(burnaby.latLong, burnaby.radius, burnaby.keyword));
-// console.log("newWestApartments:", generateAddresses(newWest.latLong, newWest.radius, newWest.keyword));
+// console.log("cityHallApts:", generateAddressUrls(cityHall.latLong, cityHall.radius, cityHall.keyword));
+// console.log("downtownTowers:", generateAddressUrls(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
+// console.log("downtownApartments:", generateAddressUrls(downtown.latLong, downtown.radius, downtown.keyword));
+// console.log("mainScienceApartments:", generateAddressUrls(mainScience.latLong, mainScience.radius, mainScience.keyword));
+// console.log("kitsilanoApartments:", generateAddressUrls(kitsilano.latLong, kitsilano.radius, kitsilano.keyword));
+// console.log("eastVanApartments:", generateAddressUrls(eastVan.latLong, eastVan.radius, eastVan.keyword));
+// console.log("newBrightonApartments:", generateAddressUrls(newBrighton.latLong, newBrighton.radius, newBrighton.keyword));
+// console.log("loLoApartments:", generateAddressUrls(loLo.latLong, loLo.radius, loLo.keyword));
+// console.log("upperLonsdaleApartments:", generateAddressUrls(upperLonsdale.latLong, upperLonsdale.radius, upperLonsdale.keyword));
+// console.log("northgateApartments:", generateAddressUrls(northgate.latLong, northgate.radius, northgate.keyword));
+// console.log("westVanApartments:", generateAddressUrls(westVan.latLong, westVan.radius, westVan.keyword));
+// console.log("southCambieApartments:", generateAddressUrls(southCambie.latLong, southCambie.radius, southCambie.keyword));
+// console.log("burnabyApartments:", generateAddressUrls(burnaby.latLong, burnaby.radius, burnaby.keyword));
+// console.log("newWestApartments:", generateAddressUrls(newWest.latLong, newWest.radius, newWest.keyword));
 
 
-for (url of mapsApiUrls) {
-  axios.get(url)
-  .then(response => {
-    // console.log(response.data.results);
-    const resultsArray = response.data.results
-    for (let result of resultsArray) {
-      addresses.push(result.vicinity)
-    }
+const generateAddresses = () => {
+  const promises = []
+  for (url of mapsApiUrls) {
+    promises.push(
+      axios.get(url)
+      .then(response => {
+        // console.log(response.data.results);
+        const resultsArray = response.data.results
+        for (let result of resultsArray) {
+          addresses.push(result.vicinity)
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      })
+    )
+  }
+
+  return Promise.all(promises).then(() => {
+    console.log(addresses);
+    return "snail";
   })
-  .then(() => {
-    console.log('addresses', addresses)
-  })
-  .catch(error => {
-    console.error(error);
-  });
 }
 
-module.exports = { generateAddresses, cityHall };
+console.log(generateAddresses());
+
+module.exports = { generateAddressUrls, cityHall };
