@@ -15,3 +15,19 @@ fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=
 .catch(error => {
     console.log(error);
 })
+
+const addressList = mapsApiUrls
+
+while (addressList.length > 0) {
+  // console.log('s');
+  const currentUrl = addressList.pop();
+  // console.log('currentUrl', currentUrl)
+  await axios.get(currentUrl)
+  .then((response) => {
+    
+    const resultsArray = response.data.results
+    for (let result of resultsArray) {
+      addresses.push(result.vicinity);
+    }
+  })
+}

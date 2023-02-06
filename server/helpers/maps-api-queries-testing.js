@@ -20,7 +20,7 @@ const axios = require("axios");
 // buildings from each query. Plugging these consts into the generateAddress function produces a URL where you get a response
 // from google maps API listing building addresses, coordinates, etc.
 
-const addresses = [];
+// const addresses = [];
 const mapsApiUrls = [];
 
 const generateAddressUrls = (latLong, radius, keyword) => {
@@ -60,11 +60,6 @@ mapsApiUrls.push(generateAddressUrls(southCambie.latLong, southCambie.radius, so
 mapsApiUrls.push(generateAddressUrls(burnaby.latLong, burnaby.radius, burnaby.keyword));
 mapsApiUrls.push(generateAddressUrls(newWest.latLong, newWest.radius, newWest.keyword));
 
-// console.log(mapsApiUrls);
-
-
-
-
 
 // app.get(generateAddressUrls(cityHall.latLong, cityHall.radius, cityHall.keyword), (req, res) => {
 //   console.log(JSON.stringify(res));
@@ -86,30 +81,27 @@ mapsApiUrls.push(generateAddressUrls(newWest.latLong, newWest.radius, newWest.ke
 // console.log("newWestApartments:", generateAddressUrls(newWest.latLong, newWest.radius, newWest.keyword));
 
 
-const generateAddresses = () => {
-  const promises = []
+const addresses = [];
+
+const generateAddresses = async () => {
+
   for (url of mapsApiUrls) {
-    promises.push(
       axios.get(url)
       .then(response => {
         // console.log(response.data.results);
         const resultsArray = response.data.results
         for (let result of resultsArray) {
-          addresses.push(result.vicinity)
+          addresses.push({"address": result.vicinity, "lat": result.geometry.location.lat, "lng": result.geometry.location.lng})
         }
+      })
+      .then(() => {
+        console.log('addresses', addresses)
       })
       .catch(error => {
         console.error(error);
       })
-    )
   }
-
-  return Promise.all(promises).then(() => {
-    console.log(addresses);
-    return "snail";
-  })
 }
 
 console.log(generateAddresses());
 
-module.exports = { generateAddressUrls, cityHall };
