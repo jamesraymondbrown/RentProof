@@ -1,4 +1,8 @@
 require('dotenv').config();
+const express = require("express");
+const PORT = process.env.PORT || 3001;
+const app = express();
+const axios = require("axios");
 
 // We can use the following query to pull addresses from the maps API. 
 // The "keyword" refers to a search term. So "tower" will get a building with the name tower,
@@ -34,25 +38,41 @@ const newWest = { latLong: "49.21882%2C-122.92029", radius: "2000", keyword: "ap
 
 
 const generateAddresses = (latLong, radius, keyword) => {
-  const apiCall = `https://maps.googleapis.com/maps/api/place/nearbysearch/json
-  ?location=${latLong}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
+  const apiCall = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLong}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
 
   return apiCall;
 
 };
 
-console.log("cityHallApts:", generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword));
-console.log("downtownTowers:", generateAddresses(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
-console.log("downtownApartments:", generateAddresses(downtown.latLong, downtown.radius, downtown.keyword));
-console.log("mainScienceApartments:", generateAddresses(mainScience.latLong, mainScience.radius, mainScience.keyword));
-console.log("kitsilanoApartments:", generateAddresses(kitsilano.latLong, kitsilano.radius, kitsilano.keyword));
-console.log("eastVanApartments:", generateAddresses(eastVan.latLong, eastVan.radius, eastVan.keyword));
-console.log("newBrightonApartments:", generateAddresses(newBrighton.latLong, newBrighton.radius, newBrighton.keyword));
-console.log("loLoApartments:", generateAddresses(loLo.latLong, loLo.radius, loLo.keyword));
-console.log("upperLonsdaleApartments:", generateAddresses(upperLonsdale.latLong, upperLonsdale.radius, upperLonsdale.keyword));
-console.log("northgateApartments:", generateAddresses(northgate.latLong, northgate.radius, northgate.keyword));
-console.log("westVanApartments:", generateAddresses(westVan.latLong, westVan.radius, westVan.keyword));
-console.log("southCambieApartments:", generateAddresses(southCambie.latLong, southCambie.radius, southCambie.keyword));
-console.log("burnabyApartments:", generateAddresses(burnaby.latLong, burnaby.radius, burnaby.keyword));
-console.log("newWestApartments:", generateAddresses(newWest.latLong, newWest.radius, newWest.keyword));
+// app.get(generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword), (req, res) => {
+//   console.log(JSON.stringify(res));
+// });
 
+// console.log("cityHallApts:", generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword));
+// console.log("downtownTowers:", generateAddresses(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
+// console.log("downtownApartments:", generateAddresses(downtown.latLong, downtown.radius, downtown.keyword));
+// console.log("mainScienceApartments:", generateAddresses(mainScience.latLong, mainScience.radius, mainScience.keyword));
+// console.log("kitsilanoApartments:", generateAddresses(kitsilano.latLong, kitsilano.radius, kitsilano.keyword));
+// console.log("eastVanApartments:", generateAddresses(eastVan.latLong, eastVan.radius, eastVan.keyword));
+// console.log("newBrightonApartments:", generateAddresses(newBrighton.latLong, newBrighton.radius, newBrighton.keyword));
+// console.log("loLoApartments:", generateAddresses(loLo.latLong, loLo.radius, loLo.keyword));
+// console.log("upperLonsdaleApartments:", generateAddresses(upperLonsdale.latLong, upperLonsdale.radius, upperLonsdale.keyword));
+// console.log("northgateApartments:", generateAddresses(northgate.latLong, northgate.radius, northgate.keyword));
+// console.log("westVanApartments:", generateAddresses(westVan.latLong, westVan.radius, westVan.keyword));
+// console.log("southCambieApartments:", generateAddresses(southCambie.latLong, southCambie.radius, southCambie.keyword));
+// console.log("burnabyApartments:", generateAddresses(burnaby.latLong, burnaby.radius, burnaby.keyword));
+// console.log("newWestApartments:", generateAddresses(newWest.latLong, newWest.radius, newWest.keyword));
+
+
+
+axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.21882%2C-122.92029&radius=2000&keyword=apartments&key=AIzaSyCazUZmPudnjfRlIaVyPFPFvPGzF6G43vc")
+  .then(response => {
+    console.log(response.data.results);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+
+
+
+module.exports = { generateAddresses, cityHall };
