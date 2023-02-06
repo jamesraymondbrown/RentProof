@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import Navbar from "./components/Navbar";
 import Map from './components/Map';
 import RentList from "./components/RentList";
 import AddProperty from "./components/AddProperty";
@@ -36,14 +38,23 @@ function App() {
   }, [setState]);
 
   return (
-    <div className="App" style={{ display: "flex" }}>
-      <Map style={{ flex: 3 }} />  
-      <RentList style={{ flex: 1, width: "25%" }} />
-      <div>        
-        <AddProperty />
-        {state.properties && <PropertyList properties={state.properties} />}
-      </div>      
-    </div>
+    <Router>  
+      <div className="App">
+        <Navbar />
+        <div className="Content" style={{ display: "flex" }}>
+          <Switch>
+            <Route exact path="/">
+              <Map style={{ flex: 3 }} />  
+              <RentList style={{ flex: 1, width: "25%" }} />
+            </Route>
+            <Route path="/admin">
+              <AddProperty />
+              {state.properties && <PropertyList properties={state.properties} />}
+            </Route>            
+          </Switch>
+        </div>   
+      </div>
+    </Router>
   );
 }
 

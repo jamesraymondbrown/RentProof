@@ -1,12 +1,15 @@
 import React from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const PropertyListItem = (props) => {
   const id = props.id
+  const history = useHistory()
   const handleClick = () => {
     axios.delete(`http://localhost:8001/properties/${id}`)
       .then((response) => {
         console.log('Property Deleted', response.data);
+        history.push('/')
       })
       .catch((error) => {
         console.log(error);
