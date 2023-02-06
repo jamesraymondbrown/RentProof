@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router()
 
-const propertyQueries = require('../db/queries/properties-queries')
+const priceQueries = require('../db/queries/prices-queries')
 
 router.get('/', (req, res) => {
-  propertyQueries.getProperties()
-    .then((properties) => {
-      res.json(properties)
+  priceQueries.getPrices()
+    .then((prices) => {
+      res.json(prices)
     })
     .catch(err => {
       res
@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  propertyQueries.getPropertyById(req.params.id)
-    .then((property) => {
-      res.json(property)
+  priceQueries.getPriceById(req.params.id)
+    .then((price) => {
+      res.json(price)
     })
     .catch(err => {
       res

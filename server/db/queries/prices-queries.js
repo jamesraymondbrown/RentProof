@@ -7,4 +7,11 @@ const getPrices = () => {
     });
 };
 
-module.exports = { getPrices };
+const getPriceById = (id) => {
+  return database.query('SELECT * FROM prices WHERE id = $1', [id])
+    .then((response) => {
+      return response.rows[0]
+    })
+}
+
+module.exports = { getPrices, getPriceById };
