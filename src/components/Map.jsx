@@ -11,8 +11,6 @@ export default function MapDisplay(props) {
   });
 
   function Map() {
-    console.log(locations)
-    console.log(locations.marker);
     return (
       <GoogleMap
         zoom={13}
@@ -22,6 +20,7 @@ export default function MapDisplay(props) {
         {locations.markers
           ? Object.values(locations.markers).map((marker) => (
               <Marker
+                selectedButtons={props.selectedButtons}
                 key={marker.id}
                 bedrooms={marker.bedrooms}
                 cost={marker.cost}

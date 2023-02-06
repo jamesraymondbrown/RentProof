@@ -12,7 +12,8 @@ const RentList = () => {
         <MultiRangeSlider
       min={0}
       max={5000}
-      onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+      onChange={({ min, max }) => console.log(//`min = ${min}, max = ${max}`
+      )}
       style={{ height: "20px" }}
     />
     <BedFilter/>
