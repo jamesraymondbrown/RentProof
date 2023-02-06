@@ -28,7 +28,7 @@ const AddProperty = () => {
         console.log('New Property Added', response.data);
         setTimeout(function(){
  	        setIsPending(false)
-        }, 1000);
+        }, 1500);
       })
       .catch((error) => {
         console.log(error);

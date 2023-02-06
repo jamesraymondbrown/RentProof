@@ -6,6 +6,7 @@ const PropertyDetails = () => {
 
   const id = useParams().propertyid
   const [property, setProperty] = useState(null)
+  const [isPending, setIsPending] = useState(false);
   const history = useHistory()
 
   useEffect(() => {
@@ -16,10 +17,15 @@ const PropertyDetails = () => {
   }, [setProperty]);
 
   const handleClick = () => {
+    console.log("Clicked Delete")
+    setIsPending(true)
     axios.delete(`http://localhost:8001/properties/${id}`)
       .then((response) => {
         console.log('Property Deleted', response.data);
-        history.push('/admin')
+        setTimeout(function () {
+          setIsPending(false)
+ 	        history.push('/admin')
+        }, 1500);
       })
       .catch((error) => {
         console.log(error);
@@ -32,7 +38,8 @@ const PropertyDetails = () => {
         <div>
           <h3>{property.street_address}, {property.postcode}</h3>
           <h3>{property.province}, {property.city}</h3>
-          <button onClick={handleClick}>Delete</button>
+          { !isPending && <button onClick={handleClick}>Delete</button> }
+          { isPending && <button disabled>Deleting Property...</button> }
         </div>  
       )}
     </li>    
