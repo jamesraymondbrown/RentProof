@@ -20,6 +20,14 @@ const axios = require("axios");
 // buildings from each query. Plugging these consts into the generateAddress function produces a URL where you get a response
 // from google maps API listing building addresses, coordinates, etc.
 
+const addresses = [];
+const mapsApiUrls = [];
+
+const generateAddresses = (latLong, radius, keyword) => {
+  const apiCall = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLong}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
+  return apiCall;
+};
+
 const cityHall = { latLong: "49.260120%2C-123.116130", radius: "1000", keyword: "apartments"};
 const downtownTowers = { latLong: "49.28395%2C-123.12404", radius: "1700", keyword: "tower"};
 const downtown = { latLong: "49.28395%2C-123.12404", radius: "1700", keyword: "apartments" };
@@ -35,14 +43,28 @@ const southCambie = { latLong: "49.23823%2C-123.11538", radius: "1100", keyword:
 const burnaby = { latLong: "49.24306%2C-122.98148", radius: "2000", keyword: "apartments" };
 const newWest = { latLong: "49.21882%2C-122.92029", radius: "2000", keyword: "apartments" };
 
+// Create URLs for maps API calls, to retrieve addresses. Push those URLs into an array. 
+
+mapsApiUrls.push(generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword));
+mapsApiUrls.push(generateAddresses(downtownTowers.latLong, downtownTowers.radius, downtownTowers.keyword));
+mapsApiUrls.push(generateAddresses(downtown.latLong, downtown.radius, downtown.keyword));
+mapsApiUrls.push(generateAddresses(mainScience.latLong, mainScience.radius, mainScience.keyword));
+mapsApiUrls.push(generateAddresses(kitsilano.latLong, kitsilano.radius, kitsilano.keyword));
+mapsApiUrls.push(generateAddresses(eastVan.latLong, eastVan.radius, eastVan.keyword));
+mapsApiUrls.push(generateAddresses(newBrighton.latLong, newBrighton.radius, newBrighton.keyword));
+mapsApiUrls.push(generateAddresses(loLo.latLong, loLo.radius, loLo.keyword));
+mapsApiUrls.push(generateAddresses(upperLonsdale.latLong, upperLonsdale.radius, upperLonsdale.keyword));
+mapsApiUrls.push(generateAddresses(northgate.latLong, northgate.radius, northgate.keyword));
+mapsApiUrls.push(generateAddresses(westVan.latLong, westVan.radius, westVan.keyword));
+mapsApiUrls.push(generateAddresses(southCambie.latLong, southCambie.radius, southCambie.keyword));
+mapsApiUrls.push(generateAddresses(burnaby.latLong, burnaby.radius, burnaby.keyword));
+mapsApiUrls.push(generateAddresses(newWest.latLong, newWest.radius, newWest.keyword));
+
+// console.log(mapsApiUrls);
 
 
-const generateAddresses = (latLong, radius, keyword) => {
-  const apiCall = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLong}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
 
-  return apiCall;
 
-};
 
 // app.get(generateAddresses(cityHall.latLong, cityHall.radius, cityHall.keyword), (req, res) => {
 //   console.log(JSON.stringify(res));
@@ -64,15 +86,21 @@ const generateAddresses = (latLong, radius, keyword) => {
 // console.log("newWestApartments:", generateAddresses(newWest.latLong, newWest.radius, newWest.keyword));
 
 
-
-axios.get("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=49.21882%2C-122.92029&radius=2000&keyword=apartments&key=AIzaSyCazUZmPudnjfRlIaVyPFPFvPGzF6G43vc")
+for (url of mapsApiUrls) {
+  axios.get(url)
   .then(response => {
-    console.log(response.data.results);
+    // console.log(response.data.results);
+    const resultsArray = response.data.results
+    for (let result of resultsArray) {
+      addresses.push(result.vicinity)
+    }
+  })
+  .then(() => {
+    console.log('addresses', addresses)
   })
   .catch(error => {
     console.error(error);
   });
-
-
+}
 
 module.exports = { generateAddresses, cityHall };
