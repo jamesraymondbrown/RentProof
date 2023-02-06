@@ -3,6 +3,7 @@ import axios from "axios";
 import './App.css';
 import Map from './components/Map';
 import RentList from "./components/RentList";
+import AddProperty from "./components/AddProperty";
 
 function App() {
 
@@ -38,9 +39,10 @@ function App() {
       <Map style={{ flex: 3 }} />
       <RentList style={{ flex: 1, width: "25%" }} />
       <div>
-        <p>{!state.users ? "Cannot access users." : `Welcome, ${state.users[Math.floor(Math.random() * 3)].email}`}</p>
-        <p>{!state.properties ? "Cannot access properties." : `Here's a postcode from the database: ${state.properties[Math.floor(Math.random() * 10)].postcode}`}</p>
-        <p>{!state.prices ? "Cannot access prices." : `Here's the only price currently in the database: ${state.prices[0].price}`}</p>
+        <p>{state.users && `Welcome, ${state.users[Math.floor(Math.random() * 3)].email}`}</p>
+        <p>{state.properties && `Here's a postcode from the database: ${state.properties[Math.floor(Math.random() * 11)].postcode}`}</p>
+        <p>{state.prices && `Here's the only price currently in the database: ${state.prices[0].price}`}</p>
+        <AddProperty />
       </div>
     </div>
   );

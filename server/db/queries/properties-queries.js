@@ -14,4 +14,12 @@ const getPropertyById = (id) => {
     })
 }
 
-module.exports = { getProperties, getPropertyById };
+const addProperty = (province, city, street_address, postcode) => {
+  return database.query(`INSERT INTO properties (province, city, street_address, postcode)
+                  VALUES ($1, $2, $3, $4) RETURNING *`, [province, city, street_address, postcode])
+    .then((response) => {
+      return response.rows[0]
+    })
+}
+ 
+module.exports = { getProperties, getPropertyById, addProperty };

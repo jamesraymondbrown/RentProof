@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const cors = require("cors");
 const helmet = require("helmet");
+const bodyparser = require("body-parser");
 
 const express = require('express');
 const app = express()
@@ -12,6 +13,7 @@ app.use(morgan('dev'));
 
 app.use(cors());
 app.use(helmet());
+app.use(bodyparser.json());
 
 const usersRouter = require('./routes/users')
 const propertiesRouter = require('./routes/properties')
