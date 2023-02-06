@@ -1,11 +1,17 @@
 require('dotenv').config();
 
+const cors = require("cors");
+const helmet = require("helmet");
+
 const express = require('express');
 const app = express()
 const PORT = process.env.PORT || 8001;
 
 const morgan = require('morgan');
 app.use(morgan('dev'));
+
+app.use(cors());
+app.use(helmet());
 
 const usersRouter = require('./routes/users')
 const propertiesRouter = require('./routes/properties')
