@@ -4,6 +4,7 @@ import './App.css';
 import Map from './components/Map';
 import RentList from "./components/RentList";
 import AddProperty from "./components/AddProperty";
+import PropertyList from "./components/PropertyList";
 
 function App() {
 
@@ -36,14 +37,12 @@ function App() {
 
   return (
     <div className="App" style={{ display: "flex" }}>
-      <Map style={{ flex: 3 }} />
+      <Map style={{ flex: 3 }} />  
       <RentList style={{ flex: 1, width: "25%" }} />
-      <div>
-        <p>{state.users && `Welcome, ${state.users[Math.floor(Math.random() * 3)].email}`}</p>
-        <p>{state.properties && `Here's a postcode from the database: ${state.properties[Math.floor(Math.random() * 11)].postcode}`}</p>
-        <p>{state.prices && `Here's the only price currently in the database: ${state.prices[0].price}`}</p>
+      <div>        
         <AddProperty />
-      </div>
+        {state.properties && <PropertyList properties={state.properties} />}
+      </div>      
     </div>
   );
 }

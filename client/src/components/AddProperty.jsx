@@ -8,6 +8,8 @@ const AddProperty = () => {
   const [address, setAddress] = useState('');
   const [postcode, setPostcode] = useState('');
 
+  const [isPending, setIsPending] = useState(false);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     
@@ -19,10 +21,14 @@ const AddProperty = () => {
     }
 
     console.log('Clicked Add Property')
+    setIsPending(true)
 
     axios.post('http://localhost:8001/properties', property)
       .then((response) => {
-        console.log(response);
+        console.log('New Property Added', response.data);
+        setTimeout(function(){
+ 	        setIsPending(false)
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);
@@ -73,7 +79,8 @@ const AddProperty = () => {
             value={postcode}
             onChange={(event) => setPostcode(event.target.value)}
             />
-        <button>Add Property</button>
+        { !isPending && <button>Add Property</button>}
+        { isPending && <button disabled>Adding Property...</button> }
       </form>
     </div>  
   )

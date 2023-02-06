@@ -37,6 +37,19 @@ router.post('/', (req, res) => {
   propertyQueries.addProperty(province, city, street_address, postcode)
     .then((response) => {
       console.log('Property Added:', response)
+      res.send(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    }); 
+});
+
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  propertyQueries.deleteProperty(id)
+    .then((response) => {
+      console.log('Property Deleted:', response)
+      res.send(response)
     })
     .catch((error) => {
       console.log(error)
