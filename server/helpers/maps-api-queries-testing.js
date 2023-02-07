@@ -95,7 +95,7 @@ const generateAddresses = async () => {
         }
       })
       .then(() => {
-        console.log('addresses', addresses)
+        // console.log('addresses', addresses);
       })
       .catch(error => {
         console.error(error);
@@ -103,5 +103,5 @@ const generateAddresses = async () => {
   }
 }
 
-console.log(generateAddresses());
+// console.log(generateAddresses());
 

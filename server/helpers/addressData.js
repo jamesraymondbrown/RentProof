@@ -1,5 +1,105 @@
 const addresses = [
   {
+    address: '1775 Bellevue Ave, West Vancouver',
+    lat: 49.3278471,
+    lng: -123.161684
+  },
+  {
+    address: '1370 Clyde Ave, West Vancouver',
+    lat: 49.3284725,
+    lng: -123.1535426
+  },
+  {
+    address: '2100 Bellevue Ave, West Vancouver',
+    lat: 49.3286161,
+    lng: -123.1684069
+  },
+  {
+    address: '2190 Bellevue Ave, West Vancouver',
+    lat: 49.3292428,
+    lng: -123.1702589
+  },
+  {
+    address: '935 Marine Dr, West Vancouver',
+    lat: 49.3276969,
+    lng: -123.1417613
+  },
+  {
+    address: '2085 Bellevue Ave, West Vancouver',
+    lat: 49.3289499,
+    lng: -123.1676493
+  },
+  {
+    address: '2025 Bellevue Ave, West Vancouver',
+    lat: 49.32868870000001,
+    lng: -123.1668178
+  },
+  {
+    address: '1425 Esquimalt Ave, West Vancouver',
+    lat: 49.3307543,
+    lng: -123.1550697
+  },
+  {
+    address: '195 21st St, West Vancouver',
+    lat: 49.328457,
+    lng: -123.1685
+  },
+  {
+    address: '1550 Duchess Ave, West Vancouver',
+    lat: 49.3295464,
+    lng: -123.1577202
+  },
+  {
+    address: '2151 Gordon Ave, West Vancouver',
+    lat: 49.33276679999999,
+    lng: -123.1692372
+  },
+  {
+    address: '2222 Bellevue Ave, Vancouver',
+    lat: 49.3298212,
+    lng: -123.1718933
+  },
+  {
+    address: '328 Taylor Way, West Vancouver',
+    lat: 49.3265359,
+    lng: -123.1345321
+  },
+  {
+    address: '2190 Bellevue Ave, West Vancouver',
+    lat: 49.3292696,
+    lng: -123.1703217
+  },
+  {
+    address: '14th St & Clyde Ave, West Vancouver',
+    lat: 49.3287398,
+    lng: -123.1543291
+  },
+  {
+    address: '1689 Duchess Ave, West Vancouver',
+    lat: 49.3299841,
+    lng: -123.1599424
+  },
+  {
+    address: '2288 Bellevue Ave, West Vancouver',
+    lat: 49.3316501,
+    lng: -123.1747535
+  },
+  {
+    address: '605 Clyde Ave, West Vancouver',
+    lat: 49.328419,
+    lng: -123.1324323
+  },
+  {
+    address: '2535 Garden Court, West Vancouver',
+    lat: 49.34930259999999,
+    lng: -123.1833051
+  },
+  {
+    address: '150 24th St, West Vancouver',
+    lat: 49.3325036,
+    lng: -123.179033
+  },
+  {
     address: '630 Millbank, Vancouver',
     lat: 49.2680841,
     lng: -123.1182283
@@ -198,6 +298,106 @@ const addresses = [
     address: '1663 W 12th Ave, Vancouver',
     lat: 49.2610342,
     lng: -123.1425898
+  },
+  {
+    address: '170 Keith Rd E, North Vancouver',
+    lat: 49.3159392,
+    lng: -123.0705513
+  },
+  {
+    address: '130 11th St E #203, North Vancouver',
+    lat: 49.3181708,
+    lng: -123.0710805
+  },
+  {
+    address: '308 Forbes Ave, North Vancouver',
+    lat: 49.3173946,
+    lng: -123.0855997
+  },
+  {
+    address: '125 W Keith Rd, North Vancouver',
+    lat: 49.3167205,
+    lng: -123.0753466
+  },
+  {
+    address: '163 5th St W, North Vancouver',
+    lat: 49.31583699999999,
+    lng: -123.0780048
+  },
+  {
+    address: '108 13th St W, North Vancouver',
+    lat: 49.3201681,
+    lng: -123.0731041
+  },
+  {
+    address: '131 6th St W, North Vancouver',
+    lat: 49.3161292,
+    lng: -123.0761065
+  },
+  {
+    address: '145 W Keith Rd, North Vancouver',
+    lat: 49.3170534,
+    lng: -123.0760119
+  },
+  {
+    address: '170 5th St E, North Vancouver',
+    lat: 49.3142097,
+    lng: -123.0725228
+  },
+  {
+    address: '130 W Keith Rd, North Vancouver',
+    lat: 49.3182531,
+    lng: -123.0744399
+  },
+  {
+    address: '111 1st St E, North Vancouver',
+    lat: 49.3115004,
+    lng: -123.0781782
+  },
+  {
+    address: '175 14th St W, North Vancouver',
+    lat: 49.3208148,
+    lng: -123.0751444
+  },
+  {
+    address: '616 Lonsdale Ave, North Vancouver',
+    lat: 49.3161213,
+    lng: -123.0740546
+  },
+  {
+    address: '380 1st St E, North Vancouver',
+    lat: 49.308366,
+    lng: -123.0696954
+  },
+  {
+    address: '150 11th St E, North Vancouver',
+    lat: 49.3180685,
+    lng: -123.0703824
+  },
+  {
+    address: '315 1st St E, North Vancouver',
+    lat: 49.3088221,
+    lng: -123.0720959
+  },
+  {
+    address: '1240 St Georges Ave, North Vancouver',
+    lat: 49.31961949999999,
+    lng: -123.0689926
+  },
+  {
+    address: '1320 Chesterfield Ave, North Vancouver',
+    lat: 49.3203602,
+    lng: -123.0752699
+  },
+  {
+    address: '177 5th St W #206, North Vancouver',
+    lat: 49.3160692,
+    lng: -123.078382
+  },
+  {
+    address: '150 Keith Rd E #1103, North Vancouver',
+    lat: 49.3166429,
+    lng: -123.070865
   },
   {
     address: '128 W Pender St W, Vancouver',
@@ -732,206 +932,6 @@ const addresses = [
     lng: -123.0664445
   },
   {
-    address: '170 Keith Rd E, North Vancouver',
-    lat: 49.3159392,
-    lng: -123.0705513
-  },
-  {
-    address: '130 11th St E #203, North Vancouver',
-    lat: 49.3181708,
-    lng: -123.0710805
-  },
-  {
-    address: '308 Forbes Ave, North Vancouver',
-    lat: 49.3173946,
-    lng: -123.0855997
-  },
-  {
-    address: '125 W Keith Rd, North Vancouver',
-    lat: 49.3167205,
-    lng: -123.0753466
-  },
-  {
-    address: '163 5th St W, North Vancouver',
-    lat: 49.31583699999999,
-    lng: -123.0780048
-  },
-  {
-    address: '108 13th St W, North Vancouver',
-    lat: 49.3201681,
-    lng: -123.0731041
-  },
-  {
-    address: '131 6th St W, North Vancouver',
-    lat: 49.3161292,
-    lng: -123.0761065
-  },
-  {
-    address: '145 W Keith Rd, North Vancouver',
-    lat: 49.3170534,
-    lng: -123.0760119
-  },
-  {
-    address: '170 5th St E, North Vancouver',
-    lat: 49.3142097,
-    lng: -123.0725228
-  },
-  {
-    address: '130 W Keith Rd, North Vancouver',
-    lat: 49.3182531,
-    lng: -123.0744399
-  },
-  {
-    address: '111 1st St E, North Vancouver',
-    lat: 49.3115004,
-    lng: -123.0781782
-  },
-  {
-    address: '175 14th St W, North Vancouver',
-    lat: 49.3208148,
-    lng: -123.0751444
-  },
-  {
-    address: '616 Lonsdale Ave, North Vancouver',
-    lat: 49.3161213,
-    lng: -123.0740546
-  },
-  {
-    address: '380 1st St E, North Vancouver',
-    lat: 49.308366,
-    lng: -123.0696954
-  },
-  {
-    address: '150 11th St E, North Vancouver',
-    lat: 49.3180685,
-    lng: -123.0703824
-  },
-  {
-    address: '315 1st St E, North Vancouver',
-    lat: 49.3088221,
-    lng: -123.0720959
-  },
-  {
-    address: '1240 St Georges Ave, North Vancouver',
-    lat: 49.31961949999999,
-    lng: -123.0689926
-  },
-  {
-    address: '1320 Chesterfield Ave, North Vancouver',
-    lat: 49.3203602,
-    lng: -123.0752699
-  },
-  {
-    address: '177 5th St W #206, North Vancouver',
-    lat: 49.3160692,
-    lng: -123.078382
-  },
-  {
-    address: '150 Keith Rd E #1103, North Vancouver',
-    lat: 49.3166429,
-    lng: -123.070865
-  },
-  {
-    address: '1775 Bellevue Ave, West Vancouver',
-    lat: 49.3278471,
-    lng: -123.161684
-  },
-  {
-    address: '1370 Clyde Ave, West Vancouver',
-    lat: 49.3284725,
-    lng: -123.1535426
-  },
-  {
-    address: '2100 Bellevue Ave, West Vancouver',
-    lat: 49.3286161,
-    lng: -123.1684069
-  },
-  {
-    address: '2190 Bellevue Ave, West Vancouver',
-    lat: 49.3292428,
-    lng: -123.1702589
-  },
-  {
-    address: '935 Marine Dr, West Vancouver',
-    lat: 49.3276969,
-    lng: -123.1417613
-  },
-  {
-    address: '2085 Bellevue Ave, West Vancouver',
-    lat: 49.3289499,
-    lng: -123.1676493
-  },
-  {
-    address: '2025 Bellevue Ave, West Vancouver',
-    lat: 49.32868870000001,
-    lng: -123.1668178
-  },
-  {
-    address: '1425 Esquimalt Ave, West Vancouver',
-    lat: 49.3307543,
-    lng: -123.1550697
-  },
-  {
-    address: '195 21st St, West Vancouver',
-    lat: 49.328457,
-    lng: -123.1685
-  },
-  {
-    address: '1550 Duchess Ave, West Vancouver',
-    lat: 49.3295464,
-    lng: -123.1577202
-  },
-  {
-    address: '2151 Gordon Ave, West Vancouver',
-    lat: 49.33276679999999,
-    lng: -123.1692372
-  },
-  {
-    address: '2222 Bellevue Ave, Vancouver',
-    lat: 49.3298212,
-    lng: -123.1718933
-  },
-  {
-    address: '328 Taylor Way, West Vancouver',
-    lat: 49.3265359,
-    lng: -123.1345321
-  },
-  {
-    address: '2190 Bellevue Ave, West Vancouver',
-    lat: 49.3292696,
-    lng: -123.1703217
-  },
-  {
-    address: '14th St & Clyde Ave, West Vancouver',
-    lat: 49.3287398,
-    lng: -123.1543291
-  },
-  {
-    address: '1689 Duchess Ave, West Vancouver',
-    lat: 49.3299841,
-    lng: -123.1599424
-  },
-  {
-    address: '2288 Bellevue Ave, West Vancouver',
-    lat: 49.3316501,
-    lng: -123.1747535
-  },
-  {
-    address: '605 Clyde Ave, West Vancouver',
-    lat: 49.328419,
-    lng: -123.1324323
-  },
-  {
-    address: '2535 Garden Court, West Vancouver',
-    lat: 49.34930259999999,
-    lng: -123.1833051
-  },
-  {
-    address: '150 24th St, West Vancouver',
-    lat: 49.3325036,
-    lng: -123.179033
-  },
-  {
     address: '7448 14th Ave, Burnaby',
     lat: 49.2171607,
     lng: -122.9413653
@@ -1183,4 +1183,6 @@ const addresses = [
   }
 ];
 
-console.log(addresses.length);
+// console.log(addresses.length);
+
+module.exports = { addresses };
