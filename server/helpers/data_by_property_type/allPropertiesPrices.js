@@ -5,6 +5,7 @@ const threeBedrooms = require('./threeBedroomData')
 const fourBedrooms = require('./fourBedroomData')
 const fiveBedrooms = require('./fiveBedroomData')
 const sixBedrooms = require('./sixBedroomData')
+const util = require('util')
 
 // console.log(studios.length);
 // console.log(oneBedrooms.length);
@@ -36,4 +37,8 @@ function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-console.log(shuffle(allPropertiesPrices));
+const shuffledPrices = shuffle(allPropertiesPrices);
+
+// console.log('snail', util.inspect(shuffle(allPropertiesPrices), {maxArrayLength: null, depth:null }))
+
+module.exports = shuffledPrices

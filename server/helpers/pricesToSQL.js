@@ -1,3 +1,6 @@
+const shuffledPrices = require('./data_by_property_type/allPropertiesPrices')
+const util = require('util')
+
 const studios = [
   [
     {
@@ -159,9 +162,23 @@ const generatePrices = (properties) => {
     propertyId = propertyId + 1;
   }
 
-  console.log('queryArray', queryArray);
+  // console.log('queryArray', queryArray);
+  console.dir(queryArray, {'maxArrayLength': null})
 
 }
+
+const SQLQueries = generatePrices(shuffledPrices)
+
+// console.log('snail', util.inspect(generatePrices(shuffledPrices), {maxArrayLength: null, depth:null }))
+
+// console.dir(generatePrices(shuffledPrices), {depth: null, colors: true, maxArrayLength: null})
+
+// console.log(util.inspect(SQLQueries, { maxArrayLength: null }))
+
+console.dir(SQLQueries, {'maxArrayLength': null})
+
+// console.log(JSON.stringify(SQLQueries, null, 3));
+
 
 // CREATE TABLE prices (
 //   id SERIAL PRIMARY KEY NOT NULL,
@@ -178,4 +195,4 @@ const generatePrices = (properties) => {
 //   number_of_bathrooms INTEGER NOT NULL,  
 // );
 
-generatePrices(studios)
+// generatePrices(studios)
