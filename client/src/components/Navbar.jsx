@@ -4,9 +4,10 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <h1>Rent Tracker</h1>
-      <div className="links">
-        <Link to="/">Home</Link>
-        <Link to="/admin">Admin</Link>
+      <div className="links" style={{ margin: '1em' }} >
+        <Link to="/" style={{ margin: '1em' }}>Home</Link>
+        <Link to="/admin" style={{ margin: '1em' }}>Admin</Link>
+        <Link to="/create" style={{ margin: '1em' }}>Add Property</Link>
       </div>
     </nav>
   );

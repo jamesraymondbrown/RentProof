@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
+import useApplicationData from "./hooks/useApplicationData";
+
 import Navbar from "./components/Navbar";
 import Map from './components/Map';
 import RentList from "./components/RentList";
+import Admin from "./components/admin/Admin";
 import AddProperty from "./components/AddProperty";
-import PropertyList from "./components/PropertyList";
-import PropertyDetails from "./components/PropertyDetails";
+import PropertyDetails from "./components/admin/PropertyDetails";
 
 function App() {
 
-  const [state, setState] = useState({
-    users: null,
-    properties: null,
-    prices: null,
-  });
+  const {
+    state,
+    setState
+  } = useApplicationData();
 
   useEffect(() => {
     const usersURL = `http://localhost:8001/users`;
@@ -49,8 +50,10 @@ function App() {
               <RentList style={{ flex: 1, width: "25%" }} />
             </Route>
             <Route path="/admin">
+              <Admin />
+            </Route>
+            <Route path="/create">
               <AddProperty />
-              {state.properties && <PropertyList properties={state.properties} />}
             </Route>
             <Route path="/:propertyid">
               <PropertyDetails />

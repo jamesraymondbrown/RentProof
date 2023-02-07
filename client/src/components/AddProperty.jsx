@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const AddProperty = () => {
 
@@ -9,6 +10,7 @@ const AddProperty = () => {
   const [postcode, setPostcode] = useState('');
 
   const [isPending, setIsPending] = useState(false);
+  const history = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,8 +29,9 @@ const AddProperty = () => {
       .then((response) => {
         console.log('New Property Added', response.data);
         setTimeout(function(){
- 	        setIsPending(false)
-        }, 1500);
+          setIsPending(false)
+          history.push('/admin')
+        }, 500);
       })
       .catch((error) => {
         console.log(error);

@@ -14,7 +14,7 @@ const PropertyDetails = () => {
     .then((response) => {
       setProperty(response.data)
     })
-  }, [setProperty]);
+  }, []);
 
   const handleClick = () => {
     console.log("Clicked Delete")
@@ -25,7 +25,7 @@ const PropertyDetails = () => {
         setTimeout(function () {
           setIsPending(false)
  	        history.push('/admin')
-        }, 1500);
+        }, 500);
       })
       .catch((error) => {
         console.log(error);

@@ -1,11 +1,11 @@
 import React from "react";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const PropertyListItem = (props) => {
+
   const id = props.id
   const history = useHistory()
-  const handleClick = () => {  
+  const handleClick = () => {    
     history.push(`/${id}`)
   }  
   return (
