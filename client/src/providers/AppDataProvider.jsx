@@ -1,6 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-export const useAppData = () => {
+export const AppDataContext = createContext();
+
+export const AppDataProvider = ({ children }) => {
   const [selectedButtons, setSelectedButtons] = useState([2, 3]);
   const [minVal, setMinVal] = useState(0);
   const [maxVal, setMaxVal] = useState(100);
@@ -10,9 +12,10 @@ export const useAppData = () => {
     minVal,
     maxVal,
   });
-  // console.log("maxVal ➤", maxVal);
-  // console.log("APPselectedButtons ➤", selectedButtons);
 
+  
+
+  
   const handleClick = (index) => {
     if (selectedButtons.includes(index)) {
       setSelectedButtons(selectedButtons.filter((i) => i !== index));
@@ -20,10 +23,17 @@ export const useAppData = () => {
       setSelectedButtons([...selectedButtons, index]);
     }
   };
-
+  
   useEffect(() => {
+    console.log("selectedButtons ➤", selectedButtons);
     setState((prevState) => ({ ...prevState, bedrooms: selectedButtons }));
   }, [selectedButtons]);
 
-  return { state, handleClick, setMinVal, setMaxVal };
+  return (
+    <AppDataContext.Provider
+      value={{ state, handleClick, setMinVal, setMaxVal, selectedButtons }}
+    >
+      {children}
+    </AppDataContext.Provider>
+  );
 };

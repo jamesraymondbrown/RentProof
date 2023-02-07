@@ -1,13 +1,17 @@
-import React from "react";
+import { useContext, useEffect } from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import axios from "axios";
+import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
 
-function Marker({selectedButtons, bedrooms, cost, position, title, label, id }) {
+function Marker({ bedrooms, cost, position, title, label, id}) {
+  const { selectedButtons } = useContext(AppDataContext);
+  
+  useEffect(() => {
+    console.log("selectedButtons ➤", selectedButtons);
+  }, [selectedButtons]);
+
   let markerColor;
-  // console.log("selectedButtons.length ➤", selectedButtons.length);
-  // if (selectedButtons.length) {
-  //   markerColor = "yellow";
-  // } 
+
   if (cost <= 1500) {
     markerColor = "blue";
   } else if (cost <= 2000) {
@@ -20,7 +24,6 @@ function Marker({selectedButtons, bedrooms, cost, position, title, label, id }) 
     axios
       .get(`http://localhost:8001/properties/${id}`)
       .then((response) => console.log("response.data ➤", response.data))
-      // .then((data) => console.log(data))
       .catch((error) => console.error(error));
   };
 
@@ -30,7 +33,6 @@ function Marker({selectedButtons, bedrooms, cost, position, title, label, id }) 
         <GoogleMapMarker
           position={position}
           title={title}
-          // label={label}
           onClick={handleMarkerClick}
           icon={{
             url: `http://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`,

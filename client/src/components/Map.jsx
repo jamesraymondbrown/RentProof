@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api"
 import "./Map.scss";
 import Marker from "./Marker.jsx";
 // import axios from "axios";
-
-export default function MapDisplay(props) {
+import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
+ 
+  export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
   });
 
   const properties = props.state.properties
 
-console.log("properties ➤", properties);
+// console.log("properties ➤", properties);
   // const [selectedMarker, setSelectedMarker] = useState(null);
 
   // function handleMarkerClick(marker) {
@@ -51,7 +52,8 @@ console.log("properties ➤", properties);
                 cost={2000} // hard coded, change this later
                 label={2000} // hard coded, change this later
                 bedrooms={2} // hard coded, change this later
-                selectedButtons={[2]} // hard coded, Remove this later. we shouldnt need it
+                //url picture
+                 // hard coded, Remove this later. we shouldnt need it
               />
             ))
           : console.error(

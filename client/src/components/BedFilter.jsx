@@ -1,10 +1,10 @@
-import React from "react";
-import "./BedFilter.scss";
-import { useAppData } from "../hooks/useAppData";
+import React, { useContext } from "react";
+import { AppDataContext } from "../providers/AppDataProvider";
 
 export default function BedFilter() {
-  const { state, handleClick } = useAppData();
-// console.log("state ➤", state);
+  const { state, handleClick } = useContext(AppDataContext);
+  const bedrooms = [0, 1, 2, 3, 4];
+
   return (
     <div className="filter-container">
       <div className="filter-row">
@@ -13,46 +13,17 @@ export default function BedFilter() {
           <div className="filter-wrap">
             <div className="filter">
               <div className="row filter-bedrooms">
-                <button
-                  className={`filter-button ${
-                    state.bedrooms.includes(0) ? "selected" : ""
-                  }`}
-                  onClick={() => handleClick(0)}
-                >
-                  Studio
-                </button>
-                <button
-                  className={`filter-button ${
-                    state.bedrooms.includes(1) ? "selected" : ""
-                  }`}
-                  onClick={() => handleClick(1)}
-                >
-                  1
-                </button>
-                <button
-                  className={`filter-button ${
-                    state.bedrooms.includes(2) ? "selected" : ""
-                  }`}
-                  onClick={() => handleClick(2)}
-                >
-                  2
-                </button>
-                <button
-                  className={`filter-button ${
-                    state.bedrooms.includes(3) ? "selected" : ""
-                  }`}
-                  onClick={() => handleClick(3)}
-                >
-                  3
-                </button>
-                <button
-                  className={`filter-button ${
-                    state.bedrooms.includes(4) ? "selected" : ""
-                  }`}
-                  onClick={() => handleClick(4)}
-                >
-                  4+
-                </button>
+                {bedrooms.map((bedrooms) => (
+                  <button
+                    key={bedrooms}
+                    className={`filter-button ${
+                      state.bedrooms.includes(bedrooms) ? "selected" : ""
+                    }`}
+                    onClick={() => handleClick(bedrooms)}
+                  >
+                    {bedrooms === 0 ? "Studio" : bedrooms}
+                  </button>
+                ))}
               </div>
             </div>
           </div>

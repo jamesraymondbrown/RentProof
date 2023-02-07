@@ -3,13 +3,13 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import useApplicationData from "./hooks/useApplicationData";
-
 import Navbar from "./components/Navbar";
 import Map from './components/Map';
 import RentList from "./components/RentList";
 import Admin from "./components/admin/Admin";
 import AddProperty from "./components/AddProperty";
 import PropertyDetails from "./components/admin/PropertyDetails";
+import { AppDataProvider } from "./providers/AppDataProvider";
 
 function App() {
 
@@ -40,15 +40,16 @@ function App() {
   }, [setState]);
 
   return (
-    <Router>  
+            <AppDataProvider>
+    <Router>
       <div className="App">
         <Navbar />
         <div className="Content" style={{ display: "flex" }}>
           <Switch>
-            <Route exact path="/">
-              { state.properties && <Map state={state} style={{ flex: 3 }} /> }  
-              <RentList style={{ flex: 1, width: "25%" }} />
-            </Route>
+              <Route exact path="/">
+                <Map state={state} style={{ flex: 3 }} />
+                <RentList style={{ flex: 1, width: "25%" }} />
+              </Route>
             <Route path="/admin">
               <Admin />
             </Route>
@@ -59,9 +60,10 @@ function App() {
               <PropertyDetails />
             </Route>
           </Switch>
-        </div>   
+        </div>
       </div>
     </Router>
+            </AppDataProvider>
   );
 }
 
