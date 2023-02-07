@@ -48,10 +48,10 @@ console.log("properties ➤", properties);
                   lng: Number(property.longitude),
                 }}
                 title={property.address}
-                cost={2000} // hard coded, remove this later
-                label={2000} // hard coded, remove this later
-                bedrooms={2} // hard coded, remove this later
-                selectedButtons={[2]} // hard coded, remove this later
+                cost={2000} // hard coded, change this later
+                label={2000} // hard coded, change this later
+                bedrooms={2} // hard coded, change this later
+                selectedButtons={[2]} // hard coded, Remove this later. we shouldnt need it
               />
             ))
           : console.error(
