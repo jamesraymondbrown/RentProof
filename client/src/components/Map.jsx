@@ -11,7 +11,7 @@ export default function MapDisplay(props) {
 
   const properties = props.state.properties
 
-console.log("properties ➤", properties);
+// console.log("properties ➤", properties);
   // const [selectedMarker, setSelectedMarker] = useState(null);
 
   // function handleMarkerClick(marker) {

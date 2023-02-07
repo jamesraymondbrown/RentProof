@@ -10,6 +10,7 @@ import RentList from "./components/RentList";
 import Admin from "./components/admin/Admin";
 import AddProperty from "./components/AddProperty";
 import PropertyDetails from "./components/admin/PropertyDetails";
+import Register from "./components/Register";
 
 function App() {
 
@@ -55,9 +56,16 @@ function App() {
             <Route path="/create">
               <AddProperty />
             </Route>
+             <Route exact path="/register">
+              <Register />
+            </Route>
+            <Route path="/login">
+              {/* <PropertyDetails /> */}
+            </Route>
             <Route path="/:propertyid">
               <PropertyDetails />
             </Route>
+           
           </Switch>
         </div>   
       </div>
