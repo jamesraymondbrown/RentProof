@@ -1,13 +1,14 @@
-const { addresses } = require('./addressData');
+const { addresses } = require("./addressData");
 
 // console.log(addresses.length);
 
 const generateProperties = (addresses) => {
-
   const queryArray = [];
 
   for (let i = 0; i < addresses.length; i++) {
-    queryArray.push(`('BC', 'Vancouver', '${addresses[i].address}', ${addresses[i].lat}, ${addresses[i].lng}),`);
+    queryArray.push(
+      `('BC', 'Vancouver', '${addresses[i].address}', ${addresses[i].lat}, ${addresses[i].lng}),`
+    );
   }
 
   // for (let address of addresses) {
@@ -15,9 +16,6 @@ const generateProperties = (addresses) => {
   // }
 
   console.log(queryArray);
+};
 
-}
-
-generateProperties(addresses)
-
-
+generateProperties(addresses);
