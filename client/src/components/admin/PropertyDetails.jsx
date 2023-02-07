@@ -36,8 +36,9 @@ const PropertyDetails = () => {
     <li>
       {property && (
         <div>
-          <h3>{property.street_address}, {property.postcode}</h3>
+          <h3>{property.street_address}</h3>          
           <h3>{property.province}, {property.city}</h3>
+          <h3>{property.latitude},{property.longitude }</h3>
           { !isPending && <button onClick={handleClick}>Delete</button> }
           { isPending && <button disabled>Deleting Property...</button> }
         </div>  

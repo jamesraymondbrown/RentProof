@@ -46,7 +46,7 @@ function App() {
         <div className="Content" style={{ display: "flex" }}>
           <Switch>
             <Route exact path="/">
-              <Map style={{ flex: 3 }} />  
+              { state.properties && <Map state={state} style={{ flex: 3 }} /> }  
               <RentList style={{ flex: 1, width: "25%" }} />
             </Route>
             <Route path="/admin">

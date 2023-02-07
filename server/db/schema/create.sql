@@ -4,10 +4,11 @@ DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE properties (
   id SERIAL PRIMARY KEY NOT NULL,
-  province VARCHAR(255),
+  province VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   street_address VARCHAR(255) NOT NULL,
-  postcode VARCHAR(255)
+  latitude DECIMAL(12,9),
+  longitude DECIMAL(12,9)
 );
 
 CREATE TABLE users (

@@ -7,7 +7,8 @@ const AddProperty = () => {
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
-  const [postcode, setPostcode] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
 
   const [isPending, setIsPending] = useState(false);
   const history = useHistory()
@@ -19,7 +20,8 @@ const AddProperty = () => {
       'province': province,
       'city': city,
       'street_address': address,
-      'postcode': postcode
+      'latitude': latitude,
+      'longitude': longitude
     }
 
     console.log('Clicked Add Property')
@@ -75,13 +77,22 @@ const AddProperty = () => {
             value={address}
             onChange={(event) => setAddress(event.target.value)}
           />
-        <label>Postcode</label>
+        <label>Latitude</label>
           <input
-            type="text" 
+            type="number"
+            step="any" 
             required
-            value={postcode}
-            onChange={(event) => setPostcode(event.target.value)}
-            />
+            value={latitude}
+            onChange={(event) => setLatitude(event.target.value)}
+          />
+        <label>Longitude</label>
+          <input
+            type="number"
+            step="any" 
+            required
+            value={longitude}
+            onChange={(event) => setLongitude(event.target.value)}
+          />
         { !isPending && <button>Add Property</button>}
         { isPending && <button disabled>Adding Property...</button> }
       </form>

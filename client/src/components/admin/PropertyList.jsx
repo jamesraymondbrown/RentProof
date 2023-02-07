@@ -10,7 +10,8 @@ function PropertyList(props) {
       province={property.province}
       city={property.city}
       address={property.street_address}
-      postcode={property.postcode}
+      latitude={property.latitude}
+      longitude={property.longitude}
     />
   ));
 

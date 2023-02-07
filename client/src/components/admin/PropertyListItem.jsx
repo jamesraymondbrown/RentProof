@@ -10,8 +10,9 @@ const PropertyListItem = (props) => {
   }  
   return (
     <li>      
-      <h3>{props.address}, {props.postcode}</h3>
+      <h3>{props.address}</h3>
       <h3>{props.province}, {props.city}</h3>
+      <h3>{props.latitude},{props.longitude }</h3>
       <button onClick={handleClick}>Manage Property</button>
     </li>
   );

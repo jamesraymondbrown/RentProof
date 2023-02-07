@@ -32,9 +32,10 @@ router.post('/', (req, res) => {
   const province = req.body.province
   const city = req.body.city
   const street_address = req.body.street_address
-  const postcode = req.body.postcode
+  const latitude = req.body.latitude
+  const longitude = req.body.longitude
 
-  propertyQueries.addProperty(province, city, street_address, postcode)
+  propertyQueries.addProperty(province, city, street_address, latitude, longitude)
     .then((response) => {
       console.log('Property Added:', response)
       res.send(response)
