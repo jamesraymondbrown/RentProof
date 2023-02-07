@@ -15,6 +15,8 @@ const getRandomInt = (min, max) => {
 const generateStudioPrices = () => {
 
   let bedrooms = 0
+  let bathrooms = 1
+  let squareFootage = getRandomInt(300, 500)
   let query = [];
 
   for (let i = 0; i < 50; i++) {
@@ -22,7 +24,7 @@ const generateStudioPrices = () => {
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
       price = roundToNearest10(price + Math.round(price * Math.random() / 7))
-      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms})
+      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms, 'bathrooms': bathrooms, 'square_footage': squareFootage})
     }
     query.push(propertyPriceHistory)
   }
@@ -35,6 +37,8 @@ const generateStudioPrices = () => {
 
 const generateOneBedroomPrices = () => {
   let bedrooms = 1
+  let bathrooms = 1
+  let squareFootage = getRandomInt(400, 800)
   let query = [];
 
   for (let i = 0; i < 50; i++) {
@@ -42,7 +46,7 @@ const generateOneBedroomPrices = () => {
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
       price = roundToNearest10(price + Math.round(price * Math.random() / 6))
-      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms})
+      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms, 'bathrooms': bathrooms, 'square_footage': squareFootage})
     }
     query.push(propertyPriceHistory)
   }
@@ -54,6 +58,8 @@ const generateOneBedroomPrices = () => {
 
 const generateTwoBedroomPrices = () => {
   let bedrooms = 2
+  let bathrooms = getRandomInt(1, 2);
+  let squareFootage = getRandomInt(500, 1000)
   let query = [];
 
   for (let i = 0; i < 50; i++) {
@@ -61,7 +67,7 @@ const generateTwoBedroomPrices = () => {
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
       price = roundToNearest10(price + Math.round(price * Math.random() / 6))
-      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms})
+      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms, 'bathrooms': bathrooms, 'square_footage': squareFootage})
     }
     query.push(propertyPriceHistory)
   }
@@ -73,7 +79,9 @@ const generateTwoBedroomPrices = () => {
 
 
 const generateThreeBedroomPrices = () => {
-  let bedrooms = 3
+  let bedrooms = 3;
+  let bathrooms = getRandomInt(1, 2);
+  let squareFootage = getRandomInt(600, 1200)
   let query = [];
 
   for (let i = 0; i < 50; i++) {
@@ -81,7 +89,7 @@ const generateThreeBedroomPrices = () => {
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
       price = roundToNearest10(price + Math.round(price * Math.random() / 6))
-      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms})
+      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms, 'bathrooms': bathrooms, 'square_footage': squareFootage})
     }
     query.push(propertyPriceHistory)
   }
@@ -93,6 +101,8 @@ const generateThreeBedroomPrices = () => {
 
 const generateFourBedroomPrices = () => {
   let bedrooms = 4
+  let bathrooms = getRandomInt(1, 3)
+  let squareFootage = getRandomInt(1000, 1800)
   let query = [];
 
   for (let i = 0; i < 15; i++) {
@@ -100,7 +110,7 @@ const generateFourBedroomPrices = () => {
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
       price = roundToNearest10(price + Math.round(price * Math.random() / 6))
-      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms})
+      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms, 'bathrooms': bathrooms, 'square_footage': squareFootage})
     }
     query.push(propertyPriceHistory)
   }
@@ -113,6 +123,8 @@ const generateFourBedroomPrices = () => {
 
 const generateFiveBedroomPrices = () => {
   let bedrooms = 5
+  let bathrooms = getRandomInt(2, 4)
+  let squareFootage = getRandomInt(1600, 3500)
   let query = [];
 
   for (let i = 0; i < 15; i++) {
@@ -120,7 +132,7 @@ const generateFiveBedroomPrices = () => {
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
       price = roundToNearest10(price + Math.round(price * Math.random() / 6))
-      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms})
+      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms, 'bathrooms': bathrooms, 'square_footage': squareFootage})
     }
     query.push(propertyPriceHistory)
   }
@@ -132,6 +144,8 @@ const generateFiveBedroomPrices = () => {
 
 const generateSixBedroomPrices = () => {
   let bedrooms = 6
+  let bathrooms = getRandomInt(2, 6)
+  let squareFootage = getRandomInt(2500, 4000)
   let query = [];
 
   for (let i = 0; i < 7; i++) {
@@ -139,7 +153,7 @@ const generateSixBedroomPrices = () => {
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
       price = roundToNearest10(price + Math.round(price * Math.random() / 6))
-      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms})
+      propertyPriceHistory.push({'year': year, 'price': price, 'bedrooms': bedrooms, 'bathrooms': bathrooms, 'square_footage': squareFootage})
     }
     query.push(propertyPriceHistory)
   }
@@ -147,9 +161,7 @@ const generateSixBedroomPrices = () => {
   return query
 }
 
-console.log(generateSixBedroomPrices())
-
-
+// console.log(generateSixBedroomPrices())
 
 
 // const generateProperties = (prices) => {
