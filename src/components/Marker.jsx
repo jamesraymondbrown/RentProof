@@ -2,7 +2,7 @@ import React from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import axios from "axios";
 
-function Marker({selectedButtons, bedrooms, cost, position, title, label }) {
+function Marker({selectedButtons, bedrooms, cost, position, title, label, img }) {
   let markerColor;
   // console.log("selectedButtons.length ➤", selectedButtons.length);
   // if (selectedButtons.length) {
@@ -30,7 +30,7 @@ function Marker({selectedButtons, bedrooms, cost, position, title, label }) {
       {selectedButtons.includes(bedrooms) ? (
         <GoogleMapMarker
           position={position}
-          title={title}
+          title={`${cost}`}
           label={label}
           onClick={handleMarkerClick}
           icon={{
