@@ -16,10 +16,10 @@ const generateStudioPrices = () => {
 
   let bedrooms = 0
   let bathrooms = 1
-  let squareFootage = getRandomInt(300, 500)
   let query = [];
 
   for (let i = 0; i < 50; i++) {
+    let squareFootage = getRandomInt(350, 600)
     let price = getRandomInt(600, 1000)
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
@@ -38,10 +38,10 @@ const generateStudioPrices = () => {
 const generateOneBedroomPrices = () => {
   let bedrooms = 1
   let bathrooms = 1
-  let squareFootage = getRandomInt(400, 800)
   let query = [];
 
   for (let i = 0; i < 50; i++) {
+    let squareFootage = getRandomInt(450, 800)
     let price = getRandomInt(900, 1400)
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
@@ -58,11 +58,11 @@ const generateOneBedroomPrices = () => {
 
 const generateTwoBedroomPrices = () => {
   let bedrooms = 2
-  let bathrooms = getRandomInt(1, 2);
-  let squareFootage = getRandomInt(500, 1000)
   let query = [];
 
   for (let i = 0; i < 50; i++) {
+    let bathrooms = getRandomInt(1, 2);
+    let squareFootage = getRandomInt(600, 1000)
     let price = getRandomInt(800, 1700)
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
@@ -80,11 +80,11 @@ const generateTwoBedroomPrices = () => {
 
 const generateThreeBedroomPrices = () => {
   let bedrooms = 3;
-  let bathrooms = getRandomInt(1, 2);
-  let squareFootage = getRandomInt(600, 1200)
   let query = [];
 
   for (let i = 0; i < 50; i++) {
+    let bathrooms = getRandomInt(1, 2);
+    let squareFootage = getRandomInt(700, 1200)
     let price = getRandomInt(1000, 2000)
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
@@ -123,11 +123,11 @@ const generateFourBedroomPrices = () => {
 
 const generateFiveBedroomPrices = () => {
   let bedrooms = 5
-  let bathrooms = getRandomInt(2, 4)
-  let squareFootage = getRandomInt(1600, 3500)
   let query = [];
 
   for (let i = 0; i < 15; i++) {
+    let bathrooms = getRandomInt(2, 4)
+    let squareFootage = getRandomInt(1600, 3500)
     let price = getRandomInt(1700, 3500)
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {
@@ -144,11 +144,11 @@ const generateFiveBedroomPrices = () => {
 
 const generateSixBedroomPrices = () => {
   let bedrooms = 6
-  let bathrooms = getRandomInt(2, 6)
-  let squareFootage = getRandomInt(2500, 4000)
   let query = [];
 
   for (let i = 0; i < 7; i++) {
+    let bathrooms = getRandomInt(2, 6)
+    let squareFootage = getRandomInt(2500, 4000)
     let price = getRandomInt(2500, 4300)
     let propertyPriceHistory = [];
     for (let year = 2014; year < 2024; year++) {

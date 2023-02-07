@@ -1,3 +1,12 @@
+CREATE TABLE properties (
+  id SERIAL PRIMARY KEY NOT NULL,
+  province VARCHAR(255),
+  city VARCHAR(255) NOT NULL,
+  street_address VARCHAR(255) NOT NULL,
+  latitude DECIMAL(12,9),
+  longitude DECIMAL(12,9)
+);
+
 INSERT INTO properties (province, city, street_address, latitude, longitude) VALUES 
 ('BC', 'Vancouver', '1775 Bellevue Ave, West Vancouver', 49.3278471, -123.161684),
 ('BC', 'Vancouver', '1370 Clyde Ave, West Vancouver', 49.3284725, -123.1535426),
