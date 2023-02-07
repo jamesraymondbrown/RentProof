@@ -6,13 +6,13 @@ const fourBedrooms = require('./fourBedroomData')
 const fiveBedrooms = require('./fiveBedroomData')
 const sixBedrooms = require('./sixBedroomData')
 
-console.log(studios.length);
-console.log(oneBedrooms.length);
-console.log(twoBedrooms.length);
-console.log(threeBedrooms.length);
-console.log(fourBedrooms.length);
-console.log(fiveBedrooms.length);
-console.log(sixBedrooms.length);
+// console.log(studios.length);
+// console.log(oneBedrooms.length);
+// console.log(twoBedrooms.length);
+// console.log(threeBedrooms.length);
+// console.log(fourBedrooms.length);
+// console.log(fiveBedrooms.length);
+// console.log(sixBedrooms.length);
 
 const allPropertiesPrices = [];
 
@@ -30,4 +30,10 @@ pushPrices(fourBedrooms);
 pushPrices(fiveBedrooms);
 pushPrices(sixBedrooms);
 
-console.log(allPropertiesPrices)
+// console.log(allPropertiesPrices.length)
+
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
+
+console.log(shuffle(allPropertiesPrices));
