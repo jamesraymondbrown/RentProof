@@ -14,7 +14,7 @@ const PropertyDetails = () => {
     .then((response) => {
       setProperty(response.data)
     })
-  }, []);
+  }, [id]);
 
   const handleClick = () => {
     console.log("Clicked Delete")

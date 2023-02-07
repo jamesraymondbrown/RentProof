@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api"
 import "./Map.scss";
 import Marker from "./Marker.jsx";
