@@ -14,4 +14,18 @@ const getUserById = (id) => {
     })
 }
 
-module.exports = { getUsers, getUserById };
+const getUserByEmail = (email) => {
+  return database.query('SELECT * FROM users WHERE email = $1', [email])
+    .then((response) => {
+      return response.rows[0]
+    })
+}
+
+const addUser = (email, password, name) => {
+  return database.query('INSERT INTO users (email, password, name) VALUES ($1, $2, $3) RETURNING *;', [email, password, name])
+    .then((response) => {
+      return response.rows[0]
+    })
+}
+
+module.exports = { getUsers, getUserById, getUserByEmail, addUser };
