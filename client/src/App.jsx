@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
 
@@ -20,11 +20,10 @@ import Login from "./components/Login";
 function App() {
 
   ReactSession.setStoreType("sessionStorage");
-
   const userId = ReactSession.get("id");
   const userRole = ReactSession.get("role");
   const userName = ReactSession.get("name");
-  console.log(userId, userRole, userName)
+  console.log(userId, userRole, userName)  
 
   const {
     state,

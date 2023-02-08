@@ -1,10 +1,20 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import { ReactSession } from 'react-client-session';
+import { useHistory } from "react-router-dom";
 import useApplicationData from "../../hooks/useApplicationData";
 
 import PropertyList from "./PropertyList";
 
 const Admin = () => {
+
+  const history = useHistory()
+  const userRole = ReactSession.get("role");
+
+  if (userRole !== 'admin') {
+    history.push('/')
+    window.location.reload();
+  }
 
    const {
     state,
