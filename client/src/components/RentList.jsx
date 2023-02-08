@@ -1,21 +1,18 @@
 import "./RentList.scss";
-import React from "react";
+import React, {useContext} from "react";
 import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import BedFilter from "./BedFilter";
 import BathFilter from "./BathFilter";
+import { AppDataContext } from "../providers/AppDataProvider";
 
 const RentList = () => {
+
   return (
     <div className="RentList">
       <div className="slider-container">
         <MultiRangeSlider
           min={0}
           max={5000}
-          onChange={({ min, max }) =>
-            console
-              .log //`min = ${min}, max = ${max}`
-              ()
-          }
           style={{ height: "20px" }}
         />
         

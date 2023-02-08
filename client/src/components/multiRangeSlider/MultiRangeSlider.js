@@ -1,45 +1,25 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useState, useRef, useContext } from "react";
 import PropTypes from "prop-types";
 import "./multiRangeSlider.css";
+import { AppDataContext } from "../../providers/AppDataProvider";
 
 const MultiRangeSlider = ({ min, max, onChange }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
-  const minValRef = useRef(min);
-  const maxValRef = useRef(max);
-  const range = useRef(null);
 
-  // Convert to percentage
-  const getPercent = useCallback(
-    (value) => Math.round(((value - min) / (max - min)) * 100),
-    [min, max]
-  );
+  const { minVal,
+        maxVal,
+        setMinVal,
+        setMaxVal,
+        minValRef,
+        maxValRef,
+        range } = useContext(AppDataContext)
+        
+  // const [minVal, setMinVal] = useState(min);
+  // const [maxVal, setMaxVal] = useState(max);
+  // const minValRef = useRef(min);
+  // const maxValRef = useRef(max);
+  // const range = useRef(null);
 
-  // Set width of the range to decrease from the left side
-  useEffect(() => {
-    const minPercent = getPercent(minVal);
-    const maxPercent = getPercent(maxValRef.current);
-
-    if (range.current) {
-      range.current.style.left = `${minPercent}%`;
-      range.current.style.width = `${maxPercent - minPercent}%`;
-    }
-  }, [minVal, getPercent]);
-
-  // Set width of the range to decrease from the right side
-  useEffect(() => {
-    const minPercent = getPercent(minValRef.current);
-    const maxPercent = getPercent(maxVal);
-
-    if (range.current) {
-      range.current.style.width = `${maxPercent - minPercent}%`;
-    }
-  }, [maxVal, getPercent]);
-
-  // Get min and max values when their state changes
-  useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+  
 
   return (
     <div className="container">
