@@ -14,7 +14,7 @@ export default function MapDisplay(props) {
   const prices = props.state.prices;
 
   const getBedroomsFromPrices = (property, prices) => {
-    let bedrooms = 2;
+    let bedrooms = 2
     for (let price of prices) {
       if (price.property_id === property.id) {
         bedrooms = price.number_of_bedrooms;
@@ -25,7 +25,7 @@ export default function MapDisplay(props) {
   };
 
   const getBathroomsFromPrices = (property, prices) => {
-    let bathrooms = 2;
+    let bathrooms = 2
     for (let price of prices) {
       if (price.property_id === property.id) {
         bathrooms = price.number_of_bathrooms;
@@ -36,7 +36,7 @@ export default function MapDisplay(props) {
   };
 
   const getCostFromPrices = (property, prices) => {
-    let cost = 2000;
+    let cost = 5000
     for (let price of prices) {
       if (price.property_id === property.id) {
         cost = price.price;
