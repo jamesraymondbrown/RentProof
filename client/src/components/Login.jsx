@@ -7,8 +7,6 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const [isPending, setIsPending] = useState(false);
   const history = useHistory()
 
   const handleSubmit = (event) => {
@@ -19,9 +17,6 @@ const Login = () => {
       'password': password,
     }
 
-    console.log('Clicked Login')
-    setIsPending(true)
-
     axios.post('http://localhost:8001/users/login', user)
       .then((response) => {
         const userObject = response.data.user
@@ -30,10 +25,9 @@ const Login = () => {
         ReactSession.set("role", userObject.role);
         ReactSession.set("name", userObject.name);
         setTimeout(function(){
-          setIsPending(false)          
           history.push('/')
           window.location.reload();
-        }, 500);
+        }, 250);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -41,25 +35,32 @@ const Login = () => {
   }
 
   return (
-    <div className="create">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>        
-        <label>Email</label>
-          <input
-            type="text" 
-            required
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        <label>Password</label>
-          <input
-            type="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        { !isPending && <button>Login</button>}
-        { isPending && <button disabled>Logging In...</button> }
+    <div className="wrapper">
+      <h2 className="title">Login</h2>
+      <form className="registration-form" onSubmit={handleSubmit}>        
+        <div className="inputfield">
+          <label>Email</label>
+            <input
+              type="text" 
+              className="input"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+        </div>
+        <div className="inputfield">
+          <label>Password</label>
+            <input
+              type="password"
+              className="input"
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+        </div>
+        <div className="inputfield">
+          <input type="submit" value="Login" className="btn"/>
+        </div>        
       </form>
     </div>  
   )

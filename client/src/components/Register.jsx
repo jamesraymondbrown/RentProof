@@ -9,8 +9,6 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const [isPending, setIsPending] = useState(false);
   const history = useHistory()
 
   const handleSubmit = (event) => {
@@ -22,9 +20,6 @@ const Register = () => {
       'password': password,
     }
 
-    console.log('Clicked Register')
-    setIsPending(true)
-
     axios.post('http://localhost:8001/users/register', user)
       .then((response) => {
         console.log('New User Registered', response.data);
@@ -33,10 +28,9 @@ const Register = () => {
         ReactSession.set("role", userObject.role);
         ReactSession.set("name", userObject.name);
         setTimeout(function(){
-          setIsPending(false)
           history.push('/')
           window.location.reload();
-        }, 500);
+        }, 250);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -79,14 +73,9 @@ const Register = () => {
         </div>
         <div className="inputfield">
           <input type="submit" value="Register" className="btn"/>
-        {/* { !isPending && <button>Register</button>}
-        {isPending && <button disabled>Registering User...</button>} */}
         </div>   
       </form>
-      </div>      
-      // <div class="inputfield">
-      //   <input type="submit" value="Register" class="btn"/>
-      // </div>    
+    </div> 
   )
 }
 
