@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
 
 const Register = () => {
@@ -26,9 +27,14 @@ const Register = () => {
     axios.post('http://localhost:8001/users/register', user)
       .then((response) => {
         console.log('New User Registered', response.data);
+        const userObject = response.data.user
+        ReactSession.set("id", userObject.id);
+        ReactSession.set("role", userObject.role);
+        ReactSession.set("name", userObject.name);
         setTimeout(function(){
           setIsPending(false)
           history.push('/')
+          window.location.reload();
         }, 500);
       })
       .catch((error) => {
@@ -56,7 +62,7 @@ const Register = () => {
           />
         <label>Password</label>
           <input
-            type="text"
+            type="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}

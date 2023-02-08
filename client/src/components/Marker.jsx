@@ -1,14 +1,14 @@
 import { useContext, useEffect } from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import axios from "axios";
-import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
+import { AppDataContext } from "../providers/AppDataProvider";
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id}) {
   const { selectedBedrooms, selectedBathrooms } = useContext(AppDataContext);
   
   useEffect(() => {
     console.log("selectedBathrooms ➤", selectedBathrooms);
-  }, [selectedBedrooms]);
+  }, [selectedBedrooms, selectedBathrooms]);
 
   let markerColor;
 

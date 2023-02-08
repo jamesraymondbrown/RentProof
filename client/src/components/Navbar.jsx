@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import { ReactSession } from 'react-client-session';
+import './Navbar.scss'
 
 const Navbar = () => {
+
+  const name = ReactSession.get("name");
 
   const logout = () => {
     console.log('Clicked Logout')
     ReactSession.remove("id");
     ReactSession.remove("role");
     ReactSession.remove("name");
+    window.location.reload();
   }
 
   return (
@@ -17,9 +21,9 @@ const Navbar = () => {
         <Link to="/" style={{ margin: '1em' }}>Home</Link>
         <Link to="/admin" style={{ margin: '1em' }}>Admin</Link>
         <Link to="/create" style={{ margin: '1em' }}>Add Property</Link>
-        <Link to="/register" style={{ margin: '1em' }}>Register</Link>
-        <Link to="/login" style={{ margin: '1em' }}>Login</Link>
-        <button onClick={logout}>Logout</button>
+        { !name && <Link to="/login" style={{ margin: '1em' }}>Login</Link> }
+        { !name && <Link to="/register" style={{ margin: '1em' }}>Register</Link> }        
+        { name && <button className="logout" onClick={logout}>Logout</button> }
       </div>
     </nav>
   );

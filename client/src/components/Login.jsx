@@ -1,14 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
-
 import { useHistory } from "react-router-dom";
 
-import useApplicationData from "../hooks/useApplicationData";
-
 const Login = () => {  
-
-  // ReactSession.setStoreType("sessionStorage");
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,6 +32,7 @@ const Login = () => {
         setTimeout(function(){
           setIsPending(false)          
           history.push('/')
+          window.location.reload();
         }, 500);
       })
       .catch((error) => {
@@ -57,7 +53,7 @@ const Login = () => {
           />
         <label>Password</label>
           <input
-            type="text"
+            type="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}

@@ -35,9 +35,9 @@ router.post('/register', (req, res) => {
   if (!password) {
     return res.status(400).send({ message: "Password cannot be blank" })
   }
-  if (password.length < 8) {
-    return res.status(400).send({ message: "Password must be at least 8 characters" })
-  }
+  // if (password.length < 8) {
+  //   return res.status(400).send({ message: "Password must be at least 8 characters" })
+  // }
   userQueries.getUserByEmail(email)
     .then((user) => {
       if (user) {
@@ -58,9 +58,9 @@ router.post('/login', (req, res) => {
   if (!password) {
     return res.status(400).send({ message: "Password cannot be blank" })
   }
-  if (password.length < 8) {
-    return res.status(400).send({ message: "Password must be at least 8 characters" })
-  }
+  // if (password.length < 8) {
+  //   return res.status(400).send({ message: "Password must be at least 8 characters" })
+  // }
   userQueries.getUserByEmail(email)
     .then((user) => {
       if (!user) {
