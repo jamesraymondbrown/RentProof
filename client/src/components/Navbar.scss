@@ -1,5 +1,5 @@
 .nav {
-  min-height: 8vh;
+  min-height: 10vh;
   background-color: #5AB8F8;
   color: white;
   display: flex;
@@ -7,6 +7,7 @@
   align-items: center;
   gap: 2rem;
   padding: 0 1rem;
+      border: 1px solid #c7e6fd;
 }
 
 .site-title {
@@ -19,7 +20,7 @@
   list-style: none;
   display: flex;
   gap: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .nav a {
