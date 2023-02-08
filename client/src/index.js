@@ -3,11 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { AppDataProvider } from "./providers/AppDataProvider";
+import { AppDataProvider } from "./providers/MarkerFilterProvider";
+import { DataBaseProvider } from "./providers/DataBaseProvider";
 
 ReactDOM.render(
   <React.StrictMode>
+<<<<<<< HEAD
     <App />
+=======
+    <DataBaseProvider>
+      <AppDataProvider>
+        <App />
+      </AppDataProvider>
+    </DataBaseProvider>
+>>>>>>> master
   </React.StrictMode>,
   document.getElementById("root")
 );

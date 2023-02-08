@@ -24,10 +24,8 @@ const Login = () => {
         ReactSession.set("id", userObject.id);
         ReactSession.set("role", userObject.role);
         ReactSession.set("name", userObject.name);
-        setTimeout(function(){
-          history.push('/')
-          window.location.reload();
-        }, 250);
+        history.push('/')
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error.response.data.message);

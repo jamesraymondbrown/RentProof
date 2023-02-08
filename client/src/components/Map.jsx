@@ -2,16 +2,17 @@ import React from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
+import { DataBaseContext } from "../providers/DataBaseProvider";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const properties = props.state.properties;
-  const prices = props.state.prices;
+  const { state } = useContext(DataBaseContext);
 
-  // console.log("properties", state);
+  const properties = state.properties;
+  const prices = state.prices;
 
   const getBedroomsFromPrices = (property, prices) => {
     let bedrooms = 2;
@@ -46,25 +47,28 @@ export default function MapDisplay(props) {
     return cost;
   };
 
-  // console.log("properties ➤", properties);
-  // const [selectedMarker, setSelectedMarker] = useState(null);
+  let markers;
 
-  // function handleMarkerClick(marker) {
-  //   setSelectedMarker(marker);
-  //   console.log(marker)
-  // }
-
-  // const markers = properties.map((property) => {
-  //   return (
-  //     <Marker
-  //       key={property.id}
-  //       id={property.id}
-  //       position={{ lat: Number(property.latitude), lng: Number(property.longitude) }}
-  //       title={property.address}
-  //       onClick={handleMarkerClick}
-  //     />
-  //   )
-  // })
+  properties &&
+    (markers = properties.map((property) => {
+      return (
+        <Marker
+          key={property.id}
+          id={property.id}
+          position={{
+            lat: Number(property.latitude),
+            lng: Number(property.longitude),
+          }}
+          title={property.address}
+          cost={getCostFromPrices(property, prices)}
+          label={getCostFromPrices(property, prices)}
+          bedrooms={getBedroomsFromPrices(property, prices)}
+          bathrooms={getBathroomsFromPrices(property, prices)}
+          //url picture
+          // hard coded, Remove this later. we shouldnt need it
+        />
+      );
+    }));
 
   function Map() {
     return (
@@ -73,25 +77,7 @@ export default function MapDisplay(props) {
         center={{ lat: 49.28, lng: -123.12 }}
         mapContainerClassName="map-container"
       >
-        {properties
-          ? Object.values(properties).map((property) => (
-              <Marker
-                key={property.id}
-                id={property.id}
-                position={{
-                  lat: Number(property.latitude),
-                  lng: Number(property.longitude),
-                }}
-                title={property.address}
-                cost={getCostFromPrices(property, prices)}
-                label={getCostFromPrices(property, prices)}
-                bedrooms={getBedroomsFromPrices(property, prices)}
-                bathrooms={getBathroomsFromPrices(property, prices)}
-                //url picture
-                // hard coded, Remove this later. we shouldnt need it
-              />
-            ))
-          : console.error("Markers Error")}
+        {markers}
       </GoogleMap>
     );
   }
