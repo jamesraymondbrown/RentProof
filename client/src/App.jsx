@@ -1,22 +1,35 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { ReactSession } from 'react-client-session';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { AppDataProvider } from "./providers/AppDataProvider";
+
 import './App.css';
 import useApplicationData from "./hooks/useApplicationData";
-import Navbar from "./components/Navbar";
-import Map from './components/Map';
-import RentList from "./components/RentList";
-import Admin from "./components/admin/Admin";
+
+import AddPrice from "./components/AddPrice";
 import AddProperty from "./components/AddProperty";
+import Admin from "./components/admin/Admin";
+import Login from "./components/Login";
+import Map from './components/Map';
+import Navbar from "./components/Navbar";
+import PriceDetails from "./components/admin/PriceDetails";
 import PropertyDetails from "./components/admin/PropertyDetails";
-import { AppDataProvider } from "./providers/AppDataProvider";
 import Register from "./components/Register";
+import RentList from "./components/RentList";
 
 function App() {
 
+  ReactSession.setStoreType("sessionStorage");
+  const userId = ReactSession.get("id");
+  const userRole = ReactSession.get("role");
+  const userName = ReactSession.get("name");
+  console.log(userId, userRole, userName)  
+
   const {
     state,
-    setState
+    setState,
   } = useApplicationData();
 
   useEffect(() => {
@@ -41,37 +54,40 @@ function App() {
   }, [setState]);
 
   return (
-            <AppDataProvider>
-    <Router>
-      <div className="App">
-        <Navbar />
-        <div className="Content" style={{ display: "flex" }}>
-          <Switch>
-              <Route exact path="/">
-                <Map state={state} style={{ flex: 3 }} />
-                <RentList style={{ flex: 1, width: "25%" }} />
+    <AppDataProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <div className="Content" style={{ display: "flex" }}>
+            <Switch>
+                <Route exact path="/">
+                  <Map state={state} style={{ flex: 3 }} />
+                  <RentList style={{ flex: 1, width: "25%" }} />
+                </Route>
+              <Route exact path="/admin">
+                <Admin />
               </Route>
-            <Route path="/admin">
-              <Admin />
-            </Route>
-            <Route path="/create">
-              <AddProperty />
-            </Route>
-             <Route exact path="/register">
-              <Register />
-            </Route>
-            <Route path="/login">
-              {/* <PropertyDetails /> */}
-            </Route>
-            <Route path="/:propertyid">
-              <PropertyDetails />
-            </Route>
-           
-          </Switch>
+              <Route exact path="/create">
+                <AddProperty />
+                <AddPrice />
+              </Route>
+              <Route exact path="/register">
+                <Register />
+              </Route>
+              <Route exact path="/login">
+                <Login />
+              </Route>
+              <Route exact path="/properties/:propertyid">
+                <PropertyDetails />
+              </Route>
+              <Route exact path="/prices/:priceid">
+                <PriceDetails />
+              </Route> 
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
-            </AppDataProvider>
+      </Router>
+    </AppDataProvider>
   );
 }
 

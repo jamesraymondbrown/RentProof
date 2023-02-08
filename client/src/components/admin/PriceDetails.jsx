@@ -3,7 +3,7 @@ import axios from "axios";
 import { ReactSession } from 'react-client-session';
 import { useHistory, useParams } from "react-router-dom";
 
-const PropertyDetails = () => {
+const PriceDetails = () => {
 
   const history = useHistory()
   const userRole = ReactSession.get("role");
@@ -12,23 +12,23 @@ const PropertyDetails = () => {
     window.location.reload();
   }
 
-  const id = useParams().propertyid
-  const [property, setProperty] = useState(null)
+  const id = useParams().priceid
+  const [price, setPrice] = useState(null)
   const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
-  axios.get(`http://localhost:8000/properties/${id}`)
+  axios.get(`http://localhost:8000/prices/${id}`)
     .then((response) => {
-      setProperty(response.data)
+      setPrice(response.data)
     })
   }, [id]);
 
   const handleClick = () => {
     console.log("Clicked Delete")
     setIsPending(true)
-    axios.delete(`http://localhost:8001/properties/${id}`)
+    axios.delete(`http://localhost:8001/prices/${id}`)
       .then((response) => {
-        console.log('Property Deleted', response.data);
+        console.log('Price Deleted', response.data);
         setTimeout(function () {
           setIsPending(false)
  	        history.push('/admin')
@@ -41,18 +41,19 @@ const PropertyDetails = () => {
   
   return (    
     <li>
-      {property && (
+      {price && (
         <div>
-          <h3>{property.street_address}</h3>          
-          <h3>{property.province}, {property.city}</h3>
-          <h3>{property.latitude},{property.longitude}</h3>
+          <h3>{price.property_id}, {price.admin_status}</h3> 
+          <h3>{price.price}</h3>
+          <h3>{price.property_type}, {price.square_footage}</h3>
+          <h3>{price.number_of_bedrooms},{price.number_of_bathrooms}</h3>
           <button>Edit</button>
           { !isPending && <button onClick={handleClick}>Delete</button> }
-          { isPending && <button disabled>Deleting Property...</button> }
+          {isPending && <button disabled>Deleting Price...</button>}
         </div>  
       )}
     </li>    
   );
 }
 
-export default PropertyDetails;
+export default PriceDetails;

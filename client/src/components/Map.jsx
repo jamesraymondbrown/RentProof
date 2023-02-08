@@ -1,9 +1,7 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
-// import axios from "axios";
-import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
@@ -92,7 +90,7 @@ export default function MapDisplay(props) {
               />
             ))
           : console.error(
-              "Error: markers property not found in locations object"
+              "Error: markers property not found in properties"
             )}
       </GoogleMap>
     );

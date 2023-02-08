@@ -3,7 +3,6 @@ import React from "react";
 import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import BedFilter from "./BedFilter";
 import BathFilter from "./BathFilter";
-import { AppDataProvider } from "../providers/AppDataProvider";
 
 const RentList = () => {
   return (

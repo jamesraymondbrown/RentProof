@@ -1,17 +1,40 @@
 import { Link } from "react-router-dom";
+import { ReactSession } from 'react-client-session';
+import './Navbar.scss'
 
 const Navbar = () => {
+
+  const userRole = ReactSession.get("role");
+
+  const logout = () => {
+    console.log('Clicked Logout')
+    ReactSession.remove("id");
+    ReactSession.remove("role");
+    ReactSession.remove("name");
+    window.location.reload();
+  }
+
   return (
-    <nav className="navbar">
-      <h1>Rent Tracker</h1>
-      <div className="links" style={{ margin: '1em' }} >
-        <Link to="/" style={{ margin: '1em' }}>Home</Link>
-        <Link to="/admin" style={{ margin: '1em' }}>Admin</Link>
-        <Link to="/create" style={{ margin: '1em' }}>Add Property</Link>
-        <Link to="/register" style={{ margin: '1em' }}>Register</Link>
-        <Link to="/login" style={{ margin: '1em' }}>Login</Link>
-      </div>
-    </nav>
+    <nav className="nav">
+      <Link to="/" className="site-title">Rent Tracker</Link>
+      <ul>
+        {userRole === 'admin' && <li>
+          <Link to="/admin" >Admin</Link>
+        </li>}
+        <li>
+          <Link to="/create" >Create</Link>
+        </li>
+        {!userRole && <li>
+          <Link to="/login" >Login</Link>
+        </li>}
+        {!userRole && <li>
+          <Link to="/register" >Register</Link>
+        </li>}
+        {userRole && <li>
+          <Link to="/" onClick={logout}>Logout</Link>
+        </li>}
+      </ul>
+    </nav>  
   );
 }
  
