@@ -7,9 +7,7 @@ import { AppDataProvider } from "./providers/AppDataProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppDataProvider>
-      <App />
-    </AppDataProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
