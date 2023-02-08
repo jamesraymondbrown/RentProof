@@ -49,11 +49,12 @@ import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
                   lng: Number(property.longitude),
                 }}
                 title={property.address}
-                cost={2000} // hard coded, change this later
-                label={2000} // hard coded, change this later
-                bedrooms={2} // hard coded, change this later
+                cost={Math.floor(Math.random() * 5000)} // hard coded, change this later
+                label={2000} // hard coded, change this later to the same as cost
+                bedrooms={Math.floor(Math.random() * 5)} // hard coded, change this later
+                bathrooms={Math.floor(Math.random() * (3 - 1 + 1) + 1)} // hard coded, change this later
                 //url picture
-                 // hard coded, Remove this later. we shouldnt need it
+                // hard coded, Remove this later. we shouldnt need it
               />
             ))
           : console.error(

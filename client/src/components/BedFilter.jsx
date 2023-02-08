@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import { AppDataContext } from "../providers/AppDataProvider";
 
 export default function BedFilter() {
-  const { state, handleClick } = useContext(AppDataContext);
-  const bedrooms = [0, 1, 2, 3, 4];
+  // Destructure `state` and `handleClick` from the AppDataContext
+  const { state, handleClickBeds } = useContext(AppDataContext);
 
+  // An array of bedroom numbers to be displayed as filters
+  const bedrooms = [0, 1, 2, 3, 4];
   return (
     <div className="filter-container">
       <div className="filter-row">
@@ -13,13 +15,14 @@ export default function BedFilter() {
           <div className="filter-wrap">
             <div className="filter">
               <div className="row filter-bedrooms">
+                {/* Map through the `bedrooms` array and display buttons for each number */}
                 {bedrooms.map((bedrooms) => (
                   <button
                     key={bedrooms}
                     className={`filter-button ${
                       state.bedrooms.includes(bedrooms) ? "selected" : ""
                     }`}
-                    onClick={() => handleClick(bedrooms)}
+                    onClick={() => handleClickBeds(bedrooms)}
                   >
                     {bedrooms === 0 ? "Studio" : bedrooms}
                   </button>
