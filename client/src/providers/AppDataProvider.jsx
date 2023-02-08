@@ -3,12 +3,14 @@ import React, { createContext, useState, useEffect } from "react";
 export const AppDataContext = createContext();
 
 export const AppDataProvider = ({ children }) => {
-  const [selectedButtons, setSelectedButtons] = useState([2, 3]);
+  const [selectedBedrooms, setSelectedBedrooms] = useState([2, 3]);
+  const [selectedBathrooms, setSelectedBathrooms] = useState([2, 3]);
   const [minVal, setMinVal] = useState(0);
   const [maxVal, setMaxVal] = useState(100);
   const [state, setState] = useState({
     markers: {},
     bedrooms: [],
+    bathrooms: [],
     minVal,
     maxVal,
   });
@@ -16,22 +18,38 @@ export const AppDataProvider = ({ children }) => {
   
 
   
-  const handleClick = (index) => {
-    if (selectedButtons.includes(index)) {
-      setSelectedButtons(selectedButtons.filter((i) => i !== index));
+  const handleClickBeds = (index) => {
+    if (selectedBedrooms.includes(index)) {
+      setSelectedBedrooms(selectedBedrooms.filter((i) => i !== index));
     } else {
-      setSelectedButtons([...selectedButtons, index]);
+      setSelectedBedrooms([...selectedBedrooms, index]);
     }
   };
+  const handleClickBaths = (index) => {
+      if (selectedBathrooms.includes(index)) {
+        setSelectedBathrooms(selectedBathrooms.filter((i) => i !== index));
+      } else {
+        setSelectedBathrooms([...selectedBathrooms, index]);
+      }
+    };
   
   useEffect(() => {
-    console.log("selectedButtons ➤", selectedButtons);
-    setState((prevState) => ({ ...prevState, bedrooms: selectedButtons }));
-  }, [selectedButtons]);
-
+    setState((prevState) => ({ ...prevState, bedrooms: selectedBedrooms }));
+  }, [selectedBedrooms]);
+  useEffect(() => {
+    setState((prevState) => ({ ...prevState, bathrooms: selectedBathrooms }));
+  }, [selectedBathrooms]);
   return (
     <AppDataContext.Provider
-      value={{ state, handleClick, setMinVal, setMaxVal, selectedButtons }}
+      value={{
+        state,
+        handleClickBeds,
+        handleClickBaths,
+        setMinVal,
+        setMaxVal,
+        selectedBathrooms,
+        selectedBedrooms,
+      }}
     >
       {children}
     </AppDataContext.Provider>

@@ -3,12 +3,12 @@ import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import axios from "axios";
 import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
 
-function Marker({ bedrooms, cost, position, title, label, id}) {
-  const { selectedButtons } = useContext(AppDataContext);
+function Marker({ bedrooms, bathrooms, cost, position, title, label, id}) {
+  const { selectedBedrooms, selectedBathrooms } = useContext(AppDataContext);
   
   useEffect(() => {
-    console.log("selectedButtons ➤", selectedButtons);
-  }, [selectedButtons]);
+    console.log("selectedBathrooms ➤", selectedBathrooms);
+  }, [selectedBedrooms]);
 
   let markerColor;
 
@@ -29,7 +29,8 @@ function Marker({ bedrooms, cost, position, title, label, id}) {
 
   return (
     <div>
-      {selectedButtons.includes(bedrooms) ? (
+      {selectedBedrooms.includes(bedrooms) &&
+      selectedBathrooms.includes(bathrooms) ? (
         <GoogleMapMarker
           position={position}
           title={title}
