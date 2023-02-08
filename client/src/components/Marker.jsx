@@ -6,9 +6,8 @@ import { AppDataContext } from "../providers/AppDataProvider";
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id}) {
   const { selectedBedrooms, selectedBathrooms } = useContext(AppDataContext);
   
-  // useEffect(() => {
-  //   console.log("selectedBathrooms ➤", selectedBathrooms);
-  // }, [selectedBedrooms, selectedBathrooms]);
+  useEffect(() => {
+  }, [selectedBedrooms, selectedBathrooms]);
 
   let markerColor;
 

@@ -8,6 +8,8 @@ export default function MapDisplay(props) {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
+
+  
   const properties = props.state.properties;
   const prices = props.state.prices;
 
