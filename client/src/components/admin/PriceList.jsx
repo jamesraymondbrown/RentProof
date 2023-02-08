@@ -9,6 +9,7 @@ function PriceList(props) {
       id={price.id}
       property={price.property_id}
       status={price.admin_status}
+      price={price.price}
       type={price.property_type}
       size={price.square_footage}
       bedrooms={price.number_of_bedrooms}
