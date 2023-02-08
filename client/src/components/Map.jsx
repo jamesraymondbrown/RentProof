@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
+import { DataBaseContext } from "../providers/DataBaseProvider";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
+  const { state } = useContext(DataBaseContext);
 
-  
-  const properties = props.state.properties;
-  const prices = props.state.prices;
+  const properties = state.properties;
+  const prices = state.prices;
+
 
   const getBedroomsFromPrices = (property, prices) => {
     let bedrooms = 2;

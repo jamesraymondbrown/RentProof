@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppDataContext } from "../providers/AppDataProvider";
+import { AppDataContext } from "../providers/MarkerFilterProvider";
 
 export default function BedFilter() {
   // Destructure `state` and `handleClick` from the AppDataContext

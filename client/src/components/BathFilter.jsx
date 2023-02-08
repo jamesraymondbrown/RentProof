@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "./BathFilter.scss";
-import { AppDataContext } from "../providers/AppDataProvider";
+import { AppDataContext } from "../providers/MarkerFilterProvider";
 
 export default function BathFilter() {
   // Destructure `state` and `handleClick` from the AppDataContext
