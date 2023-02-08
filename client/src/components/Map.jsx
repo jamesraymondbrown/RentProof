@@ -44,37 +44,12 @@ export default function MapDisplay(props) {
     return cost;
   };
 
-  // console.log("properties ➤", properties);
-  // const [selectedMarker, setSelectedMarker] = useState(null);
+  let markers
 
-  // function handleMarkerClick(marker) {
-  //   setSelectedMarker(marker);
-  //   console.log(marker)
-  // }
-
-  // const markers = properties.map((property) => {
-  //   return (
-  //     <Marker
-  //       key={property.id}
-  //       id={property.id}
-  //       position={{ lat: Number(property.latitude), lng: Number(property.longitude) }}
-  //       title={property.address}
-  //       onClick={handleMarkerClick}
-  //     />
-  //   )
-  // })
-
-  function Map() {
+  properties && (markers = properties.map((property) => {
     return (
-      <GoogleMap
-        zoom={13}
-        center={{ lat: 49.28, lng: -123.12 }}
-        mapContainerClassName="map-container"
-      >
-        {properties
-          ? Object.values(properties).map((property) => (
-              <Marker
-                key={property.id}
+      <Marker
+         key={property.id}
                 id={property.id}
                 position={{
                   lat: Number(property.latitude),
@@ -87,11 +62,19 @@ export default function MapDisplay(props) {
                 bathrooms={getBathroomsFromPrices(property, prices)}
                 //url picture
                 // hard coded, Remove this later. we shouldnt need it
-              />
-            ))
-          : console.error(
-              "Error: markers property not found in properties"
-            )}
+      />
+    )
+  })
+  )
+
+  function Map() {
+    return (
+      <GoogleMap
+        zoom={13}
+        center={{ lat: 49.28, lng: -123.12 }}
+        mapContainerClassName="map-container"
+      >
+        {markers}
       </GoogleMap>
     );
   }
