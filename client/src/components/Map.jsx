@@ -1,18 +1,52 @@
 import React, { useState, useContext } from "react";
-import { GoogleMap, useLoadScript } from "@react-google-maps/api"
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
 // import axios from "axios";
 import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
- 
-  export default function MapDisplay(props) {
+
+export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const properties = props.state.properties
+  const properties = props.state.properties;
+  const prices = props.state.prices;
 
-// console.log("properties ➤", properties);
+  const getBedroomsFromPrices = (property, prices) => {
+    let bedrooms = 2;
+    for (let price of prices) {
+      if (price.property_id === property.id) {
+        bedrooms = price.number_of_bedrooms;
+        return bedrooms;
+      }
+    }
+    return bedrooms;
+  };
+
+  const getBathroomsFromPrices = (property, prices) => {
+    let bathrooms = 2;
+    for (let price of prices) {
+      if (price.property_id === property.id) {
+        bathrooms = price.number_of_bathrooms;
+        return bathrooms;
+      }
+    }
+    return bathrooms;
+  };
+
+  const getCostFromPrices = (property, prices) => {
+    let cost = 2000;
+    for (let price of prices) {
+      if (price.property_id === property.id) {
+        cost = price.price;
+        return cost;
+      }
+    }
+    return cost;
+  };
+
+  // console.log("properties ➤", properties);
   // const [selectedMarker, setSelectedMarker] = useState(null);
 
   // function handleMarkerClick(marker) {
@@ -49,11 +83,12 @@ import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
                   lng: Number(property.longitude),
                 }}
                 title={property.address}
-                cost={2000} // hard coded, change this later
-                label={2000} // hard coded, change this later
-                bedrooms={2} // hard coded, change this later
+                cost={getCostFromPrices(property, prices)}
+                label={getCostFromPrices(property, prices)}
+                bedrooms={getBedroomsFromPrices(property, prices)}
+                bathrooms={getBathroomsFromPrices(property, prices)}
                 //url picture
-                 // hard coded, Remove this later. we shouldnt need it
+                // hard coded, Remove this later. we shouldnt need it
               />
             ))
           : console.error(

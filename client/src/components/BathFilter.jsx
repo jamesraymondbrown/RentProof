@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./BathFilter.scss";
-import { useAppData } from "../hooks/useAppData";
+import { AppDataContext } from "../providers/AppDataProvider";
 
 export default function BathFilter() {
-  const { state, handleClick } = useAppData();
-// console.log("state ➤", state);
+  // Destructure `state` and `handleClick` from the AppDataContext
+  const { state, handleClickBaths } = useContext(AppDataContext);
 
+  // An array of bathroom numbers to be displayed as filters
+  const bathrooms = [1, 2, 3];
 
   return (
     <div className="filter-container">
@@ -15,33 +17,18 @@ export default function BathFilter() {
           <div className="filter-wrap">
             <div className="filter">
               <div className="row filter-bathrooms">
-                <button
-                  className={`filter-button ${
-                    state.bedrooms.includes(1) ? "selected" : ""
-                  }`}
-                  onClick={() => handleClick(1)}
-                >
-                  1
-                </button>
-                <button
-                  className={`filter-button ${
-                    state.bedrooms.includes(2) ? "selected" : ""
-                  }`}
-                  onClick={() => handleClick(2)}
-                >
-                  2
-                </button>
-                <button
-                  className={`filter-button ${
-                    state.bedrooms.includes(3) ? "selected" : ""
-                  }`}
-                  onClick={() => handleClick(3)}
-                >
-                  3+
-                </button>
-                      {/* <div className="element1" >Hello World 1</div>
-                      <div className="element2" >Hello World 2</div>
-                      <div className="element3" >Hello World 3</div> */}
+                {/* Map through the `bathrooms` array and display buttons for each number */}
+                {bathrooms.map((bathroom) => (
+                  <button
+                    key={bathroom}
+                    className={`filter-button ${
+                      state.bathrooms.includes(bathroom) ? "selected" : ""
+                    }`}
+                    onClick={() => handleClickBaths(bathroom)}
+                  >
+                    {bathroom === 3 ? `${bathroom}+` : bathroom}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
