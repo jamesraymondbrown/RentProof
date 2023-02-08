@@ -3,8 +3,8 @@ import React, { createContext, useState, useEffect } from "react";
 export const AppDataContext = createContext();
 
 export const AppDataProvider = ({ children }) => {
-  const [selectedBedrooms, setSelectedBedrooms] = useState([2, 3]);
-  const [selectedBathrooms, setSelectedBathrooms] = useState([2, 3]);
+  const [selectedBedrooms, setSelectedBedrooms] = useState([0, 1, 2, 3, 4]);
+  const [selectedBathrooms, setSelectedBathrooms] = useState([1, 2, 3]);
   const [minVal, setMinVal] = useState(0);
   const [maxVal, setMaxVal] = useState(100);
   const [state, setState] = useState({
@@ -14,7 +14,7 @@ export const AppDataProvider = ({ children }) => {
     minVal,
     maxVal,
   });
-  
+
   const handleClickBeds = (index) => {
     if (selectedBedrooms.includes(index)) {
       setSelectedBedrooms(selectedBedrooms.filter((i) => i !== index));
@@ -23,13 +23,13 @@ export const AppDataProvider = ({ children }) => {
     }
   };
   const handleClickBaths = (index) => {
-      if (selectedBathrooms.includes(index)) {
-        setSelectedBathrooms(selectedBathrooms.filter((i) => i !== index));
-      } else {
-        setSelectedBathrooms([...selectedBathrooms, index]);
-      }
-    };
-  
+    if (selectedBathrooms.includes(index)) {
+      setSelectedBathrooms(selectedBathrooms.filter((i) => i !== index));
+    } else {
+      setSelectedBathrooms([...selectedBathrooms, index]);
+    }
+  };
+
   useEffect(() => {
     setState((prevState) => ({ ...prevState, bedrooms: selectedBedrooms }));
   }, [selectedBedrooms]);
