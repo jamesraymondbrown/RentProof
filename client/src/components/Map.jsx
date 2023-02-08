@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
+import { AppDataContext } from "../providers/AppDataProvider";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const properties = props.state.properties;
-  const prices = props.state.prices;
+  const { state } = useContext(AppDataContext);
+
+  const properties = state.properties;
+  const prices = state.prices;
+
+  console.log("properties", state);
 
   const getBedroomsFromPrices = (property, prices) => {
     let bedrooms = 2;
@@ -89,9 +94,7 @@ export default function MapDisplay(props) {
                 // hard coded, Remove this later. we shouldnt need it
               />
             ))
-          : console.error(
-              "Error: markers property not found in properties"
-            )}
+          : console.error("Error: markers property not found in properties")}
       </GoogleMap>
     );
   }
