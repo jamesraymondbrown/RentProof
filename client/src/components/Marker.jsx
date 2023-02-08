@@ -3,9 +3,9 @@ import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import axios from "axios";
 import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
 
-function Marker({ bedrooms, cost, position, title, label, id}) {
+function Marker({ bedrooms, cost, position, title, label, id }) {
   const { selectedButtons } = useContext(AppDataContext);
-  
+
   useEffect(() => {
     console.log("selectedButtons ➤", selectedButtons);
   }, [selectedButtons]);
