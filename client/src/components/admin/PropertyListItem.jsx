@@ -6,7 +6,7 @@ const PropertyListItem = (props) => {
   const id = props.id
   const history = useHistory()
   const handleClick = () => {    
-    history.push(`/${id}`)
+    history.push(`/properties/${id}`)
   }  
   return (
     <li>      

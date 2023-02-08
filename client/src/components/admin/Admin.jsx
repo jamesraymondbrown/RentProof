@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import axios from "axios";
+import './Admin.scss'
 import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
 import useApplicationData from "../../hooks/useApplicationData";
 
 import PropertyList from "./PropertyList";
+import PriceList from "./PriceList";
 
 const Admin = () => {
 
@@ -43,8 +45,13 @@ const Admin = () => {
   }, [setState]);
 
   return (
-    <div>
-      {state.properties && <PropertyList properties={state.properties} />}
+    <div className="admin">
+      <div>
+        {state.properties && <PropertyList properties={state.properties} />}
+      </div>
+      <div>
+        {state.prices && <PriceList prices={state.prices} />}    
+        </div>
     </div>
   )
 

@@ -8,14 +8,16 @@ import { AppDataProvider } from "./providers/AppDataProvider";
 import './App.css';
 import useApplicationData from "./hooks/useApplicationData";
 
-import Navbar from "./components/Navbar";
-import Map from './components/Map';
-import RentList from "./components/RentList";
-import Admin from "./components/admin/Admin";
+import AddPrice from "./components/AddPrice";
 import AddProperty from "./components/AddProperty";
+import Admin from "./components/admin/Admin";
+import Login from "./components/Login";
+import Map from './components/Map';
+import Navbar from "./components/Navbar";
+import PriceDetails from "./components/admin/PriceDetails";
 import PropertyDetails from "./components/admin/PropertyDetails";
 import Register from "./components/Register";
-import Login from "./components/Login";
+import RentList from "./components/RentList";
 
 function App() {
 
@@ -67,16 +69,20 @@ function App() {
               </Route>
               <Route exact path="/create">
                 <AddProperty />
+                <AddPrice />
               </Route>
               <Route exact path="/register">
                 <Register />
               </Route>
               <Route exact path="/login">
-                  <Login />
+                <Login />
               </Route>
-              <Route exact path="/:propertyid">
+              <Route exact path="/properties/:propertyid">
                 <PropertyDetails />
-              </Route>           
+              </Route>
+              <Route exact path="/prices/:priceid">
+                <PriceDetails />
+              </Route> 
             </Switch>
           </div>
         </div>
