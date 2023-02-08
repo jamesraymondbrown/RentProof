@@ -91,7 +91,7 @@ export default function MapDisplay(props) {
                 // hard coded, Remove this later. we shouldnt need it
               />
             ))
-          : console.error("Error: markers property not found in properties")}
+          : console.error("Markers Error")}
       </GoogleMap>
     );
   }

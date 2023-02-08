@@ -9,6 +9,54 @@ import { AppDataContext } from "../providers/AppDataProvider";
 const RentList = () => {
   const { state } = useContext(AppDataContext);
 
+  // console.log("prices", state.prices);
+
+  const getBedroomsFromPrices = (property, prices) => {
+    let bedrooms = 2;
+    for (let price of prices) {
+      if (price.property_id === property.id) {
+        bedrooms = price.number_of_bedrooms;
+        return bedrooms;
+      }
+    }
+    return bedrooms;
+  };
+
+  const getBathroomsFromPrices = (property, prices) => {
+    let bathrooms = 2;
+    for (let price of prices) {
+      if (price.property_id === property.id) {
+        bathrooms = price.number_of_bathrooms;
+        return bathrooms;
+      }
+    }
+    return bathrooms;
+  };
+
+  const getPhotoFromPrices = (property, prices) => {
+    let photo = "";
+    for (let price of prices) {
+      if (price.property_id === property.id) {
+        console.log(price.photo);
+        photo = price.photo;
+        return photo;
+      }
+    }
+    return photo;
+  };
+
+  const getCostFromPrices = (property, prices) => {
+    let cost = 2000;
+    for (let price of prices) {
+      // console.log("price");
+      if (price.property_id === property.id) {
+        cost = price.price;
+        return cost;
+      }
+    }
+    return cost;
+  };
+
   return (
     <div className="RentList">
       <div className="slider-container">
@@ -28,7 +76,11 @@ const RentList = () => {
         <BathFilter />
       </div>
       <img
-        src="https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg"
+        src={
+          state.prices
+            ? getPhotoFromPrices(state.currentProperty, state.prices)
+            : "https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg"
+        }
         alt="Rent List"
         className="picture"
         style={{ width: "100%" }}
@@ -45,8 +97,13 @@ const RentList = () => {
         <tbody>
           <tr>
             <td>{state.currentProperty.street_address}</td>
-            <td>$1000</td>
-            <td>$1100</td>
+            <td>{state.currentProperty.street_address}</td>
+            <td>
+              $
+              {state.prices
+                ? getCostFromPrices(state.currentProperty, state.prices)
+                : ""}
+            </td>
           </tr>
         </tbody>
       </table>
