@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { ReactSession } from "react-client-session";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { AppDataProvider } from "./providers/AppDataProvider";
-import { AppDataContext } from "./providers/AppDataProvider";
 
 import "./App.css";
-import useApplicationData from "./hooks/useApplicationData";
 
 import AddPrice from "./components/AddPrice";
 import AddProperty from "./components/AddProperty";
@@ -54,40 +50,38 @@ function App() {
   // }, [setState]);
 
   return (
-    <AppDataProvider>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <div className="Content" style={{ display: "flex" }}>
-            <Switch>
-              <Route exact path="/">
-                <Map state={state} style={{ flex: 3 }} />
-                <RentList style={{ flex: 1, width: "25%" }} />
-              </Route>
-              <Route exact path="/admin">
-                <Admin />
-              </Route>
-              <Route exact path="/create">
-                <AddProperty />
-                <AddPrice />
-              </Route>
-              <Route exact path="/register">
-                <Register />
-              </Route>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/properties/:propertyid">
-                <PropertyDetails />
-              </Route>
-              <Route exact path="/prices/:priceid">
-                <PriceDetails />
-              </Route>
-            </Switch>
-          </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="Content" style={{ display: "flex" }}>
+          <Switch>
+            <Route exact path="/">
+              <Map style={{ flex: 3 }} />
+              <RentList style={{ flex: 1, width: "25%" }} />
+            </Route>
+            <Route exact path="/admin">
+              <Admin />
+            </Route>
+            <Route exact path="/create">
+              <AddProperty />
+              <AddPrice />
+            </Route>
+            <Route exact path="/register">
+              <Register />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/properties/:propertyid">
+              <PropertyDetails />
+            </Route>
+            <Route exact path="/prices/:priceid">
+              <PriceDetails />
+            </Route>
+          </Switch>
         </div>
-      </Router>
-    </AppDataProvider>
+      </div>
+    </Router>
   );
 }
 
