@@ -25,7 +25,6 @@ export const AppDataProvider = ({ children }) => {
     maxVal,
   });
 
-
   const handleClickBeds = (index) => {
     if (selectedBedrooms.includes(index)) {
       setSelectedBedrooms(selectedBedrooms.filter((i) => i !== index));

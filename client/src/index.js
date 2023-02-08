@@ -8,15 +8,11 @@ import { DataBaseProvider } from "./providers/DataBaseProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-<<<<<<< HEAD
-    <App />
-=======
     <DataBaseProvider>
       <AppDataProvider>
         <App />
       </AppDataProvider>
     </DataBaseProvider>
->>>>>>> master
   </React.StrictMode>,
   document.getElementById("root")
 );

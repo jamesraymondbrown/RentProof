@@ -3,6 +3,7 @@ import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
 import { DataBaseContext } from "../providers/DataBaseProvider";
+import { useContext } from "react";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
@@ -11,8 +12,8 @@ export default function MapDisplay(props) {
 
   const { state } = useContext(DataBaseContext);
 
-  const properties = state.properties;
-  const prices = state.prices;
+  const properties = props.state.properties;
+  const prices = props.state.prices;
 
   const getBedroomsFromPrices = (property, prices) => {
     let bedrooms = 2;

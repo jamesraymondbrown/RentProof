@@ -4,10 +4,10 @@ import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import BedFilter from "./BedFilter";
 import BathFilter from "./BathFilter";
 import { useContext } from "react";
-import { AppDataContext } from "../providers/AppDataProvider";
+import { DataBaseContext } from "../providers/DataBaseProvider";
 
 const RentList = () => {
-  const { state } = useContext(AppDataContext);
+  const { state } = useContext(DataBaseContext);
 
   // console.log("prices", state.prices);
 
@@ -37,7 +37,7 @@ const RentList = () => {
     let photo = "";
     for (let price of prices) {
       if (price.property_id === property.id) {
-        console.log(price.photo);
+        // console.log(price.photo);
         photo = price.photo;
         return photo;
       }

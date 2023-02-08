@@ -2,19 +2,25 @@ import { useContext, useEffect } from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import axios from "axios";
 import { AppDataContext } from "../providers/MarkerFilterProvider";
+import { DataBaseContext } from "../providers/DataBaseProvider";
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
-<<<<<<< HEAD
-  const { selectedBedrooms, selectedBathrooms, handleClickMarker } =
-    useContext(AppDataContext);
-  // useEffect(() => {
-  //   console.log("selectedBathrooms ➤", selectedBathrooms);
-  // }, [selectedBedrooms, selectedBathrooms]);
-=======
   const { selectedBedrooms, selectedBathrooms } = useContext(AppDataContext);
+  const { setSelectedProperty } = useContext(DataBaseContext);
+
+  // const { handleClickMarker } = useContext(DataBaseContext);
 
   useEffect(() => {}, [selectedBedrooms, selectedBathrooms]);
->>>>>>> master
+
+  const handleClickMarker = (id) => {
+    axios
+      .get(`http://localhost:8001/properties/${id}`)
+      .then((response) => {
+        setSelectedProperty(response.data);
+        console.log("response.data ➤", response.data);
+      })
+      .catch((error) => console.error(error));
+  };
 
   let markerColor;
 
