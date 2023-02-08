@@ -1,8 +1,37 @@
-.logout {
-  background: transparent;
-  border: none;
-  color: -webkit-link;
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 1em;
+.nav {
+  min-height: 8vh;
+  background-color: #5AB8F8;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
 }
+
+.site-title {
+  font-size: 3rem;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: .25rem
+}
+
+.nav li:hover {
+  background-color: #73d7e9;
+}
+
