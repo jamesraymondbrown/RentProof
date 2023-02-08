@@ -6,14 +6,21 @@ export const AppDataContext = createContext();
 export const AppDataProvider = ({ children }) => {
   const [selectedBedrooms, setSelectedBedrooms] = useState([1, 2, 3]);
   const [selectedBathrooms, setSelectedBathrooms] = useState([1, 2]);
-  const [selectedProperty, setSelectedProperty] = useState({});
+  const [selectedProperty, setSelectedProperty] = useState({
+    id: 112,
+    province: "BC",
+    city: "Vancouver",
+    street_address: "679 E Cordova St, Vancouver",
+    latitude: "49.282258500",
+    longitude: "-123.089670000",
+  });
   const [minVal, setMinVal] = useState(0);
   const [maxVal, setMaxVal] = useState(100);
   const [state, setState] = useState({
     markers: {},
     bedrooms: [],
     bathrooms: [],
-    selectedProperty: {},
+    currentProperty: {},
     minVal,
     maxVal,
     users: null,
@@ -67,6 +74,12 @@ export const AppDataProvider = ({ children }) => {
       .catch((error) => console.error(error));
   };
 
+  useEffect(() => {
+    setState((prevState) => ({
+      ...prevState,
+      currentProperty: selectedProperty,
+    }));
+  }, [selectedProperty]);
   useEffect(() => {
     setState((prevState) => ({ ...prevState, bedrooms: selectedBedrooms }));
   }, [selectedBedrooms]);

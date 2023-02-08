@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactSession } from "react-client-session";
+// import { useEffect } from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

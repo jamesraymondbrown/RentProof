@@ -44,7 +44,7 @@ const RentList = () => {
         </thead>
         <tbody>
           <tr>
-            <td>Property Price History</td>
+            <td>{state.currentProperty.street_address}</td>
             <td>$1000</td>
             <td>$1100</td>
           </tr>

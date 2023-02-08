@@ -14,7 +14,7 @@ export default function MapDisplay(props) {
   const properties = state.properties;
   const prices = state.prices;
 
-  console.log("properties", state);
+  // console.log("properties", state);
 
   const getBedroomsFromPrices = (property, prices) => {
     let bedrooms = 2;
