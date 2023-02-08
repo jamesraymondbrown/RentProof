@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-export const AppDataContext = createContext();
+export const MarkerFilterContext = createContext();
 
-export const AppDataProvider = ({ children }) => {
+export const MarkerFilterProvider = ({ children }) => {
   const [selectedBedrooms, setSelectedBedrooms] = useState([1, 2, 3]);
   const [selectedBathrooms, setSelectedBathrooms] = useState([1, 2]);
   const [selectedProperty, setSelectedProperty] = useState({
@@ -56,6 +56,13 @@ export const AppDataProvider = ({ children }) => {
       currentProperty: selectedProperty,
     }));
   }, [selectedProperty]);
+
+  useEffect(() => {
+    setState((prevState) => ({
+      ...prevState,
+      currentProperty: selectedProperty,
+    }));
+  }, [selectedProperty]);
   useEffect(() => {
     setState((prevState) => ({ ...prevState, bedrooms: selectedBedrooms }));
   }, [selectedBedrooms]);
@@ -63,7 +70,7 @@ export const AppDataProvider = ({ children }) => {
     setState((prevState) => ({ ...prevState, bathrooms: selectedBathrooms }));
   }, [selectedBathrooms]);
   return (
-    <AppDataContext.Provider
+    <MarkerFilterContext.Provider
       value={{
         state,
         handleClickBeds,
@@ -73,9 +80,10 @@ export const AppDataProvider = ({ children }) => {
         setMaxVal,
         selectedBathrooms,
         selectedBedrooms,
+        setSelectedProperty,
       }}
     >
       {children}
-    </AppDataContext.Provider>
+    </MarkerFilterContext.Provider>
   );
 };

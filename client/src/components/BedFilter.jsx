@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { AppDataContext } from "../providers/MarkerFilterProvider";
+import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 
 export default function BedFilter() {
   // Destructure `state` and `handleClick` from the AppDataContext
-  const { state, handleClickBeds } = useContext(AppDataContext);
+  const { state, handleClickBeds } = useContext(MarkerFilterContext);
 
   // An array of bedroom numbers to be displayed as filters
   const bedrooms = [0, 1, 2, 3, 4];

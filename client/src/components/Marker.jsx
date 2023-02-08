@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import axios from "axios";
-import { AppDataContext } from "../providers/MarkerFilterProvider";
+import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../providers/DataBaseProvider";
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
-  const { selectedBedrooms, selectedBathrooms } = useContext(AppDataContext);
-  const { setSelectedProperty } = useContext(DataBaseContext);
+  const { selectedBedrooms, selectedBathrooms, setSelectedProperty } =
+    useContext(MarkerFilterContext);
+  // const { setSelectedProperty } = useContext(DataBaseContext);
 
   // const { handleClickMarker } = useContext(DataBaseContext);
 

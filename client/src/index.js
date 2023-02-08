@@ -3,15 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { AppDataProvider } from "./providers/MarkerFilterProvider";
+import { MarkerFilterProvider } from "./providers/MarkerFilterProvider";
 import { DataBaseProvider } from "./providers/DataBaseProvider";
 
 ReactDOM.render(
   <React.StrictMode>
     <DataBaseProvider>
-      <AppDataProvider>
+      <MarkerFilterProvider>
         <App />
-      </AppDataProvider>
+      </MarkerFilterProvider>
     </DataBaseProvider>
   </React.StrictMode>,
   document.getElementById("root")

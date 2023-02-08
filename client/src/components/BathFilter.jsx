@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import "./BathFilter.scss";
-import { AppDataContext } from "../providers/MarkerFilterProvider";
+import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 
 export default function BathFilter() {
   // Destructure `state` and `handleClick` from the AppDataContext
-  const { state, handleClickBaths } = useContext(AppDataContext);
+  const { state, handleClickBaths } = useContext(MarkerFilterContext);
 
   // An array of bathroom numbers to be displayed as filters
   const bathrooms = [1, 2, 3];

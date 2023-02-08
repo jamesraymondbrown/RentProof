@@ -4,10 +4,10 @@ import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import BedFilter from "./BedFilter";
 import BathFilter from "./BathFilter";
 import { useContext } from "react";
-import { DataBaseContext } from "../providers/DataBaseProvider";
+import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 
 const RentList = () => {
-  const { state } = useContext(DataBaseContext);
+  const { state } = useContext(MarkerFilterContext);
 
   // console.log("prices", state.prices);
 
