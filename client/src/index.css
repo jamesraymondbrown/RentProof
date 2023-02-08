@@ -9,12 +9,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: absolute;
+  /* position: absolute;
   margin: 0px;
   overflow: hidden;
   top: 0px;
   bottom: 0px;
-  width: 100%;
+  width: 100%; */
 }
 
 code {
