@@ -5,6 +5,7 @@ import './Navbar.scss'
 const Navbar = () => {
 
   const name = ReactSession.get("name");
+  const userRole = ReactSession.get("role");
 
   const logout = () => {
     console.log('Clicked Logout')
@@ -19,7 +20,7 @@ const Navbar = () => {
       <h1>Rent Tracker</h1>
       <div className="links" style={{ margin: '1em' }} >
         <Link to="/" style={{ margin: '1em' }}>Home</Link>
-        <Link to="/admin" style={{ margin: '1em' }}>Admin</Link>
+        { userRole === 'admin' && <Link to="/admin" style={{ margin: '1em' }}>Admin</Link> }
         <Link to="/create" style={{ margin: '1em' }}>Add Property</Link>
         { !name && <Link to="/login" style={{ margin: '1em' }}>Login</Link> }
         { !name && <Link to="/register" style={{ margin: '1em' }}>Register</Link> }        
