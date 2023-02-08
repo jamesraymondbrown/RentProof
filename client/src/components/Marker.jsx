@@ -4,11 +4,11 @@ import axios from "axios";
 import { AppDataContext } from "../providers/AppDataProvider";
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
-  const { selectedBedrooms, selectedBathrooms } = useContext(AppDataContext);
-
-  useEffect(() => {
-    console.log("selectedBathrooms ➤", selectedBathrooms);
-  }, [selectedBedrooms, selectedBathrooms]);
+  const { selectedBedrooms, selectedBathrooms, handleClickMarker } =
+    useContext(AppDataContext);
+  // useEffect(() => {
+  //   console.log("selectedBathrooms ➤", selectedBathrooms);
+  // }, [selectedBedrooms, selectedBathrooms]);
 
   let markerColor;
 
@@ -20,12 +20,12 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
     markerColor = "red";
   }
 
-  const handleMarkerClick = () => {
-    axios
-      .get(`http://localhost:8001/properties/${id}`)
-      .then((response) => console.log("response.data ➤", response.data))
-      .catch((error) => console.error(error));
-  };
+  // const handleMarkerClick = () => {
+  //   axios
+  //     .get(`http://localhost:8001/properties/${id}`)
+  //     .then((response) => console.log("response.data ➤", response.data))
+  //     .catch((error) => console.error(error));
+  // };
 
   return (
     <div>
@@ -34,7 +34,7 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
         <GoogleMapMarker
           position={position}
           title={title}
-          onClick={handleMarkerClick}
+          onClick={() => handleClickMarker(id)}
           icon={{
             url: `http://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`,
           }}

@@ -3,8 +3,12 @@ import React from "react";
 import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import BedFilter from "./BedFilter";
 import BathFilter from "./BathFilter";
+import { useContext } from "react";
+import { AppDataContext } from "../providers/AppDataProvider";
 
 const RentList = () => {
+  const { state } = useContext(AppDataContext);
+
   return (
     <div className="RentList">
       <div className="slider-container">
@@ -18,9 +22,9 @@ const RentList = () => {
           }
           style={{ height: "20px" }}
         />
-        
-          <BedFilter />
-        
+
+        <BedFilter />
+
         <BathFilter />
       </div>
       <img

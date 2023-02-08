@@ -4,14 +4,16 @@ import axios from "axios";
 export const AppDataContext = createContext();
 
 export const AppDataProvider = ({ children }) => {
-  const [selectedBedrooms, setSelectedBedrooms] = useState([0, 1, 2, 3, 4]);
-  const [selectedBathrooms, setSelectedBathrooms] = useState([1, 2, 3]);
+  const [selectedBedrooms, setSelectedBedrooms] = useState([1, 2, 3]);
+  const [selectedBathrooms, setSelectedBathrooms] = useState([1, 2]);
+  const [selectedProperty, setSelectedProperty] = useState({});
   const [minVal, setMinVal] = useState(0);
   const [maxVal, setMaxVal] = useState(100);
   const [state, setState] = useState({
     markers: {},
     bedrooms: [],
     bathrooms: [],
+    selectedProperty: {},
     minVal,
     maxVal,
     users: null,
@@ -55,6 +57,16 @@ export const AppDataProvider = ({ children }) => {
     }
   };
 
+  const handleClickMarker = (id) => {
+    axios
+      .get(`http://localhost:8001/properties/${id}`)
+      .then((response) => {
+        setSelectedProperty(response.data);
+        console.log("response.data ➤", response.data);
+      })
+      .catch((error) => console.error(error));
+  };
+
   useEffect(() => {
     setState((prevState) => ({ ...prevState, bedrooms: selectedBedrooms }));
   }, [selectedBedrooms]);
@@ -67,6 +79,7 @@ export const AppDataProvider = ({ children }) => {
         state,
         handleClickBeds,
         handleClickBaths,
+        handleClickMarker,
         setMinVal,
         setMaxVal,
         selectedBathrooms,
