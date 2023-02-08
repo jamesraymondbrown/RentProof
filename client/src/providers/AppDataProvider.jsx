@@ -12,9 +12,6 @@ export const AppDataProvider = ({ children }) => {
     minVal,
     maxVal,
   });
-
-  
-
   
   const handleClick = (index) => {
     if (selectedButtons.includes(index)) {

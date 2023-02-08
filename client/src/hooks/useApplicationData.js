@@ -5,8 +5,8 @@ const useApplicationData = () => {
   const [state, setState] = useState({
     users: null,
     properties: null,
-    prices: null,
-  }); 
+    prices: null
+  });
 
   return {
     state,

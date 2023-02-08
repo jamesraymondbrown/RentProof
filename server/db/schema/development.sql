@@ -1,9 +1,11 @@
 
-INSERT INTO users (name, email, password)
+INSERT INTO users (name, email, password, role)
 VALUES
-('james', 'james@renttracker.com', 123),
-('hadley', 'hadley@renttracker.com', 123),
-('michael', 'michael@renttracker.com', 123);
+('james', 'james@renttracker.com', 'password', 'admin'),
+('hadley', 'hadley@renttracker.com', 'password', 'admin'),
+('michael', 'michael@renttracker.com', 'password', 'admin'),
+('users', 'user@renttracker.com', 'password123', 'user');
+
 
 INSERT INTO properties (province, city, street_address, latitude, longitude) VALUES 
 ('BC', 'Vancouver', '1775 Bellevue Ave, West Vancouver', 49.3278471, -123.161684),

@@ -7,7 +7,7 @@ function Marker({ bedrooms, cost, position, title, label, id}) {
   const { selectedButtons } = useContext(AppDataContext);
   
   useEffect(() => {
-    console.log("selectedButtons ➤", selectedButtons);
+    // console.log("selectedButtons ➤", selectedButtons);
   }, [selectedButtons]);
 
   let markerColor;

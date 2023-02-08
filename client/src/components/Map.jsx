@@ -57,7 +57,7 @@ import { AppDataContext, AppDataProvider } from "../providers/AppDataProvider";
               />
             ))
           : console.error(
-              "Error: markers property not found in locations object"
+              "Error: markers property not found in properties"
             )}
       </GoogleMap>
     );
