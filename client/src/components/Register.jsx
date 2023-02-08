@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
+import './Register.scss'
 
 const Register = () => {
 
@@ -43,34 +44,49 @@ const Register = () => {
   }
 
   return (
-    <div className="create">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>        
-        <label>Name</label>
+    <div className="wrapper">
+      <h2 className="title">Register</h2>
+      <form className="registration-form" onSubmit={handleSubmit}>        
+        <div className="inputfield">
+          <label>Name</label>
           <input
             type="text" 
+            className="input"
             required
             value={name}
             onChange={(event) => setName(event.target.value)}
-          />
-        <label>Email</label>
+            />
+        </div>
+        <div className="inputfield">
+          <label>Email</label>
           <input
             type="text" 
+            className="input"
             required
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-        <label>Password</label>
+        </div>
+        <div className="inputfield">
+          <label>Password</label>
           <input
             type="password"
+            className="input"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        { !isPending && <button>Register</button>}
-        { isPending && <button disabled>Registering User...</button> }
+        </div>
+        <div className="inputfield">
+          <input type="submit" value="Register" className="btn"/>
+        {/* { !isPending && <button>Register</button>}
+        {isPending && <button disabled>Registering User...</button>} */}
+        </div>   
       </form>
-    </div>  
+      </div>      
+      // <div class="inputfield">
+      //   <input type="submit" value="Register" class="btn"/>
+      // </div>    
   )
 }
 
