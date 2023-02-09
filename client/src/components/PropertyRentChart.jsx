@@ -43,7 +43,7 @@ const PropertyRentChart = (props) => {
   for (let price of props.prices) {
     if (price.admin_status === "approved") {
       data.push({
-        date: price.date,
+        date: price.date.substring(0, 4),
         price: price.price,
       });
     }
