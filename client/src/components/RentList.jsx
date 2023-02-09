@@ -11,30 +11,6 @@ const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
   const { dataState } = useContext(DataBaseContext);
 
-  // console.log("prices", state.prices);
-
-  const getBedroomsFromPrices = (property, prices) => {
-    let bedrooms = 2;
-    for (let price of prices) {
-      if (price.property_id === property.id) {
-        bedrooms = price.number_of_bedrooms;
-        return bedrooms;
-      }
-    }
-    return bedrooms;
-  };
-
-  const getBathroomsFromPrices = (property, prices) => {
-    let bathrooms = 2;
-    for (let price of prices) {
-      if (price.property_id === property.id) {
-        bathrooms = price.number_of_bathrooms;
-        return bathrooms;
-      }
-    }
-    return bathrooms;
-  };
-
   const getPhotoFromPrices = (property, prices) => {
     let photo = "";
     for (let price of prices) {

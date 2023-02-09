@@ -7,7 +7,7 @@ export const MarkerFilterProvider = ({ children }) => {
   const [selectedBedrooms, setSelectedBedrooms] = useState([1, 2, 3]);
   const [selectedBathrooms, setSelectedBathrooms] = useState([1, 2]);
   const [selectedProperty, setSelectedProperty] = useState({
-    id: 112,
+    id: 114,
     province: "BC",
     city: "Vancouver",
     street_address: "679 E Cordova St, Vancouver",

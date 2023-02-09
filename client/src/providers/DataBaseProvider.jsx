@@ -4,32 +4,11 @@ import axios from "axios";
 export const DataBaseContext = createContext();
 
 export const DataBaseProvider = ({ children }) => {
-  const [selectedProperty, setSelectedProperty] = useState({
-    id: 112,
-    province: "BC",
-    city: "Vancouver",
-    street_address: "679 E Cordova St, Vancouver",
-    latitude: "49.282258500",
-    longitude: "-123.089670000",
-  });
-
   const [dataState, setDataState] = useState({
-    currentProperty: {},
     users: null,
     properties: null,
     prices: null,
-    currentProperty: {},
   });
-
-  const handleClickMarker = (id) => {
-    axios
-      .get(`http://localhost:8001/properties/${id}`)
-      .then((response) => {
-        setSelectedProperty(response.data);
-        console.log("response.data ➤", response.data);
-      })
-      .catch((error) => console.error(error));
-  };
 
   useEffect(() => {
     const usersURL = `http://localhost:8001/users`;
@@ -52,18 +31,9 @@ export const DataBaseProvider = ({ children }) => {
     });
   }, [setDataState]);
 
-  useEffect(() => {
-    setDataState((prevState) => ({
-      ...prevState,
-      currentProperty: selectedProperty,
-    }));
-  }, [selectedProperty]);
-
   return (
     <DataBaseContext.Provider
       value={{
-        handleClickMarker,
-        setSelectedProperty,
         dataState: dataState,
       }}
     >
