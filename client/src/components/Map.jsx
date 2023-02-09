@@ -2,13 +2,11 @@ import React from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
-import { DataBaseContext } from "../providers/DataBaseProvider";
-import { useContext } from "react";
 import {
-  getCostFromPrices,
   getBedroomsFromPrices,
   getBathroomsFromPrices,
-} from "./helpers/getDataFromPrices";
+  getCostFromPrices
+} from "../helpers/mapHelper";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
@@ -17,8 +15,7 @@ export default function MapDisplay(props) {
 
   const properties = props.state.properties;
   const prices = props.state.prices;
-
-  let markers;
+  let markers = [];
 
   properties &&
     (markers = properties.map((property) => {
@@ -35,8 +32,7 @@ export default function MapDisplay(props) {
           label={getCostFromPrices(property, prices)}
           bedrooms={getBedroomsFromPrices(property, prices)}
           bathrooms={getBathroomsFromPrices(property, prices)}
-          //url picture
-          // hard coded, Remove this later. we shouldnt need it
+
         />
       );
     }));

@@ -1,8 +1,7 @@
-import { useContext, useEffect } from "react";
+import React, { useContext, useState} from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
-import axios from "axios";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
-import { DataBaseContext } from "../providers/DataBaseProvider";
+import "./Marker.scss"
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   const {
@@ -11,8 +10,6 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
     setSelectedProperty,
     handleClickMarker,
   } = useContext(MarkerFilterContext);
-
-  useEffect(() => {}, [selectedBedrooms, selectedBathrooms]);
 
   let markerColor;
 
@@ -26,14 +23,15 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
 
   return (
     <div>
-      {selectedBedrooms.includes(bedrooms) &&
-      selectedBathrooms.includes(bathrooms) ? (
+      {(selectedBedrooms.includes(bedrooms) || !selectedBedrooms.length) &&
+      (selectedBathrooms.includes(bathrooms) || !selectedBathrooms.length) ? (
         <GoogleMapMarker
           position={position}
           title={title}
           onClick={() => handleClickMarker(id)}
           icon={{
             url: `http://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`,
+            className: "marker-icon",
           }}
         />
       ) : null}
@@ -41,4 +39,4 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   );
 }
 
-export default Marker;
+export default React.memo(Marker);

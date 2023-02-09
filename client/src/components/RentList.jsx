@@ -39,15 +39,43 @@ const RentList = () => {
             ? getPhotoFromPrices(state.currentProperty, dataState.prices)
             : "https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg"
         }
-        // src={
-        //   "https://www.thehousedesigners.com/blog/wp-content/uploads/2019/10/House-Plan-7444-Living-Room.jpg"
-        // }
         alt="Rent List"
-        className="picture"
-        style={{ width: "100%" }}
+        className="image"
       />
 
-      <table>
+      <div className="info">
+        <div className="BubbleDetail_priceContainer__Zfrap">
+          <div className="price">
+            $
+            {dataState.prices
+              ? getCostFromPrices(state.currentProperty, dataState.prices)
+              : ""}
+          </div>
+          <div className="divider"></div>
+        </div>
+        <div className="col BubbleDetail_colAddress__37E3b">
+          <h1 className="name">
+            <a
+  
+            >
+              Kingston Tower
+            </a>
+          </h1>
+          <a
+            className="undername"
+          >
+            {state.currentProperty.street_address},{" "}
+          </a>
+          <a
+            className="BubbleDetail_cityState__1JOOk"
+            href="/apartments/calgary-ab"
+          >
+            Calgary
+          </a>
+        </div>
+      </div>
+
+      {/* <table>
         <thead>
           <tr>
             <th>Property Name</th>
@@ -67,7 +95,7 @@ const RentList = () => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };

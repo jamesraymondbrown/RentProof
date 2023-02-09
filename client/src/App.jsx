@@ -22,13 +22,13 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="App" >
         <Navbar />
-        <div className="Content" style={{ display: "flex" }}>
+        <div className="Content" >
           <Switch>
             <Route exact path="/">
-              <Map state={state} style={{ flex: 3 }} />
-              <RentList style={{ flex: 1, width: "25%" }} />
+              <Map state={state}  />
+              <RentList  />
             </Route>
             <Route exact path="/admin">
               <Admin />
