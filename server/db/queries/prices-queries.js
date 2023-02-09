@@ -30,4 +30,18 @@ const deletePrice = (id) => {
   });
 }
 
-module.exports = { getPrices, getPriceById, addPrice, deletePrice };
+const approvePrice = (id) => {
+  return database.query(`UPDATE prices SET admin_status = 'approved' WHERE id = $1 RETURNING *`, [id])
+    .then((response) => {
+      return response.rows[0]
+    })
+}
+
+const rejectPrice = (id) => {
+  return database.query(`UPDATE prices SET admin_status = 'rejected' WHERE id = $1 RETURNING *`, [id])
+    .then((response) => {
+      return response.rows[0]
+    })
+}
+
+module.exports = { getPrices, getPriceById, addPrice, deletePrice, approvePrice, rejectPrice };

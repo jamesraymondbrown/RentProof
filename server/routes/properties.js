@@ -57,16 +57,8 @@ router.delete('/:id', (req, res) => {
     }); 
 });
 
-router.put('/:id', (req, res) => {
-  // const id = req.params.id
-  // propertyQueries.deleteProperty(id)
-  //   .then((response) => {
-  //     console.log('Property Deleted:', response)
-  //     res.send(response)
-  //   })
-  //   .catch((error) => {
-  //     console.log(error)
-  //   }); 
-});
+// router.put('/:id', (req, res) => {
+  
+// });
 
 module.exports = router;

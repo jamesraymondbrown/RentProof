@@ -21,7 +21,7 @@ CREATE TABLE users (
 
 CREATE TABLE prices (
   id SERIAL PRIMARY KEY NOT NULL,
-  property_id INTEGER REFERENCES properties(id),
+  property_id INTEGER REFERENCES properties(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users(id),
   admin_status VARCHAR(255) NOT NULL DEFAULT 'pending',
   date DATE NOT NULL,

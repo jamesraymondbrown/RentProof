@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
-
 export const MarkerFilterContext = createContext();
 
 export const MarkerFilterProvider = ({ children }) => {
