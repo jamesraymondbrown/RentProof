@@ -5,23 +5,27 @@ import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../providers/DataBaseProvider";
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
-  const { selectedBedrooms, selectedBathrooms, setSelectedProperty } =
-    useContext(MarkerFilterContext);
+  const {
+    selectedBedrooms,
+    selectedBathrooms,
+    setSelectedProperty,
+    handleClickMarker,
+  } = useContext(MarkerFilterContext);
   // const { setSelectedProperty } = useContext(DataBaseContext);
 
   // const { handleClickMarker } = useContext(DataBaseContext);
 
   useEffect(() => {}, [selectedBedrooms, selectedBathrooms]);
 
-  const handleClickMarker = (id) => {
-    axios
-      .get(`http://localhost:8001/properties/${id}`)
-      .then((response) => {
-        setSelectedProperty(response.data);
-        console.log("response.data ➤", response.data);
-      })
-      .catch((error) => console.error(error));
-  };
+  // const handleClickMarker = (id) => {
+  //   axios
+  //     .get(`http://localhost:8001/properties/${id}`)
+  //     .then((response) => {
+  //       setSelectedProperty(response.data);
+  //       console.log("response.data ➤", response.data);
+  //     })
+  //     .catch((error) => console.error(error));
+  // };
 
   let markerColor;
 

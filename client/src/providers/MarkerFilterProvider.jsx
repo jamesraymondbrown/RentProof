@@ -58,12 +58,6 @@ export const MarkerFilterProvider = ({ children }) => {
   }, [selectedProperty]);
 
   useEffect(() => {
-    setState((prevState) => ({
-      ...prevState,
-      currentProperty: selectedProperty,
-    }));
-  }, [selectedProperty]);
-  useEffect(() => {
     setState((prevState) => ({ ...prevState, bedrooms: selectedBedrooms }));
   }, [selectedBedrooms]);
   useEffect(() => {

@@ -5,9 +5,11 @@ import BedFilter from "./BedFilter";
 import BathFilter from "./BathFilter";
 import { useContext } from "react";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
+import { DataBaseContext } from "../providers/DataBaseProvider";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
+  const { dataState } = useContext(DataBaseContext);
 
   // console.log("prices", state.prices);
 
@@ -100,8 +102,8 @@ const RentList = () => {
             <td>{state.currentProperty.street_address}</td>
             <td>
               $
-              {state.prices
-                ? getCostFromPrices(state.currentProperty, state.prices)
+              {dataState.prices
+                ? getCostFromPrices(state.currentProperty, dataState.prices)
                 : ""}
             </td>
           </tr>
