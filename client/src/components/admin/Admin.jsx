@@ -1,8 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 import './Admin.scss'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
 

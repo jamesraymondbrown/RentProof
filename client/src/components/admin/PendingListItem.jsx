@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import { MDBBadge, MDBBtn } from 'mdb-react-ui-kit';
 
 export default function PendingListItem(props) {
 
@@ -37,7 +37,7 @@ export default function PendingListItem(props) {
           <img
             src='https://as2.ftcdn.net/v2/jpg/02/81/30/37/1000_F_281303741_hMZeppEpgmvzRnnh5omyqDGQQBntAMXi.jpg'
             alt=''
-            style={{ width: '45px', height: '45px' }}
+            style={{ width: '60px', height: '60px' }}
             className='rounded-circle'
           />
           <div className='ms-3'>
@@ -60,7 +60,7 @@ export default function PendingListItem(props) {
         <img
             src='https://as2.ftcdn.net/v2/jpg/03/21/02/09/1000_F_321020933_0dGobZ034LYo24osGbaWCAggGSGYUOjK.jpg'
             alt=''
-            style={{ width: '45px', height: '45px' }}
+            style={{ width: '60px', height: '60px' }}
             className='rounded-circle'
           />
       </td>

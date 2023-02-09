@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import PendingListItem from './PendingListItem';
 
 export default function PendingList(props) {
