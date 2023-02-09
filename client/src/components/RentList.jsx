@@ -20,7 +20,7 @@ const RentList = () => {
     const propertyPriceHistory = dataState.prices.filter(
       (price) => price.property_id === propertyId
     );
-    console.log("priceHistory", propertyPriceHistory);
+    // console.log("priceHistory", propertyPriceHistory);
     return propertyPriceHistory;
   };
 
@@ -44,7 +44,7 @@ const RentList = () => {
       </div>
       <img
         src={
-          dataState.prices
+          dataState.prices && state.currentProperty.id
             ? getPhotoFromPrices(state.currentProperty, dataState.prices)
             : "https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg"
         }
@@ -101,9 +101,9 @@ const RentList = () => {
       </table> */}
 
       <div className="PropertyRentChart">
-        {dataState.prices ? (
+        {dataState.prices && state.currentProperty.id ? (
           <PropertyRentChart
-            price={getPriceHistory(state.currentProperty.id)}
+            prices={getPriceHistory(state.currentProperty.id)}
           />
         ) : (
           <div>Loading...</div>
