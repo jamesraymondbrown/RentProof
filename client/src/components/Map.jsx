@@ -6,7 +6,7 @@ import {
   getBedroomsFromPrices,
   getBathroomsFromPrices,
   getCostFromPrices
-} from "../helpers/mapHelper";
+} from "./helpers/getDataFromPrices"
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({

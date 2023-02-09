@@ -16,11 +16,11 @@ const Admin = () => {
     window.location.reload();
   }
 
-  const { state } = useContext(DataBaseContext);
+  const { dataState } = useContext(DataBaseContext);
 
   return (
     <div className="pending-prices">
-        <SubmissionList state={state} />
+        <SubmissionList state={dataState} />
     </div>    
   )
 }

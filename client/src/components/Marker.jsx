@@ -1,13 +1,11 @@
-import React, { useContext, useState} from "react";
+import React, { useContext } from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
-import "./Marker.scss"
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   const {
     selectedBedrooms,
     selectedBathrooms,
-    setSelectedProperty,
     handleClickMarker,
   } = useContext(MarkerFilterContext);
 

@@ -6,10 +6,7 @@ import BathFilter from "./BathFilter";
 import { useContext } from "react";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../providers/DataBaseProvider";
-import {
-  getCostFromPrices,
-  getPhotoFromPrices,
-} from "./helpers/getDataFromPrices";
+import { getCostFromPrices, getPhotoFromPrices } from "./helpers/getDataFromPrices";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -56,13 +53,14 @@ const RentList = () => {
         <div className="col BubbleDetail_colAddress__37E3b">
           <h1 className="name">
             <a
-  
+              href="#0"
             >
               Kingston Tower
             </a>
           </h1>
           <a
             className="undername"
+            href="#0"
           >
             {state.currentProperty.street_address},{" "}
           </a>

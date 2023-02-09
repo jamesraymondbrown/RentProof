@@ -11,7 +11,6 @@ import { Image } from 'primereact/image';
 // import { Badge } from "primereact/badge"
 
 export default function SubmissionList(props) {
-
   const prices = props.state.prices;
   const properties = props.state.properties;
   const users = props.state.users;
