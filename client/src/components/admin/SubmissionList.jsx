@@ -67,7 +67,7 @@ export default function SubmissionList(props) {
   pending && (pendingList = pending.map((submission) => {
     return {
       id: submission.id,
-      photo: <Image src='https://as2.ftcdn.net/v2/jpg/02/81/30/37/1000_F_281303741_hMZeppEpgmvzRnnh5omyqDGQQBntAMXi.jpg' alt="Image" width='200px' />,
+      photo: <Image src={submission.photo} alt="Image" width='200px' />,
       address: getPropertyByPriceId(submission).street_address,
       city: getPropertyByPriceId(submission).city,
       province: getPropertyByPriceId(submission).province,
