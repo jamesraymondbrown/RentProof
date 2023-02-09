@@ -56,16 +56,28 @@ router.delete('/:id', (req, res) => {
     }); 
 });
 
-router.put('/:id', (req, res) => {
-  // const id = req.params.id
-  // propertyQueries.deleteProperty(id)
-  //   .then((response) => {
-  //     console.log('Property Deleted:', response)
-  //     res.send(response)
-  //   })
-  //   .catch((error) => {
-  //     console.log(error)
-  //   }); 
+router.put('/approve/:id', (req, res) => {
+  const id = req.params.id
+  priceQueries.approvePrice(id)
+    .then((response) => {
+      console.log('Price Approved:', response)
+      res.send(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    }); 
+});
+
+router.put('/reject/:id', (req, res) => {
+  const id = req.params.id
+  priceQueries.rejectPrice(id)
+    .then((response) => {
+      console.log('Price Rejected:', response)
+      res.send(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    }); 
 });
 
 module.exports = router;

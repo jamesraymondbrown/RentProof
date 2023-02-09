@@ -1,3 +1,30 @@
-.admin {
-  display: flex;
+.pending-prices {
+  margin: 2em auto;  
+}
+
+.pending-title {
+  font-size: 2.5rem;
+  font-weight: bold; 
+  background-color: #5AB8F8;
+  border: 1px solid #c7e6fd;
+  border-radius: 20px;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+th {
+  font-size: 1.5em;
+}
+
+td {
+  font-size: 1.2em;
+}
+
+.approve-btn {
+  margin: .25em;
+}
+
+.reject-btn {
+  margin: .25em;
 }
