@@ -11,21 +11,8 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
     setSelectedProperty,
     handleClickMarker,
   } = useContext(MarkerFilterContext);
-  // const { setSelectedProperty } = useContext(DataBaseContext);
-
-  // const { handleClickMarker } = useContext(DataBaseContext);
 
   useEffect(() => {}, [selectedBedrooms, selectedBathrooms]);
-
-  // const handleClickMarker = (id) => {
-  //   axios
-  //     .get(`http://localhost:8001/properties/${id}`)
-  //     .then((response) => {
-  //       setSelectedProperty(response.data);
-  //       console.log("response.data ➤", response.data);
-  //     })
-  //     .catch((error) => console.error(error));
-  // };
 
   let markerColor;
 
@@ -36,13 +23,6 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   } else {
     markerColor = "red";
   }
-
-  // const handleMarkerClick = () => {
-  //   axios
-  //     .get(`http://localhost:8001/properties/${id}`)
-  //     .then((response) => console.log("response.data ➤", response.data))
-  //     .catch((error) => console.error(error));
-  // };
 
   return (
     <div>
