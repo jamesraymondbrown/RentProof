@@ -5,57 +5,15 @@ import BedFilter from "./BedFilter";
 import BathFilter from "./BathFilter";
 import { useContext } from "react";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
+import { DataBaseContext } from "../providers/DataBaseProvider";
+import {
+  getCostFromPrices,
+  getPhotoFromPrices,
+} from "./helpers/getDataFromPrices";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
-
-  // console.log("prices", state.prices);
-
-  const getBedroomsFromPrices = (property, prices) => {
-    let bedrooms = 2;
-    for (let price of prices) {
-      if (price.property_id === property.id) {
-        bedrooms = price.number_of_bedrooms;
-        return bedrooms;
-      }
-    }
-    return bedrooms;
-  };
-
-  const getBathroomsFromPrices = (property, prices) => {
-    let bathrooms = 2;
-    for (let price of prices) {
-      if (price.property_id === property.id) {
-        bathrooms = price.number_of_bathrooms;
-        return bathrooms;
-      }
-    }
-    return bathrooms;
-  };
-
-  const getPhotoFromPrices = (property, prices) => {
-    let photo = "";
-    for (let price of prices) {
-      if (price.property_id === property.id) {
-        // console.log(price.photo);
-        photo = price.photo;
-        return photo;
-      }
-    }
-    return photo;
-  };
-
-  const getCostFromPrices = (property, prices) => {
-    let cost = 2000;
-    for (let price of prices) {
-      // console.log("price");
-      if (price.property_id === property.id) {
-        cost = price.price;
-        return cost;
-      }
-    }
-    return cost;
-  };
+  const { dataState } = useContext(DataBaseContext);
 
   return (
     <div className="RentList">
@@ -77,10 +35,13 @@ const RentList = () => {
       </div>
       <img
         src={
-          state.prices
-            ? getPhotoFromPrices(state.currentProperty, state.prices)
+          dataState.prices
+            ? getPhotoFromPrices(state.currentProperty, dataState.prices)
             : "https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg"
         }
+        // src={
+        //   "https://www.thehousedesigners.com/blog/wp-content/uploads/2019/10/House-Plan-7444-Living-Room.jpg"
+        // }
         alt="Rent List"
         className="picture"
         style={{ width: "100%" }}
@@ -100,8 +61,8 @@ const RentList = () => {
             <td>{state.currentProperty.street_address}</td>
             <td>
               $
-              {state.prices
-                ? getCostFromPrices(state.currentProperty, state.prices)
+              {dataState.prices
+                ? getCostFromPrices(state.currentProperty, dataState.prices)
                 : ""}
             </td>
           </tr>

@@ -1,21 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect} from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
 import axios from "axios";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
-  const { selectedBedrooms, selectedBathrooms, setSelectedProperty } =
-    useContext(MarkerFilterContext);
-
-  const handleClickMarker = (id) => {
-    axios
-      .get(`http://localhost:8001/properties/${id}`)
-      .then((response) => {
-        setSelectedProperty(response.data);
-        console.log("response.data ➤", response.data);
-      })
-      .catch((error) => console.error(error));
-  };
+  const {
+    selectedBedrooms,
+    selectedBathrooms,
+    setSelectedProperty,
+    handleClickMarker,
+  } = useContext(MarkerFilterContext);
 
   let markerColor;
 
