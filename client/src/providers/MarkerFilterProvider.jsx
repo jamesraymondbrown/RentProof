@@ -4,8 +4,8 @@ import axios from "axios";
 export const MarkerFilterContext = createContext();
 
 export const MarkerFilterProvider = ({ children }) => {
-  const [selectedBedrooms, setSelectedBedrooms] = useState([1, 2, 3]);
-  const [selectedBathrooms, setSelectedBathrooms] = useState([1, 2]);
+  const [selectedBedrooms, setSelectedBedrooms] = useState([]);
+  const [selectedBathrooms, setSelectedBathrooms] = useState([]);
   const [selectedProperty, setSelectedProperty] = useState({
     id: 112,
     province: "BC",
@@ -50,6 +50,7 @@ export const MarkerFilterProvider = ({ children }) => {
       .catch((error) => console.error(error));
   };
 
+
   useEffect(() => {
     setState((prevState) => ({
       ...prevState,
@@ -58,17 +59,13 @@ export const MarkerFilterProvider = ({ children }) => {
   }, [selectedProperty]);
 
   useEffect(() => {
-    setState((prevState) => ({
-      ...prevState,
-      currentProperty: selectedProperty,
-    }));
-  }, [selectedProperty]);
-  useEffect(() => {
     setState((prevState) => ({ ...prevState, bedrooms: selectedBedrooms }));
   }, [selectedBedrooms]);
+
   useEffect(() => {
     setState((prevState) => ({ ...prevState, bathrooms: selectedBathrooms }));
   }, [selectedBathrooms]);
+
   return (
     <MarkerFilterContext.Provider
       value={{
