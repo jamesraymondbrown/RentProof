@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 import './Admin.scss'
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
 
-import PendingList from "./PendingList";
+import SubmissionList from "./SubmissionList";
 
 const Admin = () => {
 
@@ -21,12 +20,8 @@ const Admin = () => {
 
   return (
     <div className="pending-prices">
-      <h2 className="pending-title">Pending Price Submissions</h2>
-      <PendingList state={state} />
-      <div></div>
-    
-    </div>
-    
+        <SubmissionList state={state} />
+    </div>    
   )
 }
 
