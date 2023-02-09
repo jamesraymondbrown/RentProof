@@ -95,7 +95,7 @@ export default function SubmissionList(props) {
       <DataTable value={pendingList} header="Pending Prices" sortMode="multiple" filters={filters}
         paginator
         rows={3}
-        rowsPerPageOptions={[3,6,9]}
+        rowsPerPageOptions={[1,2,3]}
       >
         <Column field="photo" header="Photo" />
         <Column sortable field="id" header="Id" />
