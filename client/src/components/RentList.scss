@@ -1,11 +1,105 @@
-// .RentList {
-//   max-width: 100%;
-//   max-height: 500px;
-// }
-// .thumbnail {
-//   width: 90%;
+.RentList {
+  max-width: 30%;
+  min-width: 30%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.image {
+  max-width: 100%;
+  max-height: 35%;
+  min-height: 35%;
+  margin: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: blanchedalmond;
+  transition: all 0.3s ease-in-out;
 
-//   height: auto;
-//   display: block;
-//   margin: 1.5em auto;
-// }
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &.focus {
+    transform: translate(-50%, -50%) scale(2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+}
+.info{
+font-family: "Helvetica Neue";
+font-size: 16px;
+align-items: center;
+border: 0px;
+border-bottom:  #E6E6E6;
+border-color: var(--chakra-colors-gray-200);
+box-sizing: border-box;
+color:  #1A202C;
+display: flex;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 16px;
+margin: 0px 25px;
+overflow-wrap: break-word;
+padding-bottom: 0px;
+padding-top: 0px;
+}
+.price{
+font-family: "Helvetica Neue";
+font-size: 42px;
+border-color: var(--chakra-colors-gray-200);
+box-sizing: border-box;
+color:  #2D3138;
+display: inline-block;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 42px;
+font-weight: 200;
+letter-spacing: 1.04px;
+overflow-wrap: break-word;
+padding-right: 15px;
+}
+
+.name{
+font-family: "Helvetica Neue";
+font-size: 16px;
+border-color: var(--chakra-colors-gray-200);
+box-sizing: border-box;
+color:  #1A202C;
+display: inline-block;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 16px;
+max-width: 60%;
+overflow-wrap: break-word;
+padding-left: 15px;
+padding-top: 5px;
+}
+.undername{
+font-family: "Helvetica Neue";
+font-size: 14px;
+border-color: var(--chakra-colors-gray-200);
+box-sizing: border-box;
+color:  #212126;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+letter-spacing: 0.26px;
+overflow: hidden;
+overflow-wrap: break-word;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.divider{
+font-family: "Helvetica Neue";
+font-size: 16px;
+align-self: center;
+border-color: var(--chakra-colors-gray-200);
+border-right:  #E7E7E7;
+box-sizing: border-box;
+color:  #1A202C;
+display: flex;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 16px;
+height: 40px;
+overflow-wrap: break-word;
+}
+

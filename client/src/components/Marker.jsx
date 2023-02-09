@@ -1,7 +1,7 @@
-import React, { useContext, useEffect} from "react";
+import React, { useContext, useState} from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
-import axios from "axios";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
+import "./Marker.scss"
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   const {
@@ -28,10 +28,10 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
         <GoogleMapMarker
           position={position}
           title={title}
-          
           onClick={() => handleClickMarker(id)}
           icon={{
             url: `http://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`,
+            className: "marker-icon",
           }}
         />
       ) : null}
