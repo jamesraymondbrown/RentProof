@@ -8,7 +8,7 @@ const generatePrices = (properties) => {
   for (const property of properties) {
     for (let i = 0; i < property.length; i++) {
       queryArray.push(
-        `(${propertyId}, 1, 'approved', '${property[i].year}-02-02', ${property[i].price}, 'https://www2.gov.bc.ca/assets/gov/housing-and-tenancy/residential-tenancies/forms/rtb1_chrome.pdf', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fvancouverforliving.com%2Ffurnished%2Fvancouver-apartments%2F&psig=AOvVaw1ysF0BbEEP4fkSz4PyvgIm&ust=1675718793700000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIjqxY2p__wCFQAAAAAdAAAAABAE', 'apartment', ${property[i].square_footage}, ${property[i].bedrooms}, ${property[i].bathrooms}),`
+        `(${propertyId}, 1, 'approved', '${property[i].year}-02-02', ${property[i].price}, 'https://www2.gov.bc.ca/assets/gov/housing-and-tenancy/residential-tenancies/forms/rtb1_chrome.pdf', '${property[i].photo}', 'apartment', ${property[i].square_footage}, ${property[i].bedrooms}, ${property[i].bathrooms}),`
       );
     }
     propertyId = propertyId + 1;
@@ -21,6 +21,8 @@ const generatePrices = (properties) => {
 
 const SQLQueries = generatePrices(shuffledPrices);
 console.dir(SQLQueries, { maxArrayLength: null });
+
+// console.log(shuffledPrices.length);
 
 // Prices table structure, for reference:
 

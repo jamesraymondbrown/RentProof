@@ -79,10 +79,13 @@ const RentList = () => {
       </div>
       <img
         src={
-          state.prices
-            ? getPhotoFromPrices(state.currentProperty, state.prices)
+          dataState.prices
+            ? getPhotoFromPrices(state.currentProperty, dataState.prices)
             : "https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg"
         }
+        // src={
+        //   "https://www.thehousedesigners.com/blog/wp-content/uploads/2019/10/House-Plan-7444-Living-Room.jpg"
+        // }
         alt="Rent List"
         className="picture"
         style={{ width: "100%" }}
