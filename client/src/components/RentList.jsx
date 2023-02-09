@@ -12,6 +12,7 @@ import {
   getPriceHistory,
 } from "./helpers/getDataFromPrices";
 import PropertyRentChart from "./PropertyRentChart";
+import RentIncreaseChart from "./RentIncreaseChart";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -93,9 +94,18 @@ const RentList = () => {
         </tbody>
       </table> */}
 
-      <div className="PropertyRentChart">
+      {/* <div className="PropertyRentChart">
         {dataState.prices && state.currentProperty.id ? (
           <PropertyRentChart
+            prices={getPriceHistory(state.currentProperty.id, dataState)}
+          />
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div> */}
+      <div className="PropertyRentChart">
+        {dataState.prices && state.currentProperty.id ? (
+          <RentIncreaseChart
             prices={getPriceHistory(state.currentProperty.id, dataState)}
           />
         ) : (
