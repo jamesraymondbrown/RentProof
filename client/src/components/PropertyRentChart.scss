@@ -1,3 +1,15 @@
 .chart-title {
   text-align: center;
 }
+
+.custom-tooltip {
+  background-color: white;
+  color: black;
+  border: 1px solid #008631;
+  border-radius: 15px;
+
+  .tooltip-text {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
