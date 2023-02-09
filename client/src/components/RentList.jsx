@@ -9,20 +9,13 @@ import { DataBaseContext } from "../providers/DataBaseProvider";
 import {
   getCostFromPrices,
   getPhotoFromPrices,
+  getPriceHistory,
 } from "./helpers/getDataFromPrices";
 import PropertyRentChart from "./PropertyRentChart";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
   const { dataState } = useContext(DataBaseContext);
-
-  const getPriceHistory = (propertyId) => {
-    const propertyPriceHistory = dataState.prices.filter(
-      (price) => price.property_id === propertyId
-    );
-    // console.log("priceHistory", propertyPriceHistory);
-    return propertyPriceHistory;
-  };
 
   return (
     <div className="RentList">
@@ -103,7 +96,7 @@ const RentList = () => {
       <div className="PropertyRentChart">
         {dataState.prices && state.currentProperty.id ? (
           <PropertyRentChart
-            prices={getPriceHistory(state.currentProperty.id)}
+            prices={getPriceHistory(state.currentProperty.id, dataState)}
           />
         ) : (
           <div>Loading...</div>
