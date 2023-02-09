@@ -16,6 +16,14 @@ const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
   const { dataState } = useContext(DataBaseContext);
 
+  const getPriceHistory = (propertyId) => {
+    const propertyPriceHistory = dataState.prices.filter(
+      (price) => price.property_id === propertyId
+    );
+    console.log("priceHistory", propertyPriceHistory);
+    return propertyPriceHistory;
+  };
+
   return (
     <div className="RentList">
       <div className="slider-container">
@@ -93,7 +101,13 @@ const RentList = () => {
       </table> */}
 
       <div className="PropertyRentChart">
-        <PropertyRentChart />
+        {dataState.prices ? (
+          <PropertyRentChart
+            price={getPriceHistory(state.currentProperty.id)}
+          />
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </div>
   );

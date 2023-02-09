@@ -35,7 +35,8 @@ for (let num = 30; num >= 0; num--) {
 //   </LineChart>
 // );
 
-const PropertyRentChart = () => {
+const PropertyRentChart = (props) => {
+  // console.log("price props", props.price);
   return (
     <ResponsiveContainer width="100%" height={400}>
       <AreaChart data={data}>
