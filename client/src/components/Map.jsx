@@ -4,49 +4,19 @@ import "./Map.scss";
 import Marker from "./Marker.jsx";
 import { DataBaseContext } from "../providers/DataBaseProvider";
 import { useContext } from "react";
+import {
+  getCostFromPrices,
+  getBedroomsFromPrices,
+  getBathroomsFromPrices,
+} from "./helpers/getDataFromPrices";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const { state } = useContext(DataBaseContext);
-
   const properties = props.state.properties;
   const prices = props.state.prices;
-
-  const getBedroomsFromPrices = (property, prices) => {
-    let bedrooms = 2;
-    for (let price of prices) {
-      if (price.property_id === property.id) {
-        bedrooms = price.number_of_bedrooms;
-        return bedrooms;
-      }
-    }
-    return bedrooms;
-  };
-
-  const getBathroomsFromPrices = (property, prices) => {
-    let bathrooms = 2;
-    for (let price of prices) {
-      if (price.property_id === property.id) {
-        bathrooms = price.number_of_bathrooms;
-        return bathrooms;
-      }
-    }
-    return bathrooms;
-  };
-
-  const getCostFromPrices = (property, prices) => {
-    let cost = 2000;
-    for (let price of prices) {
-      if (price.property_id === property.id) {
-        cost = price.price;
-        return cost;
-      }
-    }
-    return cost;
-  };
 
   let markers;
 
