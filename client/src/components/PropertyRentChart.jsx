@@ -18,8 +18,8 @@ const PropertyRentChart = (props) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
-          <p className="label tooltip-text">{`${label}`}</p>
-          <p className="tooltip-text">{`price: $${payload[0].value}`}</p>
+          <p className="label tooltip-text">{`Year: ${label}`}</p>
+          <p className="tooltip-text">{`Price: $${payload[0].value}`}</p>
         </div>
       );
     }
@@ -46,13 +46,13 @@ const PropertyRentChart = (props) => {
         >
           <defs>
             <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#008631" stopOpacity={0.65} />
-              <stop offset="75%" stopColor="#008631" stopOpacity={0.15} />
+              <stop offset="0%" stopColor="#5AB8F8" stopOpacity={0.75} />
+              <stop offset="75%" stopColor="#5AB8F8" stopOpacity={0.2} />
             </linearGradient>
           </defs>
 
-          <Area dataKey="price" stroke="#008631" fill="url(#color)" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+          <Area dataKey="price" stroke="#5AB8F8" fill="url(#color)" />
+          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
           <XAxis
             dataKey="date"
             ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
