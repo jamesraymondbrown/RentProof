@@ -96,7 +96,7 @@ const RentList = () => {
       </table>
 
       {/* DOLLAR-BASED INDIVIDUAL PROPERTY RENT CHART */}
-      <div className="PropertyRentChart">
+      <div className="RentChart">
         {dataState.prices && state.currentProperty.id ? (
           <PropertyRentChart
             prices={getPriceHistory(state.currentProperty.id, dataState)}
@@ -107,7 +107,7 @@ const RentList = () => {
       </div>
 
       {/* PERCENTAGE-BASED INDIVIDUAL PROPERTY RENT CHART */}
-      <div className="PropertyRentChart">
+      <div className="RentChart">
         {dataState.prices && state.currentProperty.id ? (
           <RentIncreaseChart
             prices={getPriceHistory(state.currentProperty.id, dataState)}
@@ -117,7 +117,7 @@ const RentList = () => {
         )}
       </div>
 
-      <div className="PropertyRentChart">
+      <div className="RentChart">
         {dataState.prices && state.currentProperty.id ? (
           <AllPropertiesPercentChart
             prices={dataState.prices}
