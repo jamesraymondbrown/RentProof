@@ -1,12 +1,17 @@
 import React from "react";
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useLoadScript,
+  MarkerClusterer,
+} from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
 import {
   getBedroomsFromPrices,
   getBathroomsFromPrices,
-  getCostFromPrices
-} from "./helpers/getDataFromPrices"
+  getCostFromPrices,
+} from "./helpers/getDataFromPrices";
+import { SuperClusterAlgorithm } from "@googlemaps/markerclusterer";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
@@ -15,10 +20,11 @@ export default function MapDisplay(props) {
 
   const properties = props.state.properties;
   const prices = props.state.prices;
+
   let markers = [];
 
-  properties &&
-    (markers = properties.map((property) => {
+  if (properties) {
+    markers = properties.map((property) => {
       return (
         <Marker
           key={property.id}
@@ -32,10 +38,17 @@ export default function MapDisplay(props) {
           label={getCostFromPrices(property, prices)}
           bedrooms={getBedroomsFromPrices(property, prices)}
           bathrooms={getBathroomsFromPrices(property, prices)}
-
+          // cluster={clusterer}
         />
       );
-    }));
+    });
+  }
+
+  // new MarkerClusterer({
+  //   markers,
+  //   Map,
+  //   algorithm: new SuperClusterAlgorithm({ radius: 100 }),
+  // });
 
   function Map() {
     return (
@@ -44,11 +57,11 @@ export default function MapDisplay(props) {
         center={{ lat: 49.28, lng: -123.12 }}
         mapContainerClassName="map-container"
       >
-        {markers}
+        <MarkerClusterer>{(clusterer) => <div>{markers}</div>}</MarkerClusterer>
       </GoogleMap>
     );
   }
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded || properties === undefined) return <div>Loading...</div>;
   return <Map />;
 }

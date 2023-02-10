@@ -14,6 +14,7 @@ import PropertyDetails from "./components/admin/PropertyDetails";
 import Register from "./components/Register";
 import RentList from "./components/RentList";
 import useApplicationData from "./hooks/useApplicationData";
+import Map2 from "./components/map2";
 
 function App() {
   ReactSession.setStoreType("sessionStorage");
@@ -47,13 +48,13 @@ function App() {
 
   return (
     <Router>
-      <div className="App" >
+      <div className="App">
         <Navbar />
-        <div className="Content" >
+        <div className="Content">
           <Switch>
             <Route exact path="/">
-              <Map state={state}  />
-              <RentList  />
+              <Map state={state} />
+              <RentList />
             </Route>
             <Route exact path="/admin">
               <Admin />
