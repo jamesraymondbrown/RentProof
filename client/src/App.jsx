@@ -57,7 +57,9 @@ function App() {
               <RentList  />
             </Route>
             <Route exact path="/admin">
-              <Admin />
+              <div className="admin-background">
+                <Admin />
+              </div>
             </Route>
             <Route exact path="/create">
               <div className="create-background" >
