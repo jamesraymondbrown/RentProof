@@ -2,8 +2,6 @@ import {
   ResponsiveContainer,
   AreaChart,
   Area,
-  LineChart,
-  Line,
   CartesianGrid,
   XAxis,
   YAxis,
