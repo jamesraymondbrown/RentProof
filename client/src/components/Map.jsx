@@ -51,15 +51,19 @@ export default function MapDisplay(props) {
   // });
 
   function Map() {
-    return (
-      <GoogleMap
-        zoom={13}
-        center={{ lat: 49.28, lng: -123.12 }}
-        mapContainerClassName="map-container"
-      >
-        <MarkerClusterer>{(clusterer) => <div>{markers}</div>}</MarkerClusterer>
-      </GoogleMap>
-    );
+    if (properties !== undefined) {
+      return (
+        <GoogleMap
+          zoom={13}
+          center={{ lat: 49.28, lng: -123.12 }}
+          mapContainerClassName="map-container"
+        >
+          <MarkerClusterer>
+            {(clusterer) => <div>{markers}</div>}
+          </MarkerClusterer>
+        </GoogleMap>
+      );
+    }
   }
 
   if (!isLoaded || properties === undefined) return <div>Loading...</div>;
