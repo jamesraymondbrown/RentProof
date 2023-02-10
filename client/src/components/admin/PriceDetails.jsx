@@ -47,7 +47,6 @@ const PriceDetails = () => {
           <h3>{price.price}</h3>
           <h3>{price.property_type}, {price.square_footage}</h3>
           <h3>{price.number_of_bedrooms},{price.number_of_bathrooms}</h3>
-          <button>Edit</button>
           { !isPending && <button onClick={handleClick}>Delete</button> }
           {isPending && <button disabled>Deleting Price...</button>}
         </div>  

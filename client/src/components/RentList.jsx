@@ -72,7 +72,7 @@ const RentList = () => {
         </div>
       </div>
 
-      {/* <table>
+      <table>
         <thead>
           <tr>
             <th>Property Name</th>
@@ -92,9 +92,9 @@ const RentList = () => {
             </td>
           </tr>
         </tbody>
-      </table> */}
+      </table>
 
-      {/* <div className="PropertyRentChart">
+      <div className="PropertyRentChart">
         {dataState.prices && state.currentProperty.id ? (
           <PropertyRentChart
             prices={getPriceHistory(state.currentProperty.id, dataState)}
@@ -102,7 +102,7 @@ const RentList = () => {
         ) : (
           <div>Loading...</div>
         )}
-      </div> */}
+      </div>
       <div className="PropertyRentChart">
         {dataState.prices && state.currentProperty.id ? (
           <RentIncreaseChart

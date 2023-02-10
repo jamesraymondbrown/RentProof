@@ -41,11 +41,8 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const province = req.body.province
-  const city = req.body.city
-  const street_address = req.body.street_address
-  const latitude = req.body.latitude
-  const longitude = req.body.longitude
+ 
+  const {province, city, street_address, latitude, longitude} = req.body
 
   propertyQueries.addProperty(province, city, street_address, latitude, longitude)
     .then((response) => {

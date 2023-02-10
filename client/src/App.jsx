@@ -53,8 +53,10 @@ function App() {
         <div className="Content" >
           <Switch>
             <Route exact path="/">
-              <Map state={state}  />
-              <RentList  />
+              <Map state={state} />
+              <div className="home-right">
+                <RentList />
+              </div>
             </Route>
             <Route exact path="/admin">
               <div className="admin-background">

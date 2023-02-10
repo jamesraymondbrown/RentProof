@@ -46,7 +46,6 @@ const PropertyDetails = () => {
           <h3>{property.street_address}</h3>          
           <h3>{property.province}, {property.city}</h3>
           <h3>{property.latitude},{property.longitude}</h3>
-          <button>Edit</button>
           { !isPending && <button onClick={handleClick}>Delete</button> }
           { isPending && <button disabled>Deleting Property...</button> }
         </div>  

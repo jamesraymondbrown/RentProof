@@ -3,11 +3,20 @@
   flex-direction: column;
   position: fixed;
   width: 100%;
+  height: 100vh;
 }
 
 .Content {
-  flex: 1;
+  height: 90vh;
+  /* flex: 1; */
   display: flex;
+}
+
+.home-right {
+  width: 30vw;
+  height: 100%;
+  overflow-y: scroll;
+  
 }
 
 .admin-background {
