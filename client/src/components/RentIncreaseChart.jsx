@@ -73,6 +73,7 @@ const RentIncreaseChart = (props) => {
             dataKey="increase"
             domain={[0, 15]}
             tickCount={6}
+            ticks={[3, 6, 9, 12, 15]}
             tickFormatter={(increase) => `${increase}%`}
           />
           <Tooltip
