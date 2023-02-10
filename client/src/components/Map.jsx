@@ -3,6 +3,7 @@ import {
   GoogleMap,
   useLoadScript,
   MarkerClusterer,
+  MarkerClustererF,
 } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
@@ -21,27 +22,29 @@ export default function MapDisplay(props) {
   const properties = props.state.properties;
   const prices = props.state.prices;
 
-  let markers = [];
+  let markers = () => {};
+  // let clusterer = {};
 
   if (properties) {
-    markers = properties.map((property) => {
-      return (
-        <Marker
-          key={property.id}
-          id={property.id}
-          position={{
-            lat: Number(property.latitude),
-            lng: Number(property.longitude),
-          }}
-          title={property.address}
-          cost={getCostFromPrices(property, prices)}
-          label={getCostFromPrices(property, prices)}
-          bedrooms={getBedroomsFromPrices(property, prices)}
-          bathrooms={getBathroomsFromPrices(property, prices)}
-          // cluster={clusterer}
-        />
-      );
-    });
+    markers = (clusterer) =>
+      properties.map((property) => {
+        return (
+          <Marker
+            key={property.id}
+            id={property.id}
+            position={{
+              lat: Number(property.latitude),
+              lng: Number(property.longitude),
+            }}
+            title={property.address}
+            cost={getCostFromPrices(property, prices)}
+            label={getCostFromPrices(property, prices)}
+            bedrooms={getBedroomsFromPrices(property, prices)}
+            bathrooms={getBathroomsFromPrices(property, prices)}
+            clusterer={clusterer}
+          />
+        );
+      });
   }
 
   // new MarkerClusterer({
@@ -58,9 +61,32 @@ export default function MapDisplay(props) {
           center={{ lat: 49.28, lng: -123.12 }}
           mapContainerClassName="map-container"
         >
-          <MarkerClusterer>
-            {(clusterer) => <div>{markers}</div>}
-          </MarkerClusterer>
+          {props.state.properties?.length > 0 && (
+            <MarkerClustererF>
+              {(clusterer) => (
+                <div>
+                  {properties.map((property) => {
+                    return (
+                      <Marker
+                        key={property.id}
+                        id={property.id}
+                        position={{
+                          lat: Number(property.latitude),
+                          lng: Number(property.longitude),
+                        }}
+                        title={property.address}
+                        cost={getCostFromPrices(property, prices)}
+                        label={getCostFromPrices(property, prices)}
+                        bedrooms={getBedroomsFromPrices(property, prices)}
+                        bathrooms={getBathroomsFromPrices(property, prices)}
+                        clusterer={clusterer}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+            </MarkerClustererF>
+          )}
         </GoogleMap>
       );
     }
