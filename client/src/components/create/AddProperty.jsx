@@ -7,7 +7,7 @@ const AddProperty = () => {
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
-  const [id, setId] = useState('');
+  const [id, setId] = useState('Awaiting Submission ...');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ const AddProperty = () => {
         axios.post('http://localhost:8001/properties', property)
           .then((response) => {
             console.log('New Property Added', response.data);
-            setId(response.data.id)
+            setId(`Use Property ID: ${response.data.id}`)
             // window.location.reload()
           })
           .catch((error) => {

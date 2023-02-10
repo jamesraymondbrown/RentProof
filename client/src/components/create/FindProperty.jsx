@@ -7,7 +7,7 @@ const FindProperty = () => {
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
-  const [id, setId] = useState('Awaiting Search')
+  const [id, setId] = useState('Awaiting Search ...')
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,7 +33,7 @@ const FindProperty = () => {
           .then((response) => {
             if (response.data) {
               console.log('Property Found:', response.data);
-              setId(response.data.id)
+              setId(`Your Property ID: ${response.data.id}`)
             } else {
               console.log("Property Not Found")
               setId("Property Not Found")
