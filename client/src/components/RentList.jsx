@@ -73,7 +73,7 @@ const RentList = () => {
         </div>
       </div>
 
-      {/* <table>
+      <table>
         <thead>
           <tr>
             <th>Property Name</th>
@@ -93,7 +93,7 @@ const RentList = () => {
             </td>
           </tr>
         </tbody>
-      </table> */}
+      </table>
 
       {/* DOLLAR-BASED INDIVIDUAL PROPERTY RENT CHART */}
       {/* <div className="PropertyRentChart">
