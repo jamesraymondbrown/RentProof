@@ -11,27 +11,39 @@ import {
 } from "recharts";
 import "./PropertyRentChart.scss";
 
-const PropertyRentChart = (props) => {
+const RentIncreaseChart = (props) => {
   const data = [];
+  const prices = props.prices;
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
-          <p className="tooltip-text">{`Price: $${payload[0].value}`}</p>
+          <p className="tooltip-text">{`Increase percentage: ${payload[0].value}%`}</p>
+          <p className="tooltip-text">{`Increase amount: $${payload[0].payload.increase_amount}`}</p>
+          {/* {console.log("load", payload)} */}
         </div>
       );
     }
-
     return null;
   };
 
-  for (let price of props.prices) {
-    if (price.admin_status === "approved") {
+  // %R = (RF-RI)/RI *100
+
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i].admin_status === "approved") {
       data.push({
-        date: price.date.substring(0, 4),
-        price: price.price,
+        date: prices[i].date.substring(0, 4),
+        increase:
+          Math.round(
+            ((parseInt(prices[i].price) - parseInt(prices[i - 1].price)) /
+              parseInt(prices[i - 1].price)) *
+              100 *
+              10
+          ) / 10,
+        increase_amount:
+          parseInt(prices[i].price) - parseInt(prices[i - 1].price),
       });
     }
   }
@@ -51,20 +63,18 @@ const PropertyRentChart = (props) => {
             </linearGradient>
           </defs>
 
-          <Area dataKey="price" stroke="#5AB8F8" fill="url(#color)" />
+          <Area dataKey="increase" stroke="#5AB8F8" fill="url(#color)" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
           <XAxis
             dataKey="date"
-            ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
+            // ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
           />
           <YAxis
-            dataKey="price"
-            domain={[
-              parseInt(data[0].price) - 500,
-              parseInt(data[data.length - 1].price) + 200,
-            ]}
+            dataKey="increase"
+            domain={[0, 15]}
             tickCount={6}
-            tickFormatter={(price) => `$${price}`}
+            ticks={[3, 6, 9, 12, 15]}
+            tickFormatter={(increase) => `${increase}%`}
           />
           <Tooltip
             content={<CustomTooltip />}
@@ -89,4 +99,4 @@ const PropertyRentChart = (props) => {
   );
 };
 
-export default PropertyRentChart;
+export default RentIncreaseChart;
