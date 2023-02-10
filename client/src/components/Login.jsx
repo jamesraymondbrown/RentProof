@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
+import './Register.scss'
 
 const Login = () => {  
 
@@ -33,7 +34,7 @@ const Login = () => {
   }
 
   return (
-    <div className="wrapper">
+    <div className="wrapper" id="register-wrapper">
       <h2 className="title">Login</h2>
       <form className="registration-form" onSubmit={handleSubmit}>        
         <div className="inputfield">

@@ -1,5 +1,4 @@
 const express = require('express');
-const database = require('../db/connection');
 const router = express.Router()
 
 const propertyQueries = require('../db/queries/properties-queries')
@@ -8,6 +7,19 @@ router.get('/', (req, res) => {
   propertyQueries.getProperties()
     .then((properties) => {
       res.json(properties)
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
+router.post('/find', (req, res) => {
+  propertyQueries.getPropertyByAddress(req.body.street_address)
+    .then((property) => {
+      console.log(property)
+      res.json(property)
     })
     .catch(err => {
       res
@@ -56,9 +68,5 @@ router.delete('/:id', (req, res) => {
       console.log(error)
     }); 
 });
-
-// router.put('/:id', (req, res) => {
-  
-// });
 
 module.exports = router;

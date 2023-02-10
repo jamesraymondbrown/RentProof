@@ -3,9 +3,10 @@ import axios from "axios";
 import { ReactSession } from "react-client-session";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import AddPrice from "./components/AddPrice";
-import AddProperty from "./components/AddProperty";
+import AddPrice from "./components/create/AddPrice";
+import AddProperty from "./components/create/AddProperty";
 import Admin from "./components/admin/Admin";
+import FindProperty from "./components/create/FindProperty";
 import Login from "./components/Login";
 import Map from "./components/Map";
 import Navbar from "./components/Navbar";
@@ -59,14 +60,27 @@ function App() {
               <Admin />
             </Route>
             <Route exact path="/create">
-              <AddProperty />
-              <AddPrice />
+              <div className="create-background" >
+              <div className="create-body">
+                <div className="create-property">
+                  <FindProperty />
+                  <AddProperty />
+                </div>
+                <div className="create-forms">
+                  <AddPrice />
+                </div>
+                </div>
+              </div>  
             </Route>
             <Route exact path="/register">
-              <Register />
+              <div className="register-background">
+                <Register />
+              </div>
             </Route>
             <Route exact path="/login">
-              <Login />
+              <div className="login-background">
+                <Login />
+              </div>
             </Route>
             <Route exact path="/properties/:propertyid">
               <PropertyDetails />

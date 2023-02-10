@@ -28,5 +28,12 @@ const deleteProperty = (id) => {
       return response.rows[0]
   });
 }
+
+const getPropertyByAddress = (address) => {
+  return database.query('SELECT * FROM properties WHERE street_address = $1', [address])
+    .then((response) => {
+      return response.rows[0]
+  });
+}
  
-module.exports = { getProperties, getPropertyById, addProperty, deleteProperty };
+module.exports = { getProperties, getPropertyById, addProperty, deleteProperty, getPropertyByAddress };
