@@ -13,15 +13,13 @@ export const MarkerFilterProvider = ({ children }) => {
     latitude: "49.282258500",
     longitude: "-123.089670000",
   });
-  const [minVal, setMinVal] = useState(0);
-  const [maxVal, setMaxVal] = useState(100);
+  const [minF, setMinF] = useState(1);
+  const [maxF, setMaxF] = useState(5000);
   const [state, setState] = useState({
     markers: {},
     bedrooms: [],
     bathrooms: [],
     currentProperty: {},
-    minVal,
-    maxVal,
   });
 
   const handleClickBeds = (index) => {
@@ -72,8 +70,10 @@ export const MarkerFilterProvider = ({ children }) => {
         handleClickBeds,
         handleClickBaths,
         handleClickMarker,
-        setMinVal,
-        setMaxVal,
+        setMinF,
+        setMaxF,
+        minF,
+        maxF,
         selectedBathrooms,
         selectedBedrooms,
         setSelectedProperty,

@@ -21,7 +21,9 @@
     "helmet": "^3.18.0",
     "morgan": "^1.10.0",
     "pg": "^8.8.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "react-dual-range-slider": "^1.0.4",
+    "react-js-multi-range-sliders": "^0.1.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
