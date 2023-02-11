@@ -1,19 +1,17 @@
+import React, { useContext, useState } from "react";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 import axios from "axios"
 import { DataTable } from "primereact/datatable"
 import { Column } from "primereact/column"
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
-import { useState } from "react"
 import { FilterMatchMode } from "primereact/api"
 import { InputText } from "primereact/inputtext"
 import { Button } from "primereact/button"
 import { Image } from 'primereact/image';
-// import { Badge } from "primereact/badge"
 
-export default function SubmissionList(props) {
-  const prices = props.state.prices;
-  const properties = props.state.properties;
-  const users = props.state.users;
+export default function SubmissionList() {
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
 
   const [filters, setFilters] = useState({
     global: {value: null, matchMode: FilterMatchMode.CONTAINS}
@@ -40,7 +38,7 @@ export default function SubmissionList(props) {
     axios.put(`http://localhost:8001/prices/approve/${id}`)
       .then((response) => {
         console.log('Price Approved', response.data);        
- 	      window.location.reload()
+ 	      // window.location.reload()
       })
       .catch((error) => {
         console.log(error);
@@ -52,7 +50,27 @@ export default function SubmissionList(props) {
     axios.put(`http://localhost:8001/prices/reject/${id}`)
       .then((response) => {
         console.log('Price Rejected', response.data);
- 	      window.location.reload()
+        // console.log('Before', prices[(response.data.id - 1)])
+        const index = prices.findIndex((p) => p.id === response.data.id);
+        console.log(index)
+        console.log('Before', prices[index])
+        // setPrices(
+        //   ...prices,
+        //   { index: response.data }
+        // )
+        console.log('After', prices[index])
+        //    const updatedPrice = {
+      // ...prices[response.data.id],
+      // admin_status: response.data.admin_status
+      //    };
+        // console.log(updatedPrice)
+
+    // const updatedPrices = {
+    //   ...prices,
+    //   [prices.length]: response.data
+    // };
+        // console.log(updatedPrices)
+ 	      // window.location.reload()
       })
       .catch((error) => {
         console.log(error);

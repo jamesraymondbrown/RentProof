@@ -1,29 +1,16 @@
+import React, { useContext, useState } from "react";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 import axios from "axios";
-import { useState } from "react";
 import './CreateProperty.scss'
 
 const AddProperty = () => {
 
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+
   const [province, setProvince] = useState('');
   const [city, setCity] = useState('');
   const [address, setAddress] = useState('');
-  const [id, setId] = useState('Awaiting Submission ...');
-
-  // const provinces = [
-  //   { name: 'Alberta', code: 'AB' },
-  //   { name: 'British Columbia', code: 'BC' },
-  //   { name: 'Manitoba', code: 'MB' },
-  //   { name: 'New Brunswick', code: 'NB' },
-  //   { name: 'Newfoundland and Labrador', code: 'NL' },
-  //   { name: 'Nova Scotia', code: 'NS' },
-  //   { name: 'Northwest Territories', code: 'NT' },
-  //   { name: 'Nunavut', code: 'NU' },
-  //   { name: 'Ontario', code: 'ON' },
-  //   { name: 'Prince Edward Island', code: 'PE' },
-  //   { name: 'Quebec', code: 'QC' },
-  //   { name: 'Saskatchewan', code: 'SK' },
-  //   { name: 'Yukon', code: 'YT' }
-  // ];
+  const [message, setMessage] = useState('Awaiting Submission ...');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -47,16 +34,24 @@ const AddProperty = () => {
         axios.post('http://localhost:8001/properties', property)
           .then((response) => {
             console.log('New Property Added', response.data);
-            setId(`Use Property ID: ${response.data.id}`)
-            // window.location.reload()
+            setMessage(`Property ${response.data.id} Added`)
+            const propertyWithId = {
+              'id': response.data.id,
+              'province': province,
+              'city': city,
+              'street_address': address,
+              'latitude': latitude,
+              'longitude': longitude
+            }
+            setProperties(prev => [...prev, propertyWithId])
           })
           .catch((error) => {
-            console.log(error);
+            console.log('Axios Post Error', error);
           });
       })
       .catch((error) => {
         console.log("Error Finding Property:", error);
-        setId('Property Not Found')
+        setMessage('Property Not Found')
       });
   }
 
@@ -115,7 +110,7 @@ const AddProperty = () => {
         </div>
       </div>
       <div>
-        <p>{id}</p>
+        <p>{message}</p>
       </div>
     </div>
   )

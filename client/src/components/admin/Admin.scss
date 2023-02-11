@@ -4,20 +4,41 @@
   flex-direction: column;
 }
 
-.p-datatable {
+.pending-prices .p-datatable {
   margin-top: 1em !important;
 }
 
-.p-datatable-header {
+.pending-prices .p-inputtext {
+  width: 30%;
+  border: 3px solid #ced4da !important;
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.pending-prices .p-datatable-header {
   font-size: 1.8rem !important;
   background-color: #5AB8F8 !important;
   color: white !important;
   border: 1px solid #c7e6fd !important;
 }
 
-.p-inputtext {
-  width: 30%;
-  border: 3px solid #ced4da !important;
+.pending-prices .p-datatable-thead tr th,
+.pending-prices .p-datatable-thead tr th div,
+.pending-prices .p-datatable-thead tr th .p-column-header-content { 
+  background-color: rgba(255, 255, 255, .9) !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.pending-prices .p-datatable-tbody tr {
+  background-color: rgba(255, 255, 255, .9) !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.pending-prices .p-paginator {
+  background-color: rgba(255, 255, 255, .9) !important;
 }
 
 th {

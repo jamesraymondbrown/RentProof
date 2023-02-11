@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
@@ -6,19 +7,42 @@ import {
   getBedroomsFromPrices,
   getBathroomsFromPrices,
   getCostFromPrices
-} from "./helpers/getDataFromPrices"
+} from "../helpers/getDataFromPrices"
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const properties = props.state.properties;
-  const prices = props.state.prices;
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+ 
+  // This is a quickly made up test to check if a property has at least one 
+  // price attached to it.
+  
+  // We ultimately need a function that will verify whether a property
+  // has at least one APPROVED price before displaying it on the map.
+
+  // let propertiesWithPrices = []
+  // if (properties && prices) {
+    
+  //   for (let price of prices) {
+  //     for (let property of properties) {
+  //       if (price.property_id === property.id) {
+  //         if (!propertiesWithPrices.includes(property)) {
+  //           propertiesWithPrices.push(property)
+          
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+  // console.log(propertiesWithPrices)
+
   let markers = [];
 
-  properties &&
-    (markers = properties.map((property) => {
+  if (properties && prices) {
+    // Could replace properties.map with propertiesWithPrices.map
+    markers = properties.map((property) => {
       return (
         <Marker
           key={property.id}
@@ -35,7 +59,8 @@ export default function MapDisplay(props) {
 
         />
       );
-    }));
+    })
+  };
 
   function Map() {
     return (

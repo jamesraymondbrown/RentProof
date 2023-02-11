@@ -1,10 +1,13 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
 import './Register.scss'
 
 const Login = () => {  
+
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +24,7 @@ const Login = () => {
     axios.post('http://localhost:8001/users/login', user)
       .then((response) => {
         const userObject = response.data.user
-        console.log('Successful Login ', userObject);
+        console.log('Successful Login', userObject);
         ReactSession.set("id", userObject.id);
         ReactSession.set("role", userObject.role);
         ReactSession.set("name", userObject.name);

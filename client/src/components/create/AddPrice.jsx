@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { ReactSession } from 'react-client-session';
+import { PropertyIdContext } from "../../providers/PropertyIdProvider";
 import './AddPrice.scss' 
-import UploadPhoto from "../UploadPhoto";
+import UploadPhoto from "./UploadPhoto";
 
 const AddPrice = () => {
 
-  const [id, setId] = useState('');
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+
+  const { updateId, setUpdateId } = useContext(PropertyIdContext);
+
+  const [id, setId] = useState(updateId);
   const [cost, setCost] = useState('');
   const [type, setType] = useState('');
   const [size, setSize] = useState('');
@@ -37,8 +43,8 @@ const AddPrice = () => {
     axios.post('http://localhost:8001/prices', price)
       .then((response) => {
         console.log('New Price Added', response.data);
+        setPrices(prev => [...prev, price])
         history.push('/')
-        window.location.reload()
       })
       .catch((error) => {
         console.log(error);

@@ -1,17 +1,15 @@
-// This got replaced by state, setState in the AppDataProvider.jsx file. So I think it could be deleted?
-
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { DataBaseContext } from "../providers/DataBaseProvider";
 
 const useApplicationData = () => {
-  const [state, setState] = useState({
-    users: null,
-    properties: null,
-    prices: null,
-  });
+  
+  const {dataState} = useContext(DataBaseContext)
+
+  const [properties, setProperties] = useState(dataState.properties)
 
   return {
-    state,
-    setState,
+    properties,
+    setProperties,
   };
 };
 

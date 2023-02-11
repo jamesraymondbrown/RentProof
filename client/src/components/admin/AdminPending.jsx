@@ -15,11 +15,11 @@ const AdminPending = () => {
     window.location.reload();
   }
 
-  const { dataState } = useContext(DataBaseContext);
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
 
   return (
     <div className="pending-prices">
-        <SubmissionList state={dataState} />
+        <SubmissionList />
     </div>    
   )
 }

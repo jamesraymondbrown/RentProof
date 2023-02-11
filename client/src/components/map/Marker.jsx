@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Marker as GoogleMapMarker } from "@react-google-maps/api";
-import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
+import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   const {

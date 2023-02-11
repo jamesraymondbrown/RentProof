@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 import axios from "axios";
 import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
@@ -6,6 +7,8 @@ import './Register.scss'
 
 const Register = () => {
 
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -24,11 +27,12 @@ const Register = () => {
       .then((response) => {
         console.log('New User Registered', response.data);
         const userObject = response.data.user
+        console.log(userObject)
         ReactSession.set("id", userObject.id);
         ReactSession.set("role", userObject.role);
         ReactSession.set("name", userObject.name);
+        setUsers(prev => [...prev, userObject])
         history.push('/')
-        window.location.reload();
       })
       .catch((error) => {
         console.log(error.response.data.message);

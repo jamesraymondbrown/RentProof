@@ -25,13 +25,13 @@ export let menuItems = [
     admin: false,
     session: true,
     submenu: [
+    {
+        title: 'Find Property',
+        url: '/create/property',
+      },
       {
         title: 'Update Price',
         url: '/create/update',
-      },
-      {
-        title: 'Add Property',
-        url: '/create/property',
       }
     ]
   },

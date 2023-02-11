@@ -21,7 +21,7 @@
 .admin-background {
   width: 100vw;
   height: 90vh;
-  background-image: url("../public/background3.jpg");;
+  background-image: url("../public/background-admin.jpg");;
   background-blend-mode: multiply;
   background-position: center center;
   background-size: cover;

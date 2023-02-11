@@ -1,22 +1,21 @@
 import "./RentList.scss";
-import React from "react";
-import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
-import BedFilter from "./BedFilter";
-import BathFilter from "./BathFilter";
-import { useContext } from "react";
-import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
+import React, { useContext } from "react";
 import { DataBaseContext } from "../providers/DataBaseProvider";
+import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
+import BedFilter from "./filters/BedFilter";
+import BathFilter from "./filters/BathFilter";
+import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import {
   getCostFromPrices,
   getPhotoFromPrices,
   getPriceHistory,
 } from "./helpers/getDataFromPrices";
-import PropertyRentChart from "./PropertyRentChart";
-import RentIncreaseChart from "./RentIncreaseChart";
+import PropertyRentChart from "./charts/PropertyRentChart";
+import RentIncreaseChart from "./charts/RentIncreaseChart";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
-  const { dataState } = useContext(DataBaseContext);
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
 
   return (
     <div className="RentList">
@@ -38,8 +37,8 @@ const RentList = () => {
       </div>
       <img
         src={
-          dataState.prices && state.currentProperty.id
-            ? getPhotoFromPrices(state.currentProperty, dataState.prices)
+          prices && state.currentProperty.id
+            ? getPhotoFromPrices(state.currentProperty, prices)
             : "https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg"
         }
         alt="Rent List"
@@ -50,8 +49,8 @@ const RentList = () => {
         <div className="BubbleDetail_priceContainer__Zfrap">
           <div className="price">
             $
-            {dataState.prices
-              ? getCostFromPrices(state.currentProperty, dataState.prices)
+            {prices
+              ? getCostFromPrices(state.currentProperty, prices)
               : ""}
           </div>
           <div className="divider"></div>
@@ -86,8 +85,8 @@ const RentList = () => {
             <td>{state.currentProperty.street_address}</td>
             <td>
               $
-              {dataState.prices
-                ? getCostFromPrices(state.currentProperty, dataState.prices)
+              {prices
+                ? getCostFromPrices(state.currentProperty, prices)
                 : ""}
             </td>
           </tr>
@@ -95,18 +94,18 @@ const RentList = () => {
       </table>
 
       <div className="PropertyRentChart">
-        {dataState.prices && state.currentProperty.id ? (
+        {prices && state.currentProperty.id ? (
           <PropertyRentChart
-            prices={getPriceHistory(state.currentProperty.id, dataState)}
+            prices={getPriceHistory(state.currentProperty.id, prices)}
           />
         ) : (
           <div>Loading...</div>
         )}
       </div>
       <div className="PropertyRentChart">
-        {dataState.prices && state.currentProperty.id ? (
+        {prices && state.currentProperty.id ? (
           <RentIncreaseChart
-            prices={getPriceHistory(state.currentProperty.id, dataState)}
+            prices={getPriceHistory(state.currentProperty.id, prices)}
           />
         ) : (
           <div>Loading...</div>

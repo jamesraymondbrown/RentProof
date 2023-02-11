@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ReactSession } from 'react-client-session';
 import './Navbar.scss'
 import { menuItems } from './menuItems'

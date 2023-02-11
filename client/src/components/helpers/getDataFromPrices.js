@@ -56,8 +56,8 @@ const getBathroomsFromPrices = (property, prices) => {
   return bathrooms;
 };
 
-const getPriceHistory = (propertyId, dataState) => {
-  const propertyPriceHistory = dataState.prices.filter(
+const getPriceHistory = (propertyId, prices) => {
+  const propertyPriceHistory = prices.filter(
     (price) => price.property_id === propertyId
   );
   // console.log("priceHistory", propertyPriceHistory);
