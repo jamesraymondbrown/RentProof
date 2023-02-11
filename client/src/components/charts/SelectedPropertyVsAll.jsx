@@ -35,8 +35,6 @@ const RentIncreaseChart = (props) => {
     }
   }
 
-  console.log(data);
-
   const getRentIncreaseAverages = (prices, properties) => {
     const priceObject = {};
     const allIncreasesPerYear = {
@@ -81,13 +79,11 @@ const RentIncreaseChart = (props) => {
 
     // now we have an allIncreasesPerYear object, that contains an array with the percentage increase for each property, for each year
     // Loop through that data to get the average increase per year, and push that to our data array
-
     for (let i = 2015; i <= 2023; i++) {
       let sum = 0;
       for (const indexValue of allIncreasesPerYear[i]) {
         sum += indexValue;
       }
-
       averageIncreasePerYear[i] =
         Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100;
     }
@@ -95,13 +91,9 @@ const RentIncreaseChart = (props) => {
     return;
   };
 
-  console.log("avg incr", averageIncreasePerYear);
-
   // Multiplies the initial price by the average rent increase percentage, to compare
   // what it would be like if this property followed the market trend exactly
   const showPricesBasedOnAverages = () => {
-    let startPrice = data[0].price;
-    console.log(startPrice);
     for (let i = 0; i < data.length; i++) {
       if (data[i].date === 2014) {
         data[i].compare_at_price = data[i].price;
@@ -166,8 +158,6 @@ const RentIncreaseChart = (props) => {
   getRentIncreaseAverages(prices, properties);
   showPricesBasedOnAverages();
 
-  console.log("avg", data);
-
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
@@ -181,6 +171,8 @@ const RentIncreaseChart = (props) => {
     }
     return null;
   };
+
+  console.log("data", data);
 
   return (
     <div>
@@ -200,10 +192,7 @@ const RentIncreaseChart = (props) => {
           <Area dataKey="price" stroke="#5AB8F8" fill="url(#color)" />
           <Area dataKey="compare_at_price" stroke="#5AB8F8" fill="#DEDEDE" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
-          <XAxis
-            dataKey="date"
-            ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
-          />
+          <XAxis dataKey="date" />
           <YAxis
             dataKey="price"
             domain={[
