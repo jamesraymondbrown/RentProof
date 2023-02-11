@@ -8,6 +8,7 @@ import {
   Tooltip,
 } from "recharts";
 import "./PropertyRentChart.scss";
+const { tooltipMessage } = require("./chartsHelpers/chartsHelpers");
 
 const RentGrowthRateVsMarket = (props) => {
   const data = [];
@@ -26,16 +27,33 @@ const RentGrowthRateVsMarket = (props) => {
     2023: [],
   };
 
-  for (let price of currentPropertyPrices) {
-    if (price.admin_status === "approved") {
-      data.push({
-        date: parseInt(price.date.substring(0, 4)),
-        price: parseInt(price.price),
-      });
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="custom-tooltip">
+          <p className="label tooltip-text">{`Year: ${label}`}</p>
+          <p className="tooltip-text">{`${tooltipMessage(
+            payload[0].value
+          )}.`}</p>
+        </div>
+      );
     }
-  }
+    return null;
+  };
 
-  const getRentIncreaseAverages = (prices, properties) => {
+  const addPricesToData = () => {
+    for (let price of currentPropertyPrices) {
+      if (price.admin_status === "approved") {
+        data.push({
+          date: parseInt(price.date.substring(0, 4)),
+          price: parseInt(price.price),
+        });
+      }
+    }
+    getRentIncreaseAverages(prices, properties, data);
+  };
+
+  const getRentIncreaseAverages = (prices, properties, data) => {
     const priceObject = {};
     const allIncreasesPerYear = {
       2014: [],
@@ -87,11 +105,10 @@ const RentGrowthRateVsMarket = (props) => {
       averageIncreasePerYear[i] =
         Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100;
     }
-
-    return;
+    showPricesBasedOnAverages();
   };
 
-  // Multiplies the initial price by the average rent increase percentage, to compare
+  // Multiplies the initial property price by the average rent increase percentage, to compare
   // what it would be like if this property followed the market trend exactly
   const showPricesBasedOnAverages = () => {
     for (let i = 0; i < data.length; i++) {
@@ -153,50 +170,22 @@ const RentGrowthRateVsMarket = (props) => {
         );
       }
     }
-  };
-
-  getRentIncreaseAverages(prices, properties);
-  showPricesBasedOnAverages();
-
-  const cheaperOrMoreExpensive = (value) => {
-    if (value > 0) {
-      return `${value}% more than the market average`;
-    }
-    if (value < 0) {
-      return `${value}% less than the market average`;
-    }
-    return "at the same rate as the market";
-  };
-
-  const tooltipMessage = (rent) => {
-    const message = `Rent rose ${cheaperOrMoreExpensive(rent)}`;
-    return message;
-  };
-
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="custom-tooltip">
-          <p className="label tooltip-text">{`Year: ${label}`}</p>
-          <p className="tooltip-text">{`${tooltipMessage(
-            payload[0].value
-          )}.`}</p>
-          {/* {console.log("load", payload)} */}
-        </div>
-      );
-    }
-    return null;
+    percentIncreaseVsMarketAverage();
   };
 
   // convert the price difference into a percentage, comparing how much higher or lower the current
-  // propertie's price is vs market trends. Above 0 is above market value, below 0 is below market
+  // property's price is vs market trends. Above 0 is above market value, below 0 is below market
   // value. So below 0 means you're getting a better deal
-  for (const d of data) {
-    d.price_difference_percentage =
-      Math.round((d.price / d.compare_at_price - 1) * 100 * 10) / 10;
-  }
 
-  console.log("comparisonData", data);
+  const percentIncreaseVsMarketAverage = () => {
+    for (const d of data) {
+      d.price_difference_percentage =
+        Math.round((d.price / d.compare_at_price - 1) * 100 * 10) / 10;
+    }
+  };
+
+  // Call function to populate the data
+  addPricesToData();
 
   const gradientOffset = () => {
     const dataMax = Math.max(...data.map((i) => i.price_difference_percentage));
@@ -216,7 +205,7 @@ const RentGrowthRateVsMarket = (props) => {
   return (
     <div>
       <div className="chart-title">
-        Cumulative rent percentage difference vs market:
+        Cumulative rent difference difference vs market:
       </div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
@@ -224,10 +213,6 @@ const RentGrowthRateVsMarket = (props) => {
           margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
         >
           <defs>
-            {/* <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#5AB8F8" stopOpacity={0.75} />
-              <stop offset="75%" stopColor="#5AB8F8" stopOpacity={0.2} />
-            </linearGradient> */}
             <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
               <stop offset={off} stopColor="red" stopOpacity={0.75} />
               <stop offset={off} stopColor="green" stopOpacity={0.75} />
@@ -245,7 +230,6 @@ const RentGrowthRateVsMarket = (props) => {
           <YAxis
             dataKey="price_difference_percentage"
             domain={[-15, 15]}
-            // tickCount={6}
             tickFormatter={(percent) => `${percent}%`}
           />
           <Tooltip
