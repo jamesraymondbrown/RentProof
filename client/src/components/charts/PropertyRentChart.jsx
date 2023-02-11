@@ -7,7 +7,7 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import "./PropertyRentChart.scss";
+import "./Charts.scss";
 
 const PropertyRentChart = (props) => {
   const data = [];

@@ -7,7 +7,7 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import "./PropertyRentChart.scss";
+import "./Charts.scss";
 const { tooltipMessage } = require("./chartsHelpers/chartsHelpers");
 
 const RentGrowthRateVsMarket = (props) => {
