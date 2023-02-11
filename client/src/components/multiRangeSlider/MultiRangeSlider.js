@@ -10,7 +10,7 @@ import "./multiRangeSlider.css";
 import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 
 const MultiRangeSlider = () => {
-  console.log("rerendering");
+  // console.log("rerendering");
   const min = 0;
   const max = 10000;
   const onChange = ({ min, max }) =>

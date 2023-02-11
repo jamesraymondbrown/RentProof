@@ -87,7 +87,7 @@ const RentIncreaseChart = (props) => {
   data[7].allowable_increase = 1.5;
   data[8].allowable_increase = 2.0;
 
-  console.log(data);
+  // console.log(data);
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -96,7 +96,7 @@ const RentIncreaseChart = (props) => {
           <p className="label tooltip-text">{`Year: ${label}`}</p>
           <p className="tooltip-text">{`Average increase percentage: ${payload[0].value}%`}</p>
           <p className="tooltip-text">{`Allowable increase for existing leases: ${payload[1].value}%`}</p>
-          {console.log("load", payload)}
+          {/* {console.log("load", payload)} */}
         </div>
       );
     }

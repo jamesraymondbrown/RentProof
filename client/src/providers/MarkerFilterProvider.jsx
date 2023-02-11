@@ -20,7 +20,10 @@ export const MarkerFilterProvider = ({ children }) => {
     bedrooms: [],
     bathrooms: [],
     currentProperty: {},
+    prevProperty: {},
   });
+
+// console.log("state.currentProperty ➤", state.currentProperty.id);
 
   const handleClickBeds = (index) => {
     if (selectedBedrooms.includes(index)) {
@@ -51,6 +54,7 @@ export const MarkerFilterProvider = ({ children }) => {
   useEffect(() => {
     setState((prevState) => ({
       ...prevState,
+      prevProperty: state.currentProperty,
       currentProperty: selectedProperty,
     }));
   }, [selectedProperty]);

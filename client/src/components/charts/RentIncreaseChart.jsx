@@ -46,7 +46,7 @@ const RentIncreaseChart = (props) => {
     }
   }
 
-  console.log("data", data);
+  // console.log("data", data);
 
   return (
     <div>
