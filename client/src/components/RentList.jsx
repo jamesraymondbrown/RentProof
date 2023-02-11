@@ -11,8 +11,9 @@ import {
   getPhotoFromPrices,
   getPriceHistory,
 } from "./helpers/getDataFromPrices";
-import PropertyRentChart from "./PropertyRentChart";
-import RentIncreaseChart from "./RentIncreaseChart";
+import PropertyRentChart from "./charts/PropertyRentChart";
+import RentIncreaseChart from "./charts/RentIncreaseChart";
+import AllPropertiesPercentChart from "./charts/AllPropertiesPercentChart";
 
 
 
@@ -89,7 +90,8 @@ const RentList = () => {
         </tbody>
       </table>
 
-      <div className="PropertyRentChart">
+      {/* DOLLAR-BASED INDIVIDUAL PROPERTY RENT CHART */}
+      <div className="RentChart">
         {dataState.prices && state.currentProperty.id ? (
           <PropertyRentChart
             prices={getPriceHistory(state.currentProperty.id, dataState)}
@@ -98,10 +100,23 @@ const RentList = () => {
           <div>Loading...</div>
         )}
       </div>
-      <div className="PropertyRentChart">
+
+      {/* PERCENTAGE-BASED INDIVIDUAL PROPERTY RENT CHART */}
+      <div className="RentChart">
         {dataState.prices && state.currentProperty.id ? (
           <RentIncreaseChart
             prices={getPriceHistory(state.currentProperty.id, dataState)}
+          />
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+
+      <div className="RentChart">
+        {dataState.prices && state.currentProperty.id ? (
+          <AllPropertiesPercentChart
+            prices={dataState.prices}
+            properties={dataState.properties}
           />
         ) : (
           <div>Loading...</div>
