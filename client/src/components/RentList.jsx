@@ -14,6 +14,7 @@ import {
 import PropertyRentChart from "./charts/PropertyRentChart";
 import RentIncreaseChart from "./charts/RentIncreaseChart";
 import AllPropertiesPercentChart from "./charts/AllPropertiesPercentChart";
+import SelectedPropertyVsAll from "./charts/SelectedPropertyVsAll";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -121,6 +122,21 @@ const RentList = () => {
         {dataState.prices && state.currentProperty.id ? (
           <AllPropertiesPercentChart
             prices={dataState.prices}
+            properties={dataState.properties}
+          />
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+
+      <div className="RentChart">
+        {dataState.prices && state.currentProperty.id ? (
+          <SelectedPropertyVsAll
+            prices={dataState.prices}
+            currentPropertyPrices={getPriceHistory(
+              state.currentProperty.id,
+              dataState
+            )}
             properties={dataState.properties}
           />
         ) : (

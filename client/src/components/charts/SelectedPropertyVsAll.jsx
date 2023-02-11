@@ -2,8 +2,6 @@ import {
   ResponsiveContainer,
   AreaChart,
   Area,
-  LineChart,
-  Line,
   CartesianGrid,
   XAxis,
   YAxis,
@@ -15,6 +13,18 @@ const RentIncreaseChart = (props) => {
   const data = [];
   const prices = props.prices;
   const properties = props.properties;
+  const currentPropertyPrices = props.currentPropertyPrices;
+
+  for (let price of currentPropertyPrices) {
+    if (price.admin_status === "approved") {
+      data.push({
+        date: price.date.substring(0, 4),
+        price: price.price,
+      });
+    }
+  }
+
+  console.log(data);
 
   const getRentIncreaseAverages = (prices, properties) => {
     const priceObject = {};
@@ -67,7 +77,7 @@ const RentIncreaseChart = (props) => {
         sum += indexValue;
       }
       data.push({
-        date: i,
+        // date: i,
         increase: Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100,
       });
     }
@@ -75,29 +85,14 @@ const RentIncreaseChart = (props) => {
     return;
   };
 
-  getRentIncreaseAverages(prices, properties);
-
-  // Adding allowable increase amounts to our data array, based on this source:
-  // https://www2.gov.bc.ca/gov/content/housing-tenancy/residential-tenancies/during-a-tenancy/rent-increases
-  data[0].allowable_increase = 2.5;
-  data[1].allowable_increase = 2.9;
-  data[2].allowable_increase = 3.7;
-  data[3].allowable_increase = 4.0;
-  data[4].allowable_increase = 2.5;
-  data[5].allowable_increase = 2.6;
-  data[6].allowable_increase = 0.0;
-  data[7].allowable_increase = 1.5;
-  data[8].allowable_increase = 2.0;
-
-  // console.log(data);
+  // getRentIncreaseAverages(prices, properties);
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
-          <p className="tooltip-text">{`Average increase percentage: ${payload[0].value}%`}</p>
-          <p className="tooltip-text">{`Allowable increase for existing leases: ${payload[1].value}%`}</p>
+          <p className="tooltip-text">{`Price: $${payload[0].value}`}</p>
           {/* {console.log("load", payload)} */}
         </div>
       );
@@ -105,28 +100,9 @@ const RentIncreaseChart = (props) => {
     return null;
   };
 
-  // for (let i = 1; i < prices.length; i++) {
-  //   if (prices[i].admin_status === "approved") {
-  //     data.push({
-  //       date: prices[i].date.substring(0, 4),
-  //       increase:
-  //         Math.round(
-  //           ((parseInt(prices[i].price) - parseInt(prices[i - 1].price)) /
-  //             parseInt(prices[i - 1].price)) *
-  //             100 *
-  //             10
-  //         ) / 10,
-  //       increase_amount:
-  //         parseInt(prices[i].price) - parseInt(prices[i - 1].price),
-  //     });
-  //   }
-  // }
-
   return (
     <div>
-      <div className="chart-title">
-        Average rent increases across all properties:
-      </div>
+      <div className="chart-title">Selected property price history:</div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
           data={data}
@@ -139,42 +115,26 @@ const RentIncreaseChart = (props) => {
             </linearGradient>
           </defs>
 
-          <Area dataKey="increase" stroke="#D0312D" fill="#DEDEDE" />
-          <Area
-            dataKey="allowable_increase"
-            stroke="#5AB8F8"
-            fill="url(#color)"
-          />
+          <Area dataKey="price" stroke="#5AB8F8" fill="url(#color)" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
           <XAxis
             dataKey="date"
-            // ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
+            ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
           />
           <YAxis
-            dataKey="increase"
-            domain={[0, 15]}
+            dataKey="price"
+            domain={[
+              parseInt(data[0].price) - 500,
+              parseInt(data[data.length - 1].price) + 200,
+            ]}
             tickCount={6}
-            ticks={[3, 6, 9, 12, 15]}
-            tickFormatter={(increase) => `${increase}%`}
+            tickFormatter={(price) => `$${price}`}
           />
           <Tooltip
             content={<CustomTooltip />}
             wrapperStyle={{ outline: "none" }}
           />
         </AreaChart>
-        {/* <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-          <Line type="monotone" dataKey="price" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="date" />
-          <YAxis
-            dataKey="price"
-            domain={[
-              parseInt(data[0].price) - 500,
-              parseInt(data[data.length - 1].price) + 500,
-            ]}
-          />
-          <Tooltip />
-        </LineChart> */}
       </ResponsiveContainer>
     </div>
   );

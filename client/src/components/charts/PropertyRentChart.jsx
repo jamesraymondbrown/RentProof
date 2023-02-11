@@ -2,8 +2,6 @@ import {
   ResponsiveContainer,
   AreaChart,
   Area,
-  LineChart,
-  Line,
   CartesianGrid,
   XAxis,
   YAxis,
@@ -71,19 +69,6 @@ const PropertyRentChart = (props) => {
             wrapperStyle={{ outline: "none" }}
           />
         </AreaChart>
-        {/* <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-          <Line type="monotone" dataKey="price" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="date" />
-          <YAxis
-            dataKey="price"
-            domain={[
-              parseInt(data[0].price) - 500,
-              parseInt(data[data.length - 1].price) + 500,
-            ]}
-          />
-          <Tooltip />
-        </LineChart> */}
       </ResponsiveContainer>
     </div>
   );
