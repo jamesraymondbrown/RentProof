@@ -1,41 +1,33 @@
 import { Link } from "react-router-dom";
 import { ReactSession } from 'react-client-session';
 import './Navbar.scss'
+import { menuItems } from './menuItems'
+import MenuItems from './MenuItems'
+
 
 const Navbar = () => {
 
   const userRole = ReactSession.get("role");
 
-  const logout = () => {
-    console.log('Clicked Logout')
-    ReactSession.remove("id");
-    ReactSession.remove("role");
-    ReactSession.remove("name");
-    window.location.reload();
-  }
+  const loggedOutMenuItems = menuItems.filter(i => i.session === false).map((menu, index) => {
+          return <MenuItems items={menu} key={index} />;
+        });
+  const userMenuItems = menuItems.filter(i => i.session === true && i.admin === false).map((menu, index) => {
+          return <MenuItems items={menu} key={index} />;
+        });
+  const adminMenuItems = menuItems.filter(i => i.session === true && (i.admin === true || i.admin === false)).map((menu, index) => {
+          return <MenuItems items={menu} key={index} />;
+        });
 
   return (
-    <nav className="nav">
-      <Link to="/" className="site-title">Rent Tracker</Link>
-      <ul>
-        {userRole === 'admin' && <li>
-          <Link to="/admin" >Admin</Link>
-        </li>}
-        <li>
-          <Link to="/create" >Create</Link>
-        </li>
-        {!userRole && <li>
-          <Link to="/login" >Login</Link>
-        </li>}
-        {!userRole && <li>
-          <Link to="/register" >Register</Link>
-        </li>}
-        {userRole && <li>
-          <Link to="/" onClick={logout}>Logout</Link>
-        </li>}
+    <nav>
+      <ul className="menus">        
+        {!userRole && loggedOutMenuItems}
+        {userRole === 'user' && userMenuItems}
+        {userRole === 'admin' && adminMenuItems}
       </ul>
-    </nav>  
+    </nav>
   );
-}
- 
+};
+
 export default Navbar;

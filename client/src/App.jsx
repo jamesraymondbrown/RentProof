@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import AddPrice from "./components/create/AddPrice";
 import AddProperty from "./components/create/AddProperty";
-import Admin from "./components/admin/Admin";
+import AdminPending from "./components/admin/AdminPending";
 import FindProperty from "./components/create/FindProperty";
 import Login from "./components/Login";
 import Map from "./components/Map";
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import PriceDetails from "./components/admin/PriceDetails";
 import PropertyDetails from "./components/admin/PropertyDetails";
 import Register from "./components/Register";
@@ -49,7 +49,9 @@ function App() {
   return (
     <Router>
       <div className="App" >
-        <Navbar />
+        <div>
+          <Header />
+        </div>
         <div className="Content" >
           <Switch>
             <Route exact path="/">
@@ -58,20 +60,25 @@ function App() {
                 <RentList />
               </div>
             </Route>
-            <Route exact path="/admin">
+            <Route exact path="/admin/pending">
               <div className="admin-background">
-                <Admin />
+                <AdminPending />
               </div>
             </Route>
-            <Route exact path="/create">
+            <Route exact path="/create/update">
               <div className="create-background" >
               <div className="create-body">
-                <div className="create-property">
-                  <FindProperty />
-                  <AddProperty />
-                </div>
                 <div className="create-forms">
                   <AddPrice />
+                </div>
+                </div>
+              </div>  
+            </Route>
+            <Route exact path="/create/property">
+              <div className="create-background" >
+                <div className="create-body">
+                <div className="create-property">
+                  <AddProperty />
                 </div>
                 </div>
               </div>  

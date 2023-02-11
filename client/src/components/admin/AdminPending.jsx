@@ -3,10 +3,9 @@ import { DataBaseContext } from "../../providers/DataBaseProvider";
 import './Admin.scss'
 import { ReactSession } from 'react-client-session';
 import { useHistory } from "react-router-dom";
-
 import SubmissionList from "./SubmissionList";
 
-const Admin = () => {
+const AdminPending = () => {
 
   const history = useHistory()
   const userRole = ReactSession.get("role");
@@ -25,4 +24,4 @@ const Admin = () => {
   )
 }
 
-export default Admin;
+export default AdminPending;
