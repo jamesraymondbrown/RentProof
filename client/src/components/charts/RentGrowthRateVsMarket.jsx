@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import "./PropertyRentChart.scss";
 
-const RentIncreaseChart = (props) => {
+const RentGrowthRateVsMarket = (props) => {
   const data = [];
   const prices = props.prices;
   const properties = props.properties;
@@ -158,13 +158,29 @@ const RentIncreaseChart = (props) => {
   getRentIncreaseAverages(prices, properties);
   showPricesBasedOnAverages();
 
+  const cheaperOrMoreExpensive = (value) => {
+    if (value > 0) {
+      return `${value}% more than the market average`;
+    }
+    if (value < 0) {
+      return `${value}% less than the market average`;
+    }
+    return "at the same rate as the market";
+  };
+
+  const tooltipMessage = (rent) => {
+    const message = `Rent rose ${cheaperOrMoreExpensive(rent)}`;
+    return message;
+  };
+
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
-          <p className="tooltip-text">{`Price: $${payload[0].value}`}</p>
-          <p className="tooltip-text">{`Market-adjusted price: $${payload[1].value}`}</p>
+          <p className="tooltip-text">{`${tooltipMessage(
+            payload[0].value
+          )}.`}</p>
           {/* {console.log("load", payload)} */}
         </div>
       );
@@ -172,35 +188,65 @@ const RentIncreaseChart = (props) => {
     return null;
   };
 
-  // console.log("data", data);
+  // convert the price difference into a percentage, comparing how much higher or lower the current
+  // propertie's price is vs market trends. Above 0 is above market value, below 0 is below market
+  // value. So below 0 means you're getting a better deal
+  for (const d of data) {
+    d.price_difference_percentage =
+      Math.round((d.price / d.compare_at_price - 1) * 100 * 10) / 10;
+  }
+
+  console.log("comparisonData", data);
+
+  const gradientOffset = () => {
+    const dataMax = Math.max(...data.map((i) => i.price_difference_percentage));
+    const dataMin = Math.min(...data.map((i) => i.price_difference_percentage));
+
+    if (dataMax <= 0) {
+      return 0;
+    } else if (dataMin >= 0) {
+      return 1;
+    } else {
+      return dataMax / (dataMax - dataMin);
+    }
+  };
+
+  const off = gradientOffset();
 
   return (
     <div>
-      <div className="chart-title">Selected property price history:</div>
+      <div className="chart-title">
+        Cumulative rent percentage difference vs market:
+      </div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
           data={data}
           margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
         >
           <defs>
-            <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+            {/* <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#5AB8F8" stopOpacity={0.75} />
               <stop offset="75%" stopColor="#5AB8F8" stopOpacity={0.2} />
+            </linearGradient> */}
+            <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+              <stop offset={off} stopColor="red" stopOpacity={0.75} />
+              <stop offset={off} stopColor="green" stopOpacity={0.75} />
             </linearGradient>
           </defs>
 
-          <Area dataKey="price" stroke="#5AB8F8" fill="url(#color)" />
-          <Area dataKey="compare_at_price" stroke="red" fill="#DEDEDE" />
+          <Area
+            dataKey="price_difference_percentage"
+            stroke="black"
+            fill="url(#splitColor)"
+            radius={[0, 5, 5, 0]}
+          />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
           <XAxis dataKey="date" />
           <YAxis
-            dataKey="price"
-            domain={[
-              parseInt(data[0].price) - 500,
-              parseInt(data[data.length - 1].price) + 200,
-            ]}
-            tickCount={6}
-            tickFormatter={(price) => `$${price}`}
+            dataKey="price_difference_percentage"
+            domain={[-15, 15]}
+            // tickCount={6}
+            tickFormatter={(percent) => `${percent}%`}
           />
           <Tooltip
             content={<CustomTooltip />}
@@ -212,4 +258,4 @@ const RentIncreaseChart = (props) => {
   );
 };
 
-export default RentIncreaseChart;
+export default RentGrowthRateVsMarket;

@@ -15,8 +15,7 @@ import PropertyRentChart from "./charts/PropertyRentChart";
 import RentIncreaseChart from "./charts/RentIncreaseChart";
 import AllPropertiesPercentChart from "./charts/AllPropertiesPercentChart";
 import SelectedPropertyVsAll from "./charts/SelectedPropertyVsAll";
-
-
+import RentGrowthRateVsMarket from "./charts/RentGrowthRateVsMarket";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -25,9 +24,7 @@ const RentList = () => {
   return (
     <div className="RentList">
       <div className="slider-container">
-        <MultiRangeSlider
-          style={{ height: "20px" }}
-        />
+        <MultiRangeSlider style={{ height: "20px" }} />
 
         <BedFilter />
 
@@ -127,6 +124,21 @@ const RentList = () => {
       <div className="RentChart">
         {dataState.prices && state.currentProperty.id ? (
           <SelectedPropertyVsAll
+            prices={dataState.prices}
+            currentPropertyPrices={getPriceHistory(
+              state.currentProperty.id,
+              dataState
+            )}
+            properties={dataState.properties}
+          />
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+
+      <div className="RentChart">
+        {dataState.prices && state.currentProperty.id ? (
+          <RentGrowthRateVsMarket
             prices={dataState.prices}
             currentPropertyPrices={getPriceHistory(
               state.currentProperty.id,
