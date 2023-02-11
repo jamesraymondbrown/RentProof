@@ -7,6 +7,8 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
     selectedBedrooms,
     selectedBathrooms,
     handleClickMarker,
+    minF,
+    maxF,
   } = useContext(MarkerFilterContext);
 
   let markerColor;
@@ -22,7 +24,9 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   return (
     <div>
       {(selectedBedrooms.includes(bedrooms) || !selectedBedrooms.length) &&
-      (selectedBathrooms.includes(bathrooms) || !selectedBathrooms.length) ? (
+      (selectedBathrooms.includes(bathrooms) || !selectedBathrooms.length) &&
+      cost < maxF &&
+      cost > minF ? (
         <GoogleMapMarker
           position={position}
           title={title}

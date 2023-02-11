@@ -14,6 +14,8 @@ import {
 import PropertyRentChart from "./PropertyRentChart";
 import RentIncreaseChart from "./RentIncreaseChart";
 
+
+
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
   const { dataState } = useContext(DataBaseContext);
@@ -22,13 +24,6 @@ const RentList = () => {
     <div className="RentList">
       <div className="slider-container">
         <MultiRangeSlider
-          min={0}
-          max={5000}
-          onChange={({ min, max }) =>
-            console
-              .log //`min = ${min}, max = ${max}`
-              ()
-          }
           style={{ height: "20px" }}
         />
 
