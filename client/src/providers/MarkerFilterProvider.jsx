@@ -6,12 +6,12 @@ export const MarkerFilterProvider = ({ children }) => {
   const [selectedBedrooms, setSelectedBedrooms] = useState([]);
   const [selectedBathrooms, setSelectedBathrooms] = useState([]);
   const [selectedProperty, setSelectedProperty] = useState({
-    id: 114,
-    province: "BC",
-    city: "Vancouver",
-    street_address: "679 E Cordova St, Vancouver",
-    latitude: "49.282258500",
-    longitude: "-123.089670000",
+    // id: 114,
+    // province: "BC",
+    // city: "Vancouver",
+    // street_address: "679 E Cordova St, Vancouver",
+    // latitude: "49.282258500",
+    // longitude: "-123.089670000",
   });
   const [minF, setMinF] = useState(1);
   const [maxF, setMaxF] = useState(5000);
@@ -23,7 +23,7 @@ export const MarkerFilterProvider = ({ children }) => {
     prevProperty: {},
   });
 
-// console.log("state.currentProperty ➤", state.currentProperty.id);
+  // console.log("state.currentProperty ➤", state.currentProperty.id);
 
   const handleClickBeds = (index) => {
     if (selectedBedrooms.includes(index)) {
@@ -49,7 +49,6 @@ export const MarkerFilterProvider = ({ children }) => {
       })
       .catch((error) => console.error(error));
   };
-
 
   useEffect(() => {
     setState((prevState) => ({
