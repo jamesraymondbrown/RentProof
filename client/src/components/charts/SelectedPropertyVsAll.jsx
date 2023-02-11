@@ -14,12 +14,23 @@ const RentIncreaseChart = (props) => {
   const prices = props.prices;
   const properties = props.properties;
   const currentPropertyPrices = props.currentPropertyPrices;
+  const averageIncreasePerYear = {
+    2015: [],
+    2016: [],
+    2017: [],
+    2018: [],
+    2019: [],
+    2020: [],
+    2021: [],
+    2022: [],
+    2023: [],
+  };
 
   for (let price of currentPropertyPrices) {
     if (price.admin_status === "approved") {
       data.push({
-        date: price.date.substring(0, 4),
-        price: price.price,
+        date: parseInt(price.date.substring(0, 4)),
+        price: parseInt(price.price),
       });
     }
   }
@@ -76,16 +87,86 @@ const RentIncreaseChart = (props) => {
       for (const indexValue of allIncreasesPerYear[i]) {
         sum += indexValue;
       }
-      data.push({
-        // date: i,
-        increase: Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100,
-      });
+
+      averageIncreasePerYear[i] =
+        Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100;
     }
 
     return;
   };
 
-  // getRentIncreaseAverages(prices, properties);
+  console.log("avg incr", averageIncreasePerYear);
+
+  // Multiplies the initial price by the average rent increase percentage, to compare
+  // what it would be like if this property followed the market trend exactly
+  const showPricesBasedOnAverages = () => {
+    let startPrice = data[0].price;
+    console.log(startPrice);
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].date === 2014) {
+        data[i].compare_at_price = data[i].price;
+      }
+      if (data[i].date === 2015) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2015] / 100)
+        );
+      }
+      if (data[i].date === 2016) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2016] / 100)
+        );
+      }
+      if (data[i].date === 2017) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2017] / 100)
+        );
+      }
+      if (data[i].date === 2018) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2018] / 100)
+        );
+      }
+      if (data[i].date === 2019) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2019] / 100)
+        );
+      }
+      if (data[i].date === 2020) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2020] / 100)
+        );
+      }
+      if (data[i].date === 2021) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2021] / 100)
+        );
+      }
+      if (data[i].date === 2022) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2022] / 100)
+        );
+      }
+      if (data[i].date === 2023) {
+        data[i].compare_at_price = Math.round(
+          data[i - 1].compare_at_price +
+            data[i - 1].compare_at_price * (averageIncreasePerYear[2023] / 100)
+        );
+      }
+    }
+  };
+
+  getRentIncreaseAverages(prices, properties);
+  showPricesBasedOnAverages();
+
+  console.log("avg", data);
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
@@ -93,6 +174,7 @@ const RentIncreaseChart = (props) => {
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
           <p className="tooltip-text">{`Price: $${payload[0].value}`}</p>
+          <p className="tooltip-text">{`Market-adjusted price: $${payload[1].value}`}</p>
           {/* {console.log("load", payload)} */}
         </div>
       );
@@ -116,6 +198,7 @@ const RentIncreaseChart = (props) => {
           </defs>
 
           <Area dataKey="price" stroke="#5AB8F8" fill="url(#color)" />
+          <Area dataKey="compare_at_price" stroke="#5AB8F8" fill="#DEDEDE" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
           <XAxis
             dataKey="date"
