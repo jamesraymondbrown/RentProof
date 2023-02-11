@@ -1,18 +1,16 @@
 import { RotatingTriangles } from "react-loader-spinner";
+import "./LoadingSpinner.scss";
 
 const LoadingSpinner = () => {
   return (
     <RotatingTriangles
       visible={true}
-      height="80"
-      width="80"
+      height="400"
+      width="400"
       ariaLabel="rotating-triangels-loading"
       wrapperStyle={{}}
-      wrapperClass="rotating-triangels-wrapper"
+      wrapperClass="loading-spinner"
       colors={["#59B9F8", "#A7DBB5", "#EA7979"]}
-      position: absolute;
-    left: 50%;
-    top: 35%;
     />
   );
 };
