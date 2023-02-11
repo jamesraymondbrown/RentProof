@@ -5,8 +5,8 @@ import Marker from "./Marker.jsx";
 import {
   getBedroomsFromPrices,
   getBathroomsFromPrices,
-  getCostFromPrices
-} from "./helpers/getDataFromPrices"
+  getCostFromPrices,
+} from "./helpers/getDataFromPrices";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
@@ -32,7 +32,6 @@ export default function MapDisplay(props) {
           label={getCostFromPrices(property, prices)}
           bedrooms={getBedroomsFromPrices(property, prices)}
           bathrooms={getBathroomsFromPrices(property, prices)}
-
         />
       );
     }));
