@@ -17,27 +17,33 @@ export const DataBaseProvider = (props) => {
       axios.get(usersURL),
       axios.get(propertiesURL),
       axios.get(pricesURL),
-    ]).then((all) => {
-      let dbUsers = all[0].data;
-      let dbProperties = all[1].data;
-      let dbPrices = all[2].data;
-      setUsers(dbUsers)
-      setProperties(dbProperties)
-      setPrices(dbPrices)
-    })
-     .then(
+    ])
+      .then((all) => {
+        let dbUsers = all[0].data;
+        let dbProperties = all[1].data;
+        let dbPrices = all[2].data;
+        setUsers(dbUsers);
+        setProperties(dbProperties);
+        setPrices(dbPrices);
+      })
+      .then(
         setTimeout(() => {
           setLoading(false);
         }, 700)
       );
   }, []);
 
-  const state = {users, setUsers, properties, setProperties, prices, setPrices}
+  const state = {
+    users,
+    setUsers,
+    properties,
+    setProperties,
+    prices,
+    setPrices,
+  };
 
   return (
-    <DataBaseContext.Provider
-      value={state}
-    >
+    <DataBaseContext.Provider value={state}>
       {props.children}
     </DataBaseContext.Provider>
   );

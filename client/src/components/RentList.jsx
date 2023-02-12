@@ -14,7 +14,8 @@ import {
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
-  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+  const { users, setUsers, properties, setProperties, prices, setPrices } =
+    useContext(DataBaseContext);
 
   return (
     <div className="RentList">
@@ -29,7 +30,7 @@ const RentList = () => {
         src={
           prices && state.currentProperty.id
             ? getPhotoFromPrices(state.currentProperty, prices)
-            : "https://s3.amazonaws.com/lws_lift/cressey/images/gallery/768/1405699411_201407_Cressey_VictoriaDr_H4_0004.jpg"
+            : "https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
         }
         alt="Rent List"
         className="image"
@@ -39,10 +40,7 @@ const RentList = () => {
         <div className="info">
           <div className="BubbleDetail_priceContainer__Zfrap">
             <div className="price">
-              $
-              {prices
-                ? getCostFromPrices(state.currentProperty, prices)
-                : ""}
+              ${prices ? getCostFromPrices(state.currentProperty, prices) : ""}
             </div>
             <div className="divider"></div>
           </div>
@@ -78,9 +76,7 @@ const RentList = () => {
               <td>{state.currentProperty.street_address}</td>
               <td>
                 $
-                {prices
-                  ? getCostFromPrices(state.currentProperty, prices)
-                  : ""}
+                {prices ? getCostFromPrices(state.currentProperty, prices) : ""}
               </td>
             </tr>
           </tbody>
