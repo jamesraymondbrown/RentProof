@@ -49,6 +49,12 @@ const AddPrice = () => {
       .catch((error) => {
         console.log(error);
       });
+    setId('');
+    setCost('');
+    setType('');
+    setSize('');
+    setBedrooms('');
+    setBathrooms('');
   }
 
   return (

@@ -1,31 +1,39 @@
 import React, { useContext, useState, useEffect } from "react";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
-import { PropertyIdContext } from "../../providers/PropertyIdProvider";
-import { DataTable } from "primereact/datatable"
+import axios from "axios";
+import { Button } from "primereact/button"
 import { Column } from "primereact/column"
-import "primereact/resources/themes/lara-light-indigo/theme.css"
-import "primereact/resources/primereact.min.css"
+import { DataTable } from "primereact/datatable"
 import { FilterMatchMode } from "primereact/api"
 import { InputText } from "primereact/inputtext"
-import { Button } from "primereact/button"
-import { useHistory } from "react-router-dom";
-import './PropertyList.scss'
+import './AdminPropertyList.scss'
+import "primereact/resources/themes/lara-light-indigo/theme.css"
+import "primereact/resources/primereact.min.css"
 
-export default function PropertyList() {
+export default function AdminPropertyList() {
 
-  const history = useHistory()
+  console.log("Ran Admin Property List")
   
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
-  const { updateId, setUpdateId } = useContext(PropertyIdContext);
-
+  console.log("Properties", properties)
+  
   const [filters, setFilters] = useState({
     global: {value: null, matchMode: FilterMatchMode.CONTAINS}
   })
 
-  const update = (id) => {
-    console.log("User Clicked Update")
-    setUpdateId(id)
-    history.push('/create/update')
+  const handleDelete = (id) => {
+    console.log("Clicked Delete")
+    axios.delete(`http://localhost:8001/properties/${id}`)
+      .then((response) => {
+        console.log('Property Deleted', response.data);
+        const index = properties.findIndex((p) => p.id === response.data.id);
+        const newProperties = [...properties]
+        newProperties.splice(index, 1)
+        setProperties(newProperties)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   
   let tableProperties
@@ -35,7 +43,7 @@ export default function PropertyList() {
       address: property.street_address,
       city: property.city,
       province: property.province,
-      update: <Button label="Update" className="p-button-primary" onClick={() => update(property.id)} />,
+      delete: <Button label="Delete" className="p-button-danger" onClick={() => handleDelete(property.id)} />,
     }  
   }))
   
@@ -48,7 +56,7 @@ export default function PropertyList() {
             global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
         })}
       />
-      <DataTable value={tableProperties} header="Find Your Property" sortMode="multiple" filters={filters}
+      <DataTable value={tableProperties} header="Manage Properties" sortMode="multiple" filters={filters}
         paginator
         rows={6}
         rowsPerPageOptions={[2,4,6]}
@@ -57,11 +65,8 @@ export default function PropertyList() {
         <Column sortable field="address" header="Address" />
         <Column sortable field="city" header="City" />
         <Column sortable field="province" header="Province" />
-        <Column field="update" header="Update" />
+        <Column field="delete" header="Delete" />
       </DataTable>
     </div>
   );
 }
-
-
-

@@ -38,7 +38,10 @@ export default function SubmissionList() {
     axios.put(`http://localhost:8001/prices/approve/${id}`)
       .then((response) => {
         console.log('Price Approved', response.data);        
- 	      // window.location.reload()
+ 	      const index = prices.findIndex((p) => p.id === response.data.id);
+        const newPrices = [...prices]
+        newPrices.splice(index, 1, response.data)
+        setPrices(newPrices)
       })
       .catch((error) => {
         console.log(error);
@@ -50,27 +53,10 @@ export default function SubmissionList() {
     axios.put(`http://localhost:8001/prices/reject/${id}`)
       .then((response) => {
         console.log('Price Rejected', response.data);
-        // console.log('Before', prices[(response.data.id - 1)])
         const index = prices.findIndex((p) => p.id === response.data.id);
-        console.log(index)
-        console.log('Before', prices[index])
-        // setPrices(
-        //   ...prices,
-        //   { index: response.data }
-        // )
-        console.log('After', prices[index])
-        //    const updatedPrice = {
-      // ...prices[response.data.id],
-      // admin_status: response.data.admin_status
-      //    };
-        // console.log(updatedPrice)
-
-    // const updatedPrices = {
-    //   ...prices,
-    //   [prices.length]: response.data
-    // };
-        // console.log(updatedPrices)
- 	      // window.location.reload()
+        const newPrices = [...prices]
+        newPrices.splice(index, 1, response.data)
+        setPrices(newPrices)
       })
       .catch((error) => {
         console.log(error);

@@ -7,10 +7,11 @@ import "./App.css";
 import AddPrice from "./components/create/AddPrice";
 import AddProperty from "./components/create/AddProperty";
 import AdminPending from "./components/admin/AdminPending";
+import AdminPropertyList from "./components/admin/AdminPropertyList";
 import Login from "./components/session/Login";
 import Map from "./components/map/Map";
 import Header from "./components/navbar/Header";
-import PropertyList from "./components/create/PropertyList";
+import PropertyList from "./components/create/CreatePropertyList";
 import Register from "./components/session/Register";
 import RentList from "./components/RentList";
 
@@ -56,6 +57,11 @@ function App() {
               
             <Route exact path="/admin/properties">
               <div className="admin-background">
+                <div className="add-property-body">
+                  <div className="all-properties">
+                    <AdminPropertyList />  
+                  </div> 
+                </div>  
               </div>
             </Route>
               
@@ -71,11 +77,11 @@ function App() {
               
             <Route exact path="/create/property">
               <div className="create-background">
-                <div className="create-property-body">
+                <div className="add-property-body">
                   <div className="all-properties">
                     <PropertyList />
                   </div>
-                  <div className="create-property">
+                  <div className="add-property">
                     <AddProperty />
                   </div>
                 </div>

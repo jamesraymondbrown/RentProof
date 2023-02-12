@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 import axios from "axios";
-import './CreateProperty.scss'
+import './AddProperty.scss'
 
 const AddProperty = () => {
 
+  console.log("Ran Add Property")
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
 
   const [province, setProvince] = useState('');
@@ -53,6 +54,9 @@ const AddProperty = () => {
         console.log("Error Finding Property:", error);
         setMessage('Property Not Found')
       });
+    setProvince('')
+    setCity('')
+    setAddress('')
   }
 
   return (
