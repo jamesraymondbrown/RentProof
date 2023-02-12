@@ -16,6 +16,8 @@ import RentIncreaseChart from "./charts/RentIncreaseChart";
 import AllPropertiesPercentChart from "./charts/AllPropertiesPercentChart";
 import SelectedPropertyVsAll from "./charts/SelectedPropertyVsAll";
 import RentGrowthRateVsMarket from "./charts/RentGrowthRateVsMarket";
+import { Panel } from "primereact/panel";
+import "primeicons/primeicons.css";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -92,77 +94,84 @@ const RentList = () => {
         </table>
       )}
 
-      {/* DOLLAR-BASED INDIVIDUAL PROPERTY RENT CHART */}
-      {state.currentProperty.id && (
-        <div className="selected-property-charts">
-          <div className="RentChart">
-            {dataState.prices && state.currentProperty.id ? (
-              <PropertyRentChart
-                prices={getPriceHistory(state.currentProperty.id, dataState)}
-              />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </div>
+      <Panel
+        header="Price Charts"
+        rightIcon="pi pi-times"
+        toggleable
+        style={{ color: "#59B9F8" }}
+      >
+        {/* DOLLAR-BASED INDIVIDUAL PROPERTY RENT CHART */}
+        {state.currentProperty.id && (
+          <div className="selected-property-charts">
+            <div className="RentChart">
+              {dataState.prices && state.currentProperty.id ? (
+                <PropertyRentChart
+                  prices={getPriceHistory(state.currentProperty.id, dataState)}
+                />
+              ) : (
+                <div>Loading...</div>
+              )}
+            </div>
 
-          {/* PERCENTAGE-BASED INDIVIDUAL PROPERTY RENT CHART */}
-          <div className="RentChart">
-            {dataState.prices && state.currentProperty.id ? (
-              <RentIncreaseChart
-                prices={getPriceHistory(state.currentProperty.id, dataState)}
-              />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </div>
+            {/* PERCENTAGE-BASED INDIVIDUAL PROPERTY RENT CHART */}
+            <div className="RentChart">
+              {dataState.prices && state.currentProperty.id ? (
+                <RentIncreaseChart
+                  prices={getPriceHistory(state.currentProperty.id, dataState)}
+                />
+              ) : (
+                <div>Loading...</div>
+              )}
+            </div>
 
-          {/* Chart showing selected property's actual price vs what it would be if it followed the market trends */}
+            {/* Chart showing selected property's actual price vs what it would be if it followed the market trends */}
+            <div className="RentChart">
+              {dataState.prices && state.currentProperty.id ? (
+                <SelectedPropertyVsAll
+                  prices={dataState.prices}
+                  currentPropertyPrices={getPriceHistory(
+                    state.currentProperty.id,
+                    dataState
+                  )}
+                  properties={dataState.properties}
+                />
+              ) : (
+                <div>Loading...</div>
+              )}
+            </div>
+
+            {/* Chart showing the current property's cumulative rent growth compared to the market rate */}
+            <div className="RentChart">
+              {dataState.prices && state.currentProperty.id ? (
+                <RentGrowthRateVsMarket
+                  prices={dataState.prices}
+                  currentPropertyPrices={getPriceHistory(
+                    state.currentProperty.id,
+                    dataState
+                  )}
+                  properties={dataState.properties}
+                />
+              ) : (
+                <div>Loading...</div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Chart showing the average rent increase percentage across all properties */}
+        {!state.currentProperty.id && (
           <div className="RentChart">
-            {dataState.prices && state.currentProperty.id ? (
-              <SelectedPropertyVsAll
+            {dataState.prices ? (
+              <AllPropertiesPercentChart
                 prices={dataState.prices}
-                currentPropertyPrices={getPriceHistory(
-                  state.currentProperty.id,
-                  dataState
-                )}
                 properties={dataState.properties}
               />
             ) : (
               <div>Loading...</div>
             )}
           </div>
-
-          {/* Chart showing the current property's cumulative rent growth compared to the market rate */}
-          <div className="RentChart">
-            {dataState.prices && state.currentProperty.id ? (
-              <RentGrowthRateVsMarket
-                prices={dataState.prices}
-                currentPropertyPrices={getPriceHistory(
-                  state.currentProperty.id,
-                  dataState
-                )}
-                properties={dataState.properties}
-              />
-            ) : (
-              <div>Loading...</div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* Chart showing the average rent increase percentage across all properties */}
-      {!state.currentProperty.id && (
-        <div className="RentChart">
-          {dataState.prices ? (
-            <AllPropertiesPercentChart
-              prices={dataState.prices}
-              properties={dataState.properties}
-            />
-          ) : (
-            <div>Loading...</div>
-          )}
-        </div>
-      )}
+        )}
+      </Panel>
     </div>
   );
 };

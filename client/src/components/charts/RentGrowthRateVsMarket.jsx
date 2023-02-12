@@ -214,8 +214,8 @@ const RentGrowthRateVsMarket = (props) => {
         >
           <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
-              <stop offset={off} stopColor="red" stopOpacity={0.75} />
-              <stop offset={off} stopColor="green" stopOpacity={0.75} />
+              <stop offset={off} stopColor="#EA7979" stopOpacity={0.75} />
+              <stop offset={off} stopColor="#A7DBB5" stopOpacity={0.75} />
             </linearGradient>
           </defs>
 
