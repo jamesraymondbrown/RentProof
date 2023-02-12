@@ -65,7 +65,7 @@ const ChartsPanel = () => {
           </div>
 
           {/* Chart showing the current property's cumulative rent growth compared to the market rate */}
-          {/* <div className="RentChart">
+          <div className="RentChart">
             {prices && state.currentProperty.id ? (
               <RentGrowthRateVsMarket
                 prices={prices}
@@ -78,7 +78,7 @@ const ChartsPanel = () => {
             ) : (
               <div>Loading...</div>
             )}
-          </div> */}
+          </div>
         </div>
       )}
 
