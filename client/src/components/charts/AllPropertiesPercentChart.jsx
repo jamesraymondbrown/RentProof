@@ -38,7 +38,8 @@ const RentIncreaseChart = (props) => {
     // Push the price data for each property into the correct array
     console.log(
       "priceObject",
-      prices.filter((price) => price.property_id === undefined)
+      prices
+      // prices.filter((price) => price.property_id === undefined)
     );
     for (const price of prices) {
       priceObject[price.property_id].push(price);
