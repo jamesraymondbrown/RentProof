@@ -20,6 +20,17 @@ export default function AdminPropertyList() {
     global: {value: null, matchMode: FilterMatchMode.CONTAINS}
   })
 
+  const deletePricesForProperty = (property) => {
+  return prices
+    .filter(price => {
+      return price.property_id !== property.id
+    })
+    // .reverse()
+    .map(price => {
+      return price
+    })
+}
+
   const handleDelete = (id) => {
     console.log("Clicked Delete")
     axios.delete(`http://localhost:8001/properties/${id}`)
@@ -29,6 +40,8 @@ export default function AdminPropertyList() {
         const newProperties = [...properties]
         newProperties.splice(index, 1)
         setProperties(newProperties)
+        const newPrices = deletePricesForProperty(response.data)
+        setPrices(newPrices)
       })
       .catch((error) => {
         console.log(error);

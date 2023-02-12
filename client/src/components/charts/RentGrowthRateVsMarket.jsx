@@ -203,7 +203,6 @@ const RentGrowthRateVsMarket = (props) => {
   const off = gradientOffset();
 
   if (data.length < 2) {
-    console.log("sup");
     return <div>Not enough data</div>;
   }
 

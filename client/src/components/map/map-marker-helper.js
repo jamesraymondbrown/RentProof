@@ -364,15 +364,39 @@ const prices = [
   }
 ]
 
-const propertiesWithAtLeastOneApprovedPrice = (properties, prices) => {
-  return properties
-    .filter(property => {
-      return prices.some(price => ((price.property_id === property.id) && price.admin_status === "approved"));
+// const propertiesWithAtLeastOneApprovedPrice = (properties, prices) => {
+//   return properties
+//     .filter(property => {
+//       return prices.some(price => ((price.property_id === property.id) && price.admin_status === "approved"));
+//     })
+//     .reverse()
+//     .map(property => {
+//       return property;
+//     });
+// }
+
+// console.log (propertiesWithAtLeastOneApprovedPrice(properties, prices))
+
+// console.log(prices.length)
+
+const testProperty = {
+    "id": 10,
+    "province": "BC",
+    "city": "Vancouver",
+    "street_address": "1550 Duchess Ave, West Vancouver",
+    "latitude": "49.329546400",
+    "longitude": "-123.157720200"
+  }
+
+const deletePricesForProperty = (property) => {
+  return prices
+    .filter(price => {
+      return price.property_id !== property.id
     })
-    .reverse()
-    .map(property => {
-      return property;
-    });
+    // .reverse()
+    .map(price => {
+      return price
+    })
 }
 
-console.log (propertiesWithAtLeastOneApprovedPrice(properties, prices))
+console.log(deletePricesForProperty(testProperty))
