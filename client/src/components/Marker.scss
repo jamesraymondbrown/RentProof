@@ -1,0 +1,14 @@
+.custom-marker {
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  .marker-label {
+    display: none;
+  }
+}
+.marker-hover {
+  transform: scale(1.5);
+}

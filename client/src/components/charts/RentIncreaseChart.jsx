@@ -7,7 +7,7 @@ import {
   YAxis,
   Tooltip,
 } from "recharts";
-import "./PropertyRentChart.scss";
+import "./Charts.scss";
 
 const RentIncreaseChart = (props) => {
   const data = [];
@@ -46,9 +46,13 @@ const RentIncreaseChart = (props) => {
     }
   }
 
+  // console.log("data", data);
+
   return (
     <div>
-      <div className="chart-title">Price History:</div>
+      <div className="chart-title">
+        Selected property rent increase percentage:
+      </div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
           data={data}

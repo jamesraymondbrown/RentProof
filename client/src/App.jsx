@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataBaseContext } from "./providers/DataBaseProvider";
 import { PropertyIdProvider } from "./providers/PropertyIdProvider";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -14,10 +14,13 @@ import Header from "./components/navbar/Header";
 import PropertyList from "./components/create/CreatePropertyList";
 import Register from "./components/session/Register";
 import RentList from "./components/RentList";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 function App() {
 
   console.log("Rendering App...")
+
+
 
   ReactSession.setStoreType("sessionStorage");
   const userId = ReactSession.get("id");
@@ -25,16 +28,18 @@ function App() {
   const userName = ReactSession.get("name");
   console.log(userId, userRole, userName);
 
-  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+  const { users, setUsers, properties, setProperties, prices, setPrices, isLoading, setLoading } = useContext(DataBaseContext);
 
-  return (
-    <Router>
-      <PropertyIdProvider>
-      <div className="App" >
-        <div>
-          <Header />
-        </div>
-        <div className="Content" >
+  return isLoading ? (
+    <LoadingSpinner />
+  ) : (
+      <Router>
+        <PropertyIdProvider>
+        <div className="App">
+          <div>
+            <Header />
+          </div>
+        <div className="Content">
           <Switch>
               
             <Route exact path="/">

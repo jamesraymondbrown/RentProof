@@ -1,17 +1,16 @@
 import "./RentList.scss";
-import React, { useContext } from "react";
+import React from "react";
+import BathFilter from "./filters/BathFilter";
+import BedFilter from "./filters/BedFilter";
+import ChartsPanel from "./ChartsPanel";
+import { useContext } from "react";
+import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../providers/DataBaseProvider";
 import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
-import BedFilter from "./filters/BedFilter";
-import BathFilter from "./filters/BathFilter";
-import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import {
   getCostFromPrices,
   getPhotoFromPrices,
-  getPriceHistory,
 } from "./helpers/getDataFromPrices";
-import PropertyRentChart from "./charts/PropertyRentChart";
-import RentIncreaseChart from "./charts/RentIncreaseChart";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -20,16 +19,7 @@ const RentList = () => {
   return (
     <div className="RentList">
       <div className="slider-container">
-        <MultiRangeSlider
-          min={0}
-          max={5000}
-          onChange={({ min, max }) =>
-            console
-              .log //`min = ${min}, max = ${max}`
-              ()
-          }
-          style={{ height: "20px" }}
-        />
+        <MultiRangeSlider style={{ height: "20px" }} />
 
         <BedFilter />
 
@@ -45,72 +35,59 @@ const RentList = () => {
         className="image"
       />
 
-      <div className="info">
-        <div className="BubbleDetail_priceContainer__Zfrap">
-          <div className="price">
-            $
-            {prices
-              ? getCostFromPrices(state.currentProperty, prices)
-              : ""}
-          </div>
-          <div className="divider"></div>
-        </div>
-        <div className="col BubbleDetail_colAddress__37E3b">
-          <h1 className="name">
-            <a href="#0">Kingston Tower</a>
-          </h1>
-          <a className="undername" href="#0">
-            {state.currentProperty.street_address},{" "}
-          </a>
-          <a
-            className="BubbleDetail_cityState__1JOOk"
-            href="/apartments/calgary-ab"
-          >
-            Calgary
-          </a>
-        </div>
-      </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Property Name</th>
-            <th>Location</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{state.currentProperty.street_address}</td>
-            <td>{state.currentProperty.street_address}</td>
-            <td>
+      {state.currentProperty.id && (
+        <div className="info">
+          <div className="BubbleDetail_priceContainer__Zfrap">
+            <div className="price">
               $
               {prices
                 ? getCostFromPrices(state.currentProperty, prices)
                 : ""}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+            </div>
+            <div className="divider"></div>
+          </div>
+          <div className="col BubbleDetail_colAddress__37E3b">
+            <h1 className="name">
+              <a href="#0">Kingston Tower</a>
+            </h1>
+            <a className="undername" href="#0">
+              {state.currentProperty.street_address},{" "}
+            </a>
+            <a
+              className="BubbleDetail_cityState__1JOOk"
+              href="/apartments/calgary-ab"
+            >
+              Calgary
+            </a>
+          </div>
+        </div>
+      )}
 
-      <div className="PropertyRentChart">
-        {prices && state.currentProperty.id ? (
-          <PropertyRentChart
-            prices={getPriceHistory(state.currentProperty.id, prices)}
-          />
-        ) : (
-          <div>Loading...</div>
-        )}
-      </div>
-      <div className="PropertyRentChart">
-        {prices && state.currentProperty.id ? (
-          <RentIncreaseChart
-            prices={getPriceHistory(state.currentProperty.id, prices)}
-          />
-        ) : (
-          <div>Loading...</div>
-        )}
-      </div>
+      {state.currentProperty.id && (
+        <table>
+          <thead>
+            <tr>
+              <th>Property Name</th>
+              <th>Location</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{state.currentProperty.street_address}</td>
+              <td>{state.currentProperty.street_address}</td>
+              <td>
+                $
+                {prices
+                  ? getCostFromPrices(state.currentProperty, prices)
+                  : ""}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+
+      <ChartsPanel />
     </div>
   );
 };

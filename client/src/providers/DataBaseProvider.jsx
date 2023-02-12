@@ -7,6 +7,7 @@ export const DataBaseProvider = (props) => {
   const [users, setUsers] = useState(null);
   const [properties, setProperties] = useState(null);
   const [prices, setPrices] = useState(null);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const usersURL = `/users`;
@@ -23,7 +24,12 @@ export const DataBaseProvider = (props) => {
       setUsers(dbUsers)
       setProperties(dbProperties)
       setPrices(dbPrices)
-    });
+    })
+     .then(
+        setTimeout(() => {
+          setLoading(false);
+        }, 700)
+      );
   }, []);
 
   const state = {users, setUsers, properties, setProperties, prices, setPrices}
