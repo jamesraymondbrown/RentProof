@@ -20,8 +20,6 @@ function App() {
 
   console.log("Rendering App...")
 
-
-
   ReactSession.setStoreType("sessionStorage");
   const userId = ReactSession.get("id");
   const userRole = ReactSession.get("role");
