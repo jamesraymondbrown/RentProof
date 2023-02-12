@@ -1,6 +1,6 @@
 .pending-prices {
-  width: 94vw;
-  margin-left: 3vw;
+  width: 90vw;
+  margin-left: 5vw;
   margin-top: 2em;
   display: flex;
   flex-direction: column;
@@ -14,6 +14,10 @@
   width: 30%;
   border: 3px solid #ced4da !important;
   background-color: rgba(255, 255, 255, .9);
+}
+
+.pending-prices .p-datatable-table {
+  width: 90vw !important;
 }
 
 .pending-prices .p-datatable-header {
@@ -33,6 +37,7 @@
 }
 
 .pending-prices .p-datatable-tbody tr {
+  width: 90vw !important;
   background-color: rgba(255, 255, 255, .9) !important;
   justify-content: center !important;
   align-items: center !important;
