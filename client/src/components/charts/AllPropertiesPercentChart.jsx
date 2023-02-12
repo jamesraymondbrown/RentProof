@@ -28,13 +28,13 @@ const RentIncreaseChart = (props) => {
 
   let { prices, properties } = useContext(DataBaseContext);
 
-  console.log(
-    "beds, baths, min, max",
-    selectedBedrooms,
-    selectedBathrooms,
-    minF,
-    maxF
-  );
+  // console.log(
+  //   "beds, baths, min, max",
+  //   selectedBedrooms,
+  //   selectedBathrooms,
+  //   minF,
+  //   maxF
+  // );
 
   if (selectedBedrooms.length && !selectedBathrooms.length) {
     const updatedProperties = [];

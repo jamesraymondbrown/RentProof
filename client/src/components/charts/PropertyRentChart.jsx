@@ -34,6 +34,8 @@ const PropertyRentChart = (props) => {
     }
   }
 
+  console.log("datalog", data);
+
   return (
     <div>
       <div className="chart-title">Selected property price history:</div>
