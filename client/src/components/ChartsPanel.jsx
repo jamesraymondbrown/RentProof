@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../providers/DataBaseProvider";
 import "primeicons/primeicons.css";
+import "./ChartsPanel.scss";
 
 const ChartsPanel = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -20,6 +21,7 @@ const ChartsPanel = () => {
       rightIcon="pi pi-times"
       toggleable
       style={{ color: "#59B9F8" }}
+      id="ChartsPanel"
     >
       {/* DOLLAR-BASED INDIVIDUAL PROPERTY RENT CHART */}
       {state.currentProperty.id && (
