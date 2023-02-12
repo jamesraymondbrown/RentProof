@@ -15,7 +15,6 @@ export default function AdminPropertyList() {
   console.log("Ran Admin Property List")
   
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
-  console.log("Properties", properties)
   
   const [filters, setFilters] = useState({
     global: {value: null, matchMode: FilterMatchMode.CONTAINS}

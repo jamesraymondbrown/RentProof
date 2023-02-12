@@ -26,7 +26,6 @@ const AddPrice = () => {
     event.preventDefault();
 
     const user = ReactSession.get("id");
-    console.log(user)
     
     const price = {
       'property': id,
@@ -43,7 +42,7 @@ const AddPrice = () => {
     axios.post('http://localhost:8001/prices', price)
       .then((response) => {
         console.log('New Price Added', response.data);
-        setPrices(prev => [...prev, price])
+        setPrices(prev => [...prev, response.data])
         history.push('/')
       })
       .catch((error) => {

@@ -18,8 +18,6 @@ export default function PropertyList() {
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
   const { updateId, setUpdateId } = useContext(PropertyIdContext);
 
-  console.log("Properties", properties)
-  
   const history = useHistory()
 
   const [filters, setFilters] = useState({

@@ -59,7 +59,7 @@ const AddProperty = () => {
     setAddress('')
     setTimeout(() => {
       setMessage('Awaiting Submission ...')
-    }, 3000);
+    }, 1500);
   }
 
   return (
