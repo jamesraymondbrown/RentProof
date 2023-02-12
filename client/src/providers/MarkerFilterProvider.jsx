@@ -20,7 +20,7 @@ export const MarkerFilterProvider = ({ children }) => {
     bedrooms: [],
     bathrooms: [],
     currentProperty: {},
-    prevProperty: {},
+    prevProperty: [],
   });
 
 // console.log("state.currentProperty ➤", state.currentProperty.id);
@@ -51,13 +51,24 @@ export const MarkerFilterProvider = ({ children }) => {
   };
 
 
-  useEffect(() => {
-    setState((prevState) => ({
+useEffect(() => {
+  setState((prevState) => {
+    if (!state.currentProperty.id) {
+      return prevState;
+    }
+
+    return {
       ...prevState,
-      prevProperty: state.currentProperty,
-      currentProperty: selectedProperty,
-    }));
-  }, [selectedProperty]);
+      prevProperty: [...prevState.prevProperty, state.currentProperty.id],
+    };
+  });
+
+  setState((prevState) => ({
+    ...prevState,
+    currentProperty: selectedProperty,
+  }));
+}, [selectedProperty]);
+
 
   useEffect(() => {
     setState((prevState) => ({ ...prevState, bedrooms: selectedBedrooms }));

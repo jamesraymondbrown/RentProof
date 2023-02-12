@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 import "./multiRangeSlider.css";
 import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 
+
 const MultiRangeSlider = () => {
   // console.log("rerendering");
   const min = 0;
