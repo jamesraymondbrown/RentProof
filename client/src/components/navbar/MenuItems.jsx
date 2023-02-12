@@ -41,10 +41,10 @@ const MenuItems = ({ items }) => {
           />
         </>
       ) : (
-          <div>
+          <button>
             {!userRole && menuLogin}
             {userRole && menuLogout}
-          </div>
+          </button>
       )}
     </li>
   );

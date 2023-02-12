@@ -65,7 +65,7 @@ header .p-button:hover {
   font-size: inherit;
   color: inherit;
   text-decoration: none;
-  background-color: #88c2ee;
+  background-color: rgb(33, 107, 255);
 }
 
 .menu-items button {
@@ -86,7 +86,8 @@ header .p-button:hover {
 
 .menu-items a:hover,
 .menu-items button:hover {
-  background-color: #88c2ee;
+  background-color: rgb(33, 107, 255);
+  border-radius: 10px;
 }
 
 .dropdown {
