@@ -14,8 +14,8 @@ const Header = () => {
         <Link to="/" className="logo">
           Rent Tracker
         </Link>
-        <Button label="Welcome!" icon="pi pi-external-link" onClick={() => setVisible(true)} />
-        <Dialog header="What We Do ..." visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
+        <Button label="Site Info" icon="pi pi-external-link" onClick={() => setVisible(true)} />
+        <Dialog header="On This Page" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
           <p className="m-0">
             Rent Tracker is a people-powered app that puts information into the hands of renters and provides public accountability
             against exorbitant rent increases.
