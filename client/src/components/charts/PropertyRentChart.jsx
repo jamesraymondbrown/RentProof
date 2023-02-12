@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
+import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -10,6 +13,10 @@ import {
 import "./Charts.scss";
 
 const PropertyRentChart = (props) => {
+
+  const { state } = useContext(MarkerFilterContext);
+  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+
   const data = [];
 
   const CustomTooltip = ({ active, payload, label }) => {
