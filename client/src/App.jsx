@@ -51,7 +51,7 @@ function App() {
       .then(
         setTimeout(() => {
           setLoading(false);
-        }, 1000)
+        }, 700)
       );
   }, [setState]);
 
