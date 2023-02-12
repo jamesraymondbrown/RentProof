@@ -38,7 +38,7 @@ const ChartsPanel = () => {
           </div>
 
           {/* PERCENTAGE-BASED INDIVIDUAL PROPERTY RENT CHART */}
-          {/* <div className="RentChart">
+          <div className="RentChart">
             {prices && state.currentProperty.id ? (
               <RentIncreaseChart
                 prices={getPriceHistory(state.currentProperty.id, prices)}
@@ -46,10 +46,10 @@ const ChartsPanel = () => {
             ) : (
               <div>Loading...</div>
             )}
-          </div> */}
+          </div>
 
           {/* Chart showing selected property's actual price vs what it would be if it followed the market trends */}
-          {/* <div className="RentChart">
+          <div className="RentChart">
             {prices && state.currentProperty.id ? (
               <SelectedPropertyVsAll
                 prices={prices}
@@ -62,7 +62,7 @@ const ChartsPanel = () => {
             ) : (
               <div>Loading...</div>
             )}
-          </div> */}
+          </div>
 
           {/* Chart showing the current property's cumulative rent growth compared to the market rate */}
           {/* <div className="RentChart">
@@ -85,14 +85,7 @@ const ChartsPanel = () => {
       {/* Chart showing the average rent increase percentage across all properties */}
       {!state.currentProperty.id && (
         <div className="RentChart">
-          {prices ? (
-            <AllPropertiesPercentChart
-              prices={prices}
-              properties={properties}
-            />
-          ) : (
-            <div>Loading...</div>
-          )}
+          {prices ? <AllPropertiesPercentChart /> : <div>Loading...</div>}
         </div>
       )}
     </Panel>

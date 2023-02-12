@@ -44,7 +44,7 @@ const AddPrice = () => {
       .post("http://localhost:8001/prices", price)
       .then((response) => {
         console.log("New Price Added", response.data);
-        setPrices((prev) => [...prev, price]);
+        setPrices((prev) => [...prev, response.data]);
         history.push("/");
       })
       .catch((error) => {
