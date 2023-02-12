@@ -25,8 +25,8 @@ const ChartsPanel = () => {
       id="ChartsPanel"
     >
       {/* DOLLAR-BASED INDIVIDUAL PROPERTY RENT CHART */}
-      {/* {state.currentProperty.id && ( */}
-      {/* <div className="selected-property-charts">
+      {state.currentProperty.id && (
+        <div className="selected-property-charts">
           <div className="RentChart">
             {prices && state.currentProperty.id ? (
               <PropertyRentChart
@@ -35,10 +35,10 @@ const ChartsPanel = () => {
             ) : (
               <div>Loading...</div>
             )}
-          </div> */}
+          </div>
 
-      {/* PERCENTAGE-BASED INDIVIDUAL PROPERTY RENT CHART */}
-      {/* <div className="RentChart">
+          {/* PERCENTAGE-BASED INDIVIDUAL PROPERTY RENT CHART */}
+          {/* <div className="RentChart">
             {prices && state.currentProperty.id ? (
               <RentIncreaseChart
                 prices={getPriceHistory(state.currentProperty.id, prices)}
@@ -48,8 +48,8 @@ const ChartsPanel = () => {
             )}
           </div> */}
 
-      {/* Chart showing selected property's actual price vs what it would be if it followed the market trends */}
-      {/* <div className="RentChart">
+          {/* Chart showing selected property's actual price vs what it would be if it followed the market trends */}
+          {/* <div className="RentChart">
             {prices && state.currentProperty.id ? (
               <SelectedPropertyVsAll
                 prices={prices}
@@ -64,8 +64,8 @@ const ChartsPanel = () => {
             )}
           </div> */}
 
-      {/* Chart showing the current property's cumulative rent growth compared to the market rate */}
-      {/* <div className="RentChart">
+          {/* Chart showing the current property's cumulative rent growth compared to the market rate */}
+          {/* <div className="RentChart">
             {prices && state.currentProperty.id ? (
               <RentGrowthRateVsMarket
                 prices={prices}
@@ -79,8 +79,8 @@ const ChartsPanel = () => {
               <div>Loading...</div>
             )}
           </div> */}
-      {/* </div>
-      )} */}
+        </div>
+      )}
 
       {/* Chart showing the average rent increase percentage across all properties */}
       {!state.currentProperty.id && (

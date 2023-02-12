@@ -29,7 +29,7 @@ const AddPrice = () => {
     console.log(user);
 
     const price = {
-      property_id: id,
+      property: id,
       user: user,
       price: cost,
       property_type: type,
