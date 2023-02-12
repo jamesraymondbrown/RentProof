@@ -8,14 +8,133 @@ import {
   Tooltip,
 } from "recharts";
 import "./Charts.scss";
+import { useState, useContext } from "react";
+import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 
 const RentIncreaseChart = (props) => {
+  // const [data, setData] = [];
   const data = [];
-  const prices = props.prices;
-  const properties = props.properties;
+  // const prices = props.prices;
+  // const properties = props.properties;
+  const {
+    selectedBedrooms,
+    selectedBathrooms,
+    handleClickMarker,
+    minF,
+    maxF,
+    state,
+  } = useContext(MarkerFilterContext);
+
+  let { prices, properties } = useContext(DataBaseContext);
+
+  // console.log(
+  //   "beds, baths, min, max",
+  //   selectedBedrooms,
+  //   selectedBathrooms,
+  //   minF,
+  //   maxF
+  // );
+
+  if (selectedBedrooms.length && !selectedBathrooms.length) {
+    const updatedProperties = [];
+    const updatedPrices = [];
+
+    // loop through selected bedrooms
+    for (const bedrooms of selectedBedrooms) {
+      // search prices chart for properties with that number of bedrooms
+      for (const price of prices) {
+        if (price.number_of_bedrooms === bedrooms) {
+          updatedPrices.push(price);
+
+          // this is to ensure that the same property won't get pushed multiple times
+          // (this returns "-1" if the property isn't already in our new array, which allows the next part to push that property)
+          const index = updatedProperties.findIndex(
+            (property) => property.id === price.property_id
+          );
+          if (index === -1) {
+            updatedProperties.push(
+              properties.filter(
+                (property) => property.id === price.property_id
+              )[0]
+            );
+          }
+        }
+      }
+    }
+    properties = updatedProperties;
+    prices = updatedPrices;
+  }
+
+  if (selectedBathrooms.length && !selectedBedrooms.length) {
+    const updatedProperties = [];
+    const updatedPrices = [];
+
+    // loop through selected bedrooms
+    for (const bathrooms of selectedBathrooms) {
+      // search prices chart for properties with that number of bedrooms
+      for (const price of prices) {
+        if (price.number_of_bathrooms === bathrooms) {
+          updatedPrices.push(price);
+
+          // this is to ensure that the same property won't get pushed multiple times
+          // (this returns "-1" if the property isn't already in our new array, which allows the next part to push that property)
+          const index = updatedProperties.findIndex(
+            (property) => property.id === price.property_id
+          );
+          if (index === -1) {
+            updatedProperties.push(
+              properties.filter(
+                (property) => property.id === price.property_id
+              )[0]
+            );
+          }
+        }
+      }
+    }
+    properties = updatedProperties;
+    prices = updatedPrices;
+  }
+
+  if (selectedBathrooms.length && selectedBedrooms.length) {
+    const updatedProperties = [];
+    const updatedPrices = [];
+
+    // loop through selected bedrooms and bathrooms
+    for (const bathrooms of selectedBathrooms) {
+      for (const bedrooms of selectedBedrooms) {
+        // search prices chart for properties with that number of bedrooms
+        for (const price of prices) {
+          if (
+            price.number_of_bathrooms === bathrooms &&
+            price.number_of_bedrooms === bedrooms
+          ) {
+            updatedPrices.push(price);
+
+            // this is to ensure that the same property won't get pushed multiple times
+            // (this returns "-1" if the property isn't already in our new array, which allows the next part to push that property)
+            const index = updatedProperties.findIndex(
+              (property) => property.id === price.property_id
+            );
+            if (index === -1) {
+              updatedProperties.push(
+                properties.filter(
+                  (property) => property.id === price.property_id
+                )[0]
+              );
+            }
+          }
+        }
+      }
+    }
+    properties = updatedProperties;
+    prices = updatedPrices;
+  }
+
+  // console.log("properties", properties);
+  // console.log("prices", prices);
 
   const getRentIncreaseAverages = (prices, properties) => {
-    const priceObject = {};
     const allIncreasesPerYear = {
       2014: [],
       2015: [],
@@ -29,35 +148,19 @@ const RentIncreaseChart = (props) => {
       2023: [],
     };
 
-    // Add an array to the priceObject, for each property. The key is that property's ID
-    for (const property of properties) {
-      priceObject[property.id] = [];
-    }
-
-    // Push the price data for each property into the correct array
-    for (const price of prices) {
-      priceObject[price.property_id].push(price);
-    }
-
-    // Loop through each property to get an integer for querying the priceObject object
-    for (let i = 1; i < properties.length + 1; i++) {
-      // Another loop for getting the index of the array inside of each priceObject index (priceObject is an object full of arrays)
-      for (let j = 1; j < priceObject[i].length; j++) {
-        // Compare the current year's price with last year's price, and push the difference as a percentage to the increasePerYear object
-        allIncreasesPerYear[priceObject[i][j].date.substring(0, 4)].push(
+    // Compare all prices to that of the year previous, and send the calculated rent increase to an allIncreasesPerYear object
+    for (let i = 1; i < prices.length; i++) {
+      if (prices[i].date.substring(0, 4) > prices[i - 1].date.substring(0, 4)) {
+        allIncreasesPerYear[prices[i].date.substring(0, 4)].push(
           Math.round(
-            ((parseInt(priceObject[i][j].price) -
-              parseInt(priceObject[i][j - 1].price)) /
-              parseInt(priceObject[i][j - 1].price)) *
+            ((parseInt(prices[i].price) - parseInt(prices[i - 1].price)) /
+              parseInt(prices[i - 1].price)) *
               100 *
               10
           ) / 10
         );
       }
     }
-
-    // now we have an allIncreasesPerYear object, that contains an array with the percentage increase for each property, for each year
-    // Loop through that data to get the average increase per year, and push that to our data array
 
     for (let i = 2015; i <= 2023; i++) {
       let sum = 0;
@@ -87,8 +190,6 @@ const RentIncreaseChart = (props) => {
   data[7].allowable_increase = 1.5;
   data[8].allowable_increase = 2.0;
 
-  // console.log(data);
-
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
@@ -102,23 +203,6 @@ const RentIncreaseChart = (props) => {
     }
     return null;
   };
-
-  // for (let i = 1; i < prices.length; i++) {
-  //   if (prices[i].admin_status === "approved") {
-  //     data.push({
-  //       date: prices[i].date.substring(0, 4),
-  //       increase:
-  //         Math.round(
-  //           ((parseInt(prices[i].price) - parseInt(prices[i - 1].price)) /
-  //             parseInt(prices[i - 1].price)) *
-  //             100 *
-  //             10
-  //         ) / 10,
-  //       increase_amount:
-  //         parseInt(prices[i].price) - parseInt(prices[i - 1].price),
-  //     });
-  //   }
-  // }
 
   return (
     <div>
