@@ -8,11 +8,12 @@ import {
   Tooltip,
 } from "recharts";
 import "./Charts.scss";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 
 const RentIncreaseChart = (props) => {
+  // const [data, setData] = [];
   const data = [];
   // const prices = props.prices;
   // const properties = props.properties;
@@ -25,7 +26,12 @@ const RentIncreaseChart = (props) => {
     state,
   } = useContext(MarkerFilterContext);
 
-  const { prices, properties } = useContext(DataBaseContext);
+  let { prices, properties } = useContext(DataBaseContext);
+
+  // console.log(
+  //   "findIndex",
+  //   properties.findIndex((property) => property.id === 225)
+  // );
 
   console.log(
     "beds, baths, min, max",
@@ -34,6 +40,41 @@ const RentIncreaseChart = (props) => {
     minF,
     maxF
   );
+
+  if (selectedBedrooms.length) {
+    const updatedProperties = [];
+    const updatedPrices = [];
+    // here you can check specific property for an object whether it exist in your array or not
+    // loop through selected bedrooms
+    for (const bedrooms of selectedBedrooms) {
+      // search prices chart for properties with that number of bedrooms
+      for (const price of prices) {
+        if (price.number_of_bedrooms === bedrooms) {
+          updatedPrices.push(price);
+
+          // this is to ensure that the same property won't get pushed multiple times
+          // (this returns "-1" if the property isn't already in our new array, which allows the next part to push that property)
+          const index = updatedProperties.findIndex(
+            (property) => property.id === price.property_id
+          );
+          if (index === -1) {
+            updatedProperties.push(
+              properties.filter(
+                (property) => property.id === price.property_id
+              )[0]
+            );
+          }
+        }
+      }
+    }
+    properties = updatedProperties;
+    prices = updatedPrices;
+  }
+
+  console.log("properties", properties);
+  console.log("prices", prices);
+
+  // properties = properties.filter((property) => word.length > 6);
 
   const getRentIncreaseAverages = (prices, properties) => {
     const priceObject = {};
@@ -54,6 +95,8 @@ const RentIncreaseChart = (props) => {
     for (const property of properties) {
       priceObject[property.id] = [];
     }
+
+    // console.log("priceOBJ", priceObject);
 
     // Push the price data for each property into the correct array
     for (const price of prices) {
