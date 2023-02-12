@@ -13,7 +13,8 @@ import "./ChartsPanel.scss";
 
 const ChartsPanel = () => {
   const { state } = useContext(MarkerFilterContext);
-  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+  const { users, setUsers, properties, setProperties, prices, setPrices } =
+    useContext(DataBaseContext);
 
   return (
     <Panel
@@ -84,14 +85,7 @@ const ChartsPanel = () => {
       {/* Chart showing the average rent increase percentage across all properties */}
       {!state.currentProperty.id && (
         <div className="RentChart">
-          {prices ? (
-            <AllPropertiesPercentChart
-              prices={prices}
-              properties={properties}
-            />
-          ) : (
-            <div>Loading...</div>
-          )}
+          {prices ? <AllPropertiesPercentChart /> : <div>Loading...</div>}
         </div>
       )}
     </Panel>

@@ -8,11 +8,32 @@ import {
   Tooltip,
 } from "recharts";
 import "./Charts.scss";
+import { useContext } from "react";
+import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 
 const RentIncreaseChart = (props) => {
   const data = [];
-  const prices = props.prices;
-  const properties = props.properties;
+  // const prices = props.prices;
+  // const properties = props.properties;
+  const {
+    selectedBedrooms,
+    selectedBathrooms,
+    handleClickMarker,
+    minF,
+    maxF,
+    state,
+  } = useContext(MarkerFilterContext);
+
+  const { prices, properties } = useContext(DataBaseContext);
+
+  console.log(
+    "beds, baths, min, max",
+    selectedBedrooms,
+    selectedBathrooms,
+    minF,
+    maxF
+  );
 
   const getRentIncreaseAverages = (prices, properties) => {
     const priceObject = {};
