@@ -91,6 +91,10 @@ const RentIncreaseChart = (props) => {
     return;
   };
 
+  if (data.length < 2) {
+    return <div>Not enough data</div>;
+  }
+
   // Multiplies the initial price by the average rent increase percentage, to compare
   // what it would be like if this property followed the market trend exactly
   const showPricesBasedOnAverages = () => {
