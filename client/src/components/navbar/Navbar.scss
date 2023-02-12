@@ -20,6 +20,18 @@ header {
   color: inherit;
 }
 
+header .p-button {
+  background-color: blue;
+}
+
+header .p-button:hover {
+  background-color: rgb(153, 163, 179);
+}
+
+.m-0 {
+  font-size: 1.2em;;
+}
+
 .menus {
   display: flex;
   align-items: center;
