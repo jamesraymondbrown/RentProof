@@ -16,34 +16,69 @@
   margin: 0.25em;
 }
 
-.home-right-property-table {
+.home-right-property-table-top {
   margin-top: 1em;
-  margin-bottom: 1em;
   margin-left: 0.25em;
   margin-right: 0.25em;
   border: 1px solid #88c2ee;
   border-bottom: none;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .home-right-property-table-bottom {
-  margin-top: 1em;
   margin-bottom: 1em;
   margin-left: 0.25em;
   margin-right: 0.25em;
   border: 1px solid #88c2ee;
-  border-bottom: none;
-  border-radius: 5px;
+  border-top: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
-.home-right-property-table thead tr th {
+.home-right-property-table-top thead tr th {
   color: #2d3138;
   width: 33%;
+  padding-top: 0.25em;
+}
+
+// #right-title {
+//   padding-right: 3.5em;
+// }
+
+// #right-text {
+//   padding-right: 4em;
+// }
+
+// #left-title {
+//   padding-left: 3.5em;
+// }
+
+// #left-text {
+//   padding-left: 4em;
+// }
+
+.home-right-property-table-bottom thead tr th {
+  color: #2d3138;
+  width: 33%;
+  padding-top: 0.5em;
 }
 
 .home-right-property-table tbody tr td {
   color: #2d3138;
   width: 33%;
+  padding-top: 0.25em;
+}
+
+.home-right-property-table-top tbody tr td {
+  color: #2d3138;
+  width: 33%;
+}
+
+.home-right-property-table-bottom tbody tr td {
+  color: #2d3138;
+  width: 33%;
+  padding-bottom: 0.25em;
 }
 
 .p-panel-header {

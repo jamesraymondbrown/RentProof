@@ -11,6 +11,8 @@ import {
   getCostFromPrices,
   getPhotoFromPrices,
   getSizeFromPrices,
+  getBedroomsFromPrices,
+  getBathroomsFromPrices,
 } from "./helpers/getDataFromPrices";
 
 const RentList = () => {
@@ -49,39 +51,42 @@ const RentList = () => {
 
       {state.currentProperty.id && (
         <React.Fragment>
-          <table className="home-right-property-table">
+          <table className="home-right-property-table-top">
             <thead>
               <tr>
                 <th>Address</th>
-                <th>Location</th>
-                <th>Size</th>
+                <th>City</th>
+                <th>Province</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{state.currentProperty.street_address}</td>
                 <td>{state.currentProperty.city}</td>
-                <td>
-                  {prices
-                    ? getSizeFromPrices(state.currentProperty, prices)
-                    : ""}{" "}
-                  ft&#178;
-                </td>
+                <td>{state.currentProperty.province}</td>
               </tr>
             </tbody>
           </table>
-          <table className="home-right-property-table">
+          <table className="home-right-property-table-bottom">
             <thead>
               <tr>
-                <th>Address</th>
-                <th>Location</th>
+                <th>Bedrooms</th>
+                <th>Bathrooms</th>
                 <th>Size</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{state.currentProperty.street_address}</td>
-                <td>{state.currentProperty.city}</td>
+                <td>
+                  {prices
+                    ? getBedroomsFromPrices(state.currentProperty, prices)
+                    : ""}{" "}
+                </td>
+                <td>
+                  {prices
+                    ? getBathroomsFromPrices(state.currentProperty, prices)
+                    : ""}{" "}
+                </td>
                 <td>
                   {prices
                     ? getSizeFromPrices(state.currentProperty, prices)
