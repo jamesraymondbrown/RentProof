@@ -40,7 +40,7 @@ const DocumentUpload = ({ files, setFiles, removeFile, setDocument }) => {
                         <i>
                             <FontAwesomeIcon icon={faPlus} />
                         </i>
-                        Upload
+                        Upload Document
                     </button>
                 </div>
 

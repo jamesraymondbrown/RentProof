@@ -40,7 +40,7 @@ const PhotoUpload = ({ files, setFiles, removeFile, setPhoto }) => {
                         <i>
                             <FontAwesomeIcon icon={faPlus} />
                         </i>
-                        Upload
+                        Upload Photo
                     </button>
                 </div>
 
