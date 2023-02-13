@@ -197,9 +197,7 @@ const AllPropertiesPriceChart = (props) => {
 
   return (
     <div>
-      <div className="chart-title">
-        Average rent increases across all properties:
-      </div>
+      <div className="chart-title">Average rent price:</div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
           data={data}

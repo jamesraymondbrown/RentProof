@@ -167,8 +167,8 @@ const RentIncreaseChart = (props) => {
       return (
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
-          <p className="tooltip-text">{`Price: $${payload[0].value}`}</p>
-          <p className="tooltip-text">{`Market-adjusted price: $${payload[1].value}`}</p>
+          <p className="tooltip-text blue">{`Actual price: $${payload[0].value}`}</p>
+          <p className="tooltip-text red">{`Market-adjusted price: $${payload[1].value}`}</p>
           {/* {console.log("load", payload)} */}
         </div>
       );
@@ -180,7 +180,9 @@ const RentIncreaseChart = (props) => {
 
   return (
     <div>
-      <div className="chart-title">Selected property price history:</div>
+      <div className="chart-title">
+        Property price vs average market increase:
+      </div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
           data={data}

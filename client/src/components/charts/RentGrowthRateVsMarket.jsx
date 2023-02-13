@@ -208,9 +208,7 @@ const RentGrowthRateVsMarket = (props) => {
 
   return (
     <div>
-      <div className="chart-title">
-        Cumulative rent difference difference vs market:
-      </div>
+      <div className="chart-title">Cumulative rent difference vs market:</div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
           data={data}
