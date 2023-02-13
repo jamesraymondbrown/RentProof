@@ -19,7 +19,7 @@ const ChartsPanel = () => {
 
   return (
     <Panel
-      header="Price Charts"
+      header="Price Info"
       righticon="pi pi-times"
       toggleable
       style={{ color: "#59B9F8" }}
