@@ -28,8 +28,9 @@ const Login = () => {
         ReactSession.set("id", userObject.id);
         ReactSession.set("role", userObject.role);
         ReactSession.set("name", userObject.name);
+        setUsers(prev => [...prev])
         history.push('/')
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => {
         console.log(error.response.data.message);

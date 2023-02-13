@@ -57,6 +57,9 @@ const AddProperty = () => {
     setProvince('')
     setCity('')
     setAddress('')
+    setTimeout(() => {
+      setMessage('Awaiting Submission ...')
+    }, 1500);
   }
 
   return (

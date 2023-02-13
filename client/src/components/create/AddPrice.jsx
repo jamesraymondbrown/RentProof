@@ -5,7 +5,10 @@ import { useHistory } from "react-router-dom";
 import { ReactSession } from "react-client-session";
 import { PropertyIdContext } from "../../providers/PropertyIdProvider";
 import "./AddPrice.scss";
-import UploadPhoto from "./UploadPhoto";
+import PhotoUpload from "./PhotoUpload";
+import PhotoList from "./PhotoList";
+import DocumentUpload from "./DocumentUpload";
+import DocumentList from "./DocumentList";
 
 const AddPrice = () => {
   const { users, setUsers, properties, setProperties, prices, setPrices } =
@@ -20,18 +23,33 @@ const AddPrice = () => {
   const [bedrooms, setBedrooms] = useState("");
   const [bathrooms, setBathrooms] = useState("");
 
+  const [photo, setPhoto] = useState("");
+  const [document, setDocument] = useState("");
+
+  const [photoFiles, setPhotoFiles] = useState([]);
+  const [documentFiles, setDocumentFiles] = useState([]);
+
+  const removePhoto = (filename) => {
+    setPhotoFiles(photoFiles.filter((file) => file.name !== filename));
+  };
+
+  const removeDocument = (filename) => {
+    setDocumentFiles(documentFiles.filter((file) => file.name !== filename));
+  };
+
   const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const user = ReactSession.get("id");
-    console.log(user);
 
     const price = {
       property: id,
       user: user,
       price: cost,
+      document: document,
+      photo: photo,
       property_type: type,
       square_footage: size,
       number_of_bedrooms: bedrooms,
@@ -56,6 +74,8 @@ const AddPrice = () => {
     setSize("");
     setBedrooms("");
     setBathrooms("");
+    setPhoto("");
+    setDocument("");
   };
 
   return (
@@ -90,6 +110,16 @@ const AddPrice = () => {
                 required
                 value={type}
                 onChange={(event) => setType(event.target.value)}
+              />
+            </div>
+            <div className="inputfield">
+              <label>Photo</label>
+              <input
+                type="text"
+                className="input"
+                required
+                value={photo}
+                readOnly
               />
             </div>
           </div>
@@ -127,18 +157,16 @@ const AddPrice = () => {
                 onChange={(event) => setBathrooms(event.target.value)}
               />
             </div>
-          </div>
-        </div>
-        <div className="inputfield">
-          <label>Photo</label>
-          <div className="upload">
-            <UploadPhoto />
-          </div>
-        </div>
-        <div className="inputfield">
-          <label>Documents</label>
-          <div className="upload">
-            <UploadPhoto />
+            <div className="inputfield">
+              <label>Document</label>
+              <input
+                type="text"
+                className="input"
+                required
+                value={document}
+                readOnly
+              />
+            </div>
           </div>
         </div>
         <div className="inputfield">
@@ -148,6 +176,34 @@ const AddPrice = () => {
             className="btn"
             onClick={handleSubmit}
           />
+        </div>
+        <div className="upload-row">
+          <div>
+            <PhotoUpload
+              files={photoFiles}
+              setFiles={setPhotoFiles}
+              removeFile={removePhoto}
+              setPhoto={setPhoto}
+            />
+            <PhotoList
+              files={photoFiles}
+              removeFile={removePhoto}
+              setPhoto={setPhoto}
+            />
+          </div>
+          <div>
+            <DocumentUpload
+              files={documentFiles}
+              setFiles={setDocumentFiles}
+              removeFile={removeDocument}
+              setDocument={setDocument}
+            />
+            <DocumentList
+              files={documentFiles}
+              removeFile={removeDocument}
+              setDocument={setDocument}
+            />
+          </div>
         </div>
       </div>
     </div>

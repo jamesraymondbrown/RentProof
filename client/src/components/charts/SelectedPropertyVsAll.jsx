@@ -91,6 +91,10 @@ const RentIncreaseChart = (props) => {
     return;
   };
 
+  if (data.length < 2) {
+    return <div>Not enough data</div>;
+  }
+
   // Multiplies the initial price by the average rent increase percentage, to compare
   // what it would be like if this property followed the market trend exactly
   const showPricesBasedOnAverages = () => {
@@ -98,55 +102,55 @@ const RentIncreaseChart = (props) => {
       if (data[i].date === 2014) {
         data[i].compare_at_price = data[i].price;
       }
-      if (data[i].date === 2015) {
+      if (data[i].date === 2015 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2015] / 100)
         );
       }
-      if (data[i].date === 2016) {
+      if (data[i].date === 2016 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2016] / 100)
         );
       }
-      if (data[i].date === 2017) {
+      if (data[i].date === 2017 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2017] / 100)
         );
       }
-      if (data[i].date === 2018) {
+      if (data[i].date === 2018 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2018] / 100)
         );
       }
-      if (data[i].date === 2019) {
+      if (data[i].date === 2019 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2019] / 100)
         );
       }
-      if (data[i].date === 2020) {
+      if (data[i].date === 2020 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2020] / 100)
         );
       }
-      if (data[i].date === 2021) {
+      if (data[i].date === 2021 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2021] / 100)
         );
       }
-      if (data[i].date === 2022) {
+      if (data[i].date === 2022 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2022] / 100)
         );
       }
-      if (data[i].date === 2023) {
+      if (data[i].date === 2023 && data[i - 1] !== undefined) {
         data[i].compare_at_price = Math.round(
           data[i - 1].compare_at_price +
             data[i - 1].compare_at_price * (averageIncreasePerYear[2023] / 100)

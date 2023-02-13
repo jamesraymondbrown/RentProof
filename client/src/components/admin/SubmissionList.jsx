@@ -8,7 +8,6 @@ import "primereact/resources/primereact.min.css"
 import { FilterMatchMode } from "primereact/api"
 import { InputText } from "primereact/inputtext"
 import { Button } from "primereact/button"
-import { Image } from 'primereact/image';
 
 export default function SubmissionList() {
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
@@ -67,25 +66,26 @@ export default function SubmissionList() {
   prices && (pending = prices.filter(price => price.admin_status === 'pending'));
 
   let pendingList
-
   pending && (pendingList = pending.map((submission) => {
+    const photoURL = `http://localhost:8001/files/photos/${submission.photo}`
+    const documentURL = `http://localhost:8001/files/documents/${submission.documentation}` 
     return {
       id: submission.id,
-      photo: <Image src={submission.photo} alt="Image" width='200px' />,
+      photo: <a target="_blank" href={photoURL} ><img src={photoURL} alt="Image" id="pending-img" width='120px' height='90px' /></a>,
       address: getPropertyByPriceId(submission).street_address,
       city: getPropertyByPriceId(submission).city,
       province: getPropertyByPriceId(submission).province,
-      latitude: getPropertyByPriceId(submission).latitude,
-      longitude: getPropertyByPriceId(submission).longitude,
       price: submission.price,
-      size: submission.square_footage,
-      documentation: <Image src='https://as2.ftcdn.net/v2/jpg/03/21/02/09/1000_F_321020933_0dGobZ034LYo24osGbaWCAggGSGYUOjK.jpg' alt="Image" width='120px' />,
+      documentation: <form method="GET" target="_blank" action={documentURL}>
+                        <button type="submit" className="btn" id="document-btn"><i className="fa fa-folder"></i>Document</button>
+                      </form>,
       user: getUserByPriceId(submission).name,
       status: submission.admin_status,
       approve: <Button label="Approve" className="p-button-success" onClick={() => handleApprove(submission.id)} />,
       reject: <Button label="Reject" className="p-button-danger" onClick={() => handleReject(submission.id)} />
     }  
-  })  
+  })
+    .reverse()  
   )
   return (
     <div>
@@ -106,10 +106,7 @@ export default function SubmissionList() {
         <Column sortable field="address" header="Address" />
         <Column sortable field="city" header="City" />
         <Column sortable field="province" header="Province" />
-        <Column sortable field="latitude" header="Latitude" />
-        <Column sortable field="longitude" header="Longitude" />
         <Column sortable field="price" header="Price" />
-        <Column sortable field="size" header="Size" />
         <Column field="documentation" header="Documentation" />
         <Column sortable field="user" header="User" />
         <Column className="status" field="status" header="Status" />

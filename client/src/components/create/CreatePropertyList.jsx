@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 import { PropertyIdContext } from "../../providers/PropertyIdProvider";
-import { DataTable } from "primereact/datatable"
-import { Column } from "primereact/column"
-import "primereact/resources/themes/lara-light-indigo/theme.css"
-import "primereact/resources/primereact.min.css"
-import { FilterMatchMode } from "primereact/api"
-import { InputText } from "primereact/inputtext"
-import { Button } from "primereact/button"
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import { FilterMatchMode } from "primereact/api";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
 import { useHistory } from "react-router-dom";
-import './CreatePropertyList.scss'
+import "./CreatePropertyList.scss";
 
 export default function PropertyList() {
 
@@ -18,44 +18,57 @@ export default function PropertyList() {
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
   const { updateId, setUpdateId } = useContext(PropertyIdContext);
 
-  console.log("Properties", properties)
-  
   const history = useHistory()
 
   const [filters, setFilters] = useState({
-    global: {value: null, matchMode: FilterMatchMode.CONTAINS}
-  })
+    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+  });
 
   const update = (id) => {
-    console.log("User Clicked Update")
-    setUpdateId(id)
-    history.push('/create/update')
-  }
-  
-  let tableProperties
-  properties && (tableProperties = properties.map((property) => {
-    return {
-      id: property.id,
-      address: property.street_address,
-      city: property.city,
-      province: property.province,
-      update: <Button label="Update" className="p-button-primary" onClick={() => update(property.id)} />,
-    }  
-  }))
-  
+    console.log("User Clicked Update");
+    setUpdateId(id);
+    history.push("/create/update");
+  };
+
+  let tableProperties;
+  properties &&
+    (tableProperties = properties.map((property) => {
+      return {
+        id: property.id,
+        address: property.street_address,
+        city: property.city,
+        province: property.province,
+        update: (
+          <Button
+            label="Update"
+            className="p-button-primary"
+            onClick={() => update(property.id)}
+          />
+        ),
+      };
+    }));
+
   return (
     <div>
       <InputText
         placeholder="Search"
         onInput={(e) =>
           setFilters({
-            global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
-        })}
+            global: {
+              value: e.target.value,
+              matchMode: FilterMatchMode.CONTAINS,
+            },
+          })
+        }
       />
-      <DataTable value={tableProperties} header="Find Your Property" sortMode="multiple" filters={filters}
+      <DataTable
+        value={tableProperties}
+        header="Find Your Property"
+        sortMode="multiple"
+        filters={filters}
         paginator
-        rows={6}
-        rowsPerPageOptions={[2,4,6]}
+        rows={5}
+        rowsPerPageOptions={[1,2,3,4,5]}
       >
         <Column sortable field="id" header="Id" />
         <Column sortable field="address" header="Address" />
@@ -66,6 +79,3 @@ export default function PropertyList() {
     </div>
   );
 }
-
-
-

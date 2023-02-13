@@ -15,11 +15,21 @@ export default function AdminPropertyList() {
   console.log("Ran Admin Property List")
   
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
-  console.log("Properties", properties)
   
   const [filters, setFilters] = useState({
     global: {value: null, matchMode: FilterMatchMode.CONTAINS}
   })
+
+  const deletePricesForProperty = (property) => {
+  return prices
+    .filter(price => {
+      return price.property_id !== property.id
+    })
+    // .reverse()
+    .map(price => {
+      return price
+    })
+}
 
   const handleDelete = (id) => {
     console.log("Clicked Delete")
@@ -30,6 +40,8 @@ export default function AdminPropertyList() {
         const newProperties = [...properties]
         newProperties.splice(index, 1)
         setProperties(newProperties)
+        const newPrices = deletePricesForProperty(response.data)
+        setPrices(newPrices)
       })
       .catch((error) => {
         console.log(error);
@@ -58,8 +70,8 @@ export default function AdminPropertyList() {
       />
       <DataTable value={tableProperties} header="Manage Properties" sortMode="multiple" filters={filters}
         paginator
-        rows={6}
-        rowsPerPageOptions={[2,4,6]}
+        rows={5}
+        rowsPerPageOptions={[1,2,3,4,5]}
       >
         <Column sortable field="id" header="Id" />
         <Column sortable field="address" header="Address" />

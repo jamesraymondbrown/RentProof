@@ -12,7 +12,7 @@ import { useState, useContext } from "react";
 import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 
-const AllPropertiesPercentChart = (props) => {
+const AllPropertiesPriceChart = (props) => {
   // const [data, setData] = [];
   const data = [];
   // const prices = props.prices;
@@ -262,4 +262,4 @@ const AllPropertiesPercentChart = (props) => {
   );
 };
 
-export default AllPropertiesPercentChart;
+export default AllPropertiesPriceChart;

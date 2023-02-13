@@ -32,12 +32,14 @@ router.post('/', (req, res) => {
   const property = req.body.property
   const user = req.body.user
   const price = req.body.price
+  const document = req.body.document
+  const photo = req.body.photo
   const property_type = req.body.property_type
   const square_footage = req.body.square_footage
   const number_of_bedrooms = req.body.number_of_bedrooms
   const number_of_bathrooms = req.body.number_of_bathrooms
 
-  priceQueries.addPrice(property, user, price, property_type, square_footage, number_of_bedrooms, number_of_bathrooms)
+  priceQueries.addPrice(property, user, price, document, photo, property_type, square_footage, number_of_bedrooms, number_of_bathrooms)
     .then((response) => {
       console.log('Price Added:', response)
       res.send(response)

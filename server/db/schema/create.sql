@@ -27,7 +27,7 @@ CREATE TABLE prices (
   date DATE NOT NULL,
   price NUMERIC NOT NULL,
   documentation VARCHAR(255) NOT NULL,
-  photo VARCHAR(255),
+  photo VARCHAR(255) NOT NULL,
   property_type VARCHAR(255) NOT NULL,
   square_footage INTEGER NOT NULL,
   number_of_bedrooms INTEGER NOT NULL,

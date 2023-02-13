@@ -49,7 +49,7 @@ export let menuItems = [
   },
   {
     title: 'Logout',
-    url: '/logout',
+    url: '/login',
     admin: false,
     session: true
   }
