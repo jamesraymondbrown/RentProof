@@ -195,7 +195,7 @@ const AllPropertiesPercentChart = (props) => {
       return (
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
-          <p className="tooltip-text">{`Average increase percentage: ${payload[0].value}%`}</p>
+          <p className="tooltip-text">{`Average increase: ${payload[0].value}%`}</p>
           <p className="tooltip-text">{`Allowable increase for existing leases: ${payload[1].value}%`}</p>
           {/* {console.log("load", payload)} */}
         </div>

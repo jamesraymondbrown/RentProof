@@ -10,7 +10,7 @@ import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import {
   getCostFromPrices,
   getPhotoFromPrices,
-  getSizeFromPrices
+  getSizeFromPrices,
 } from "./helpers/getDataFromPrices";
 
 const RentList = () => {
@@ -48,24 +48,50 @@ const RentList = () => {
       )}
 
       {state.currentProperty.id && (
-        <table className="home-right-property-table">
-          <thead>
-            <tr>
-              <th>Address</th>
-              <th>Location</th>
-              <th>Size</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{state.currentProperty.street_address}</td>
-              <td>{state.currentProperty.city}</td>
-              <td>
-                {prices ? getSizeFromPrices(state.currentProperty, prices) : ""} ft&#178;
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <React.Fragment>
+          <table className="home-right-property-table">
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Location</th>
+                <th>Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{state.currentProperty.street_address}</td>
+                <td>{state.currentProperty.city}</td>
+                <td>
+                  {prices
+                    ? getSizeFromPrices(state.currentProperty, prices)
+                    : ""}{" "}
+                  ft&#178;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table className="home-right-property-table">
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Location</th>
+                <th>Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{state.currentProperty.street_address}</td>
+                <td>{state.currentProperty.city}</td>
+                <td>
+                  {prices
+                    ? getSizeFromPrices(state.currentProperty, prices)
+                    : ""}{" "}
+                  ft&#178;
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </React.Fragment>
       )}
 
       <ChartsPanel />
