@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { DataBaseContext } from "../../providers/DataBaseProvider";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
@@ -8,13 +7,15 @@ import {
   getBathroomsFromPrices,
   getCostFromPrices
 } from "../helpers/getDataFromPrices"
+import { DataBaseContext } from "../../providers/DataBaseProvider"
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
-  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+  const { users, setUsers, properties, setProperties, prices, setPrices } =
+    useContext(DataBaseContext);
  
   let markers = [];
 
