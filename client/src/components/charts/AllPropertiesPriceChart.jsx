@@ -134,8 +134,8 @@ const AllPropertiesPriceChart = (props) => {
   // console.log("properties", properties);
   // console.log("prices", prices);
 
-  const getRentIncreaseAverages = (prices, properties) => {
-    const allIncreasesPerYear = {
+  const getAveragePrices = (prices, properties) => {
+    const allPricesPerYear = {
       2014: [],
       2015: [],
       2016: [],
@@ -150,59 +150,50 @@ const AllPropertiesPriceChart = (props) => {
 
     // Compare all prices to that of the year previous, and send the calculated rent increase to an allIncreasesPerYear object
     for (let i = 1; i < prices.length; i++) {
-      if (prices[i].date.substring(0, 4) > prices[i - 1].date.substring(0, 4)) {
-        allIncreasesPerYear[prices[i].date.substring(0, 4)].push(
-          Math.round(
-            ((parseInt(prices[i].price) - parseInt(prices[i - 1].price)) /
-              parseInt(prices[i - 1].price)) *
-              100 *
-              10
-          ) / 10
-        );
-      }
+      allPricesPerYear[prices[i].date.substring(0, 4)].push(prices[i]);
+      // if (prices[i].date.substring(0, 4) > prices[i - 1].date.substring(0, 4)) {
+      //   (
+      //     Math.round(
+      //       ((parseInt(prices[i].price) - parseInt(prices[i - 1].price)) /
+      //         parseInt(prices[i - 1].price)) *
+      //         100 *
+      //         10
+      //     ) / 10
+      //   );
+      // }
     }
 
-    for (let i = 2015; i <= 2023; i++) {
+    for (let i = 2014; i <= 2023; i++) {
       let sum = 0;
-      for (const indexValue of allIncreasesPerYear[i]) {
-        sum += indexValue;
+      for (const indexValue of allPricesPerYear[i]) {
+        sum += parseInt(indexValue.price);
       }
       data.push({
         date: i,
-        increase: Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100,
+        Price:
+          Math.ceil(Math.round(sum / allPricesPerYear[i].length) / 10) * 10,
       });
     }
 
     return;
   };
 
-  getRentIncreaseAverages(prices, properties);
-
-  // Adding allowable increase amounts to our data array, based on this source:
-  // https://www2.gov.bc.ca/gov/content/housing-tenancy/residential-tenancies/during-a-tenancy/rent-increases
-  data[0].allowable_increase = 2.5;
-  data[1].allowable_increase = 2.9;
-  data[2].allowable_increase = 3.7;
-  data[3].allowable_increase = 4.0;
-  data[4].allowable_increase = 2.5;
-  data[5].allowable_increase = 2.6;
-  data[6].allowable_increase = 0.0;
-  data[7].allowable_increase = 1.5;
-  data[8].allowable_increase = 2.0;
+  getAveragePrices(prices, properties);
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
-          <p className="tooltip-text">{`Average increase percentage: ${payload[0].value}%`}</p>
-          <p className="tooltip-text">{`Allowable increase for existing leases: ${payload[1].value}%`}</p>
+          <p className="tooltip-text">{`Average rent price: $${payload[0].value}`}</p>
           {/* {console.log("load", payload)} */}
         </div>
       );
     }
     return null;
   };
+
+  console.log("dataLog", data);
 
   return (
     <div>
@@ -221,23 +212,18 @@ const AllPropertiesPriceChart = (props) => {
             </linearGradient>
           </defs>
 
-          <Area dataKey="increase" stroke="#D0312D" fill="#DEDEDE" />
-          <Area
-            dataKey="allowable_increase"
-            stroke="#5AB8F8"
-            fill="url(#color)"
-          />
+          <Area dataKey="Price" stroke="#5AB8F8" fill="url(#color)" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
           <XAxis
             dataKey="date"
             // ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
           />
           <YAxis
-            dataKey="increase"
-            domain={[0, 15]}
+            dataKey="Price"
+            domain={[500, 6000]}
             tickCount={6}
-            ticks={[3, 6, 9, 12, 15]}
-            tickFormatter={(increase) => `${increase}%`}
+            // ticks={[3, 6, 9, 12, 15]}
+            tickFormatter={(price) => `$${price}`}
           />
           <Tooltip
             content={<CustomTooltip />}
