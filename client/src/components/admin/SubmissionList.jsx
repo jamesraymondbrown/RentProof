@@ -71,7 +71,7 @@ export default function SubmissionList() {
   pending && (pendingList = pending.map((submission) => {
     return {
       id: submission.id,
-      photo: <Image src={submission.photo} alt="Image" width='200px' />,
+      photo: <Image src={submission.photo} alt="Image" width='120px' />,
       address: getPropertyByPriceId(submission).street_address,
       city: getPropertyByPriceId(submission).city,
       province: getPropertyByPriceId(submission).province,
@@ -85,7 +85,8 @@ export default function SubmissionList() {
       approve: <Button label="Approve" className="p-button-success" onClick={() => handleApprove(submission.id)} />,
       reject: <Button label="Reject" className="p-button-danger" onClick={() => handleReject(submission.id)} />
     }  
-  })  
+  })
+    .reverse()  
   )
   return (
     <div>
@@ -98,8 +99,8 @@ export default function SubmissionList() {
       />
       <DataTable value={pendingList} header="Pending Prices" sortMode="multiple" filters={filters}
         paginator
-        rows={3}
-        rowsPerPageOptions={[1,2,3]}
+        rows={4}
+        rowsPerPageOptions={[1,2,3,4]}
       >
         <Column field="photo" header="Photo" />
         <Column sortable field="id" header="Id" />

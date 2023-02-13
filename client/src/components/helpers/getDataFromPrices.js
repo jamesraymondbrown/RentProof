@@ -31,6 +31,18 @@ const getCostFromPrices = (property, prices) => {
   return cost;
 };
 
+const getSizeFromPrices = (property, prices) => {
+  let size = "";
+  for (let price of prices) {
+    if (price.property_id === property.id) {
+      // console.log(price.photo);
+      size = price.square_footage;
+      return size;
+    }
+  }
+  return size;
+};
+
 // const lastIndex = prices.map(price =>
 //   price.property_id === currentShape).lastIndexOf(true);
 
@@ -70,4 +82,5 @@ module.exports = {
   getBedroomsFromPrices,
   getBathroomsFromPrices,
   getPriceHistory,
+  getSizeFromPrices
 };

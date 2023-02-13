@@ -10,6 +10,7 @@ import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import {
   getCostFromPrices,
   getPhotoFromPrices,
+  getSizeFromPrices
 } from "./helpers/getDataFromPrices";
 
 const RentList = () => {
@@ -42,41 +43,25 @@ const RentList = () => {
             <div className="price">
               ${prices ? getCostFromPrices(state.currentProperty, prices) : ""}
             </div>
-            <div className="divider"></div>
-          </div>
-          <div className="col BubbleDetail_colAddress__37E3b">
-            <h1 className="name">
-              <a href="#0">Kingston Tower</a>
-            </h1>
-            <a className="undername" href="#0">
-              {state.currentProperty.street_address},{" "}
-            </a>
-            <a
-              className="BubbleDetail_cityState__1JOOk"
-              href="/apartments/calgary-ab"
-            >
-              Calgary
-            </a>
           </div>
         </div>
       )}
 
       {state.currentProperty.id && (
-        <table>
+        <table className="home-right-property-table">
           <thead>
             <tr>
-              <th>Property Name</th>
+              <th>Address</th>
               <th>Location</th>
-              <th>Price</th>
+              <th>Size</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>{state.currentProperty.street_address}</td>
-              <td>{state.currentProperty.street_address}</td>
+              <td>{state.currentProperty.city}</td>
               <td>
-                $
-                {prices ? getCostFromPrices(state.currentProperty, prices) : ""}
+                {prices ? getSizeFromPrices(state.currentProperty, prices) : ""} ft&#178;
               </td>
             </tr>
           </tbody>
