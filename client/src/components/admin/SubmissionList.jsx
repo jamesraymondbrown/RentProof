@@ -66,16 +66,17 @@ export default function SubmissionList() {
   prices && (pending = prices.filter(price => price.admin_status === 'pending'));
 
   let pendingList
-
   pending && (pendingList = pending.map((submission) => {
+    const photoURL = `http://localhost:8001/files/photos/${submission.photo}`
+    const documentURL = `http://localhost:8001/files/documents/${submission.documentation}` 
     return {
       id: submission.id,
-      photo: <a target="_blank" href="http://localhost:8001/files/photos/pexels-thgusstavo-santana-2102587.jpg" ><img src={submission.photo} alt="Image" id="pending-img" width='120px' height='90px' /></a>,
+      photo: <a target="_blank" href={photoURL} ><img src={photoURL} alt="Image" id="pending-img" width='120px' height='90px' /></a>,
       address: getPropertyByPriceId(submission).street_address,
       city: getPropertyByPriceId(submission).city,
       province: getPropertyByPriceId(submission).province,
       price: submission.price,
-      documentation:  <form method="GET" target="_blank" action="http://localhost:8001/files/documents/rtb1_chrome.pdf">
+      documentation: <form method="GET" target="_blank" action={documentURL}>
                         <button type="submit" className="btn" id="document-btn"><i className="fa fa-folder"></i>Document</button>
                       </form>,
       user: getUserByPriceId(submission).name,

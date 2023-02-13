@@ -48,6 +48,8 @@ const AddPrice = () => {
       property: id,
       user: user,
       price: cost,
+      document: document,
+      photo: photo,
       property_type: type,
       square_footage: size,
       number_of_bedrooms: bedrooms,
@@ -72,8 +74,6 @@ const AddPrice = () => {
     setSize("");
     setBedrooms("");
     setBathrooms("");
-    setPhoto("");
-    setDocument("");
   };
 
   return (
@@ -117,7 +117,7 @@ const AddPrice = () => {
                 className="input"
                 required
                 value={photo}
-                readOnly
+                onChange={(event) => setPhoto(event.target.value)}
               />
             </div>
           </div>
@@ -162,7 +162,7 @@ const AddPrice = () => {
                 className="input"
                 required
                 value={document}
-                readOnly
+                onChange={(event) => setDocument(event.target.value)}
               />
             </div>
           </div>
