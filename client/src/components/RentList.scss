@@ -1,9 +1,12 @@
+.home-right {
+  border-left: 2px solid #88c2ee !important;
+  border-right: 2px solid #88c2ee !important;
+}
+
 .RentList {
   display: flex;
   flex-direction: column;
   background-color: rgb(235, 247, 251);
-  border-left: 2px solid #88c2ee;
-  border-right: 2px solid #88c2ee;
   height: 90vh;
 }
 
