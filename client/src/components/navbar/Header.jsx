@@ -13,9 +13,9 @@ const Header = () => {
       <div className="nav-area">
         <div className="title-subtitle">
           <Link to="/" id="logo">
-            Rent Tracker
+            RentProof
           </Link>
-          <h3 id="logo-subtitle">Why? Because the rent is too damn high!</h3>
+          {/* <h3 id="logo-subtitle">Why? Because the rent is too damn high!</h3> */}
         </div>
         <Button
           label="Site Info"
