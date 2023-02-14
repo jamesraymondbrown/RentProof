@@ -54,6 +54,8 @@ export default function MapDisplay(props) {
           label={getCostFromPrices(property, prices)}
           bedrooms={getBedroomsFromPrices(property, prices)}
           bathrooms={getBathroomsFromPrices(property, prices)}
+          properties={properties}
+          prices={prices}
         />
       );
     });
