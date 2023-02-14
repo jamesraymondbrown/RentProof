@@ -229,7 +229,7 @@ const RentGrowthRateVsMarket = (props) => {
     return <div>Not enough data</div>;
   }
 
-  console.log("dataLogLog", data);
+  console.log("dataLogLog", data[data.length - 1].price_difference_percentage);
 
   return (
     <div>
