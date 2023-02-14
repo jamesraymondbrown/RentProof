@@ -11,7 +11,6 @@ const GoogleMapMarker = lazy(() =>
 
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   const [isHovered, setIsHovered] = useState(false);
-
   const {
     selectedBedrooms,
     selectedBathrooms,
@@ -20,8 +19,6 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
     maxF,
     state,
   } = useContext(MarkerFilterContext);
-
-
 
 function percentageToHexColor(percentage, lightness = 0, saturation = 100) {
   let R, G, B;
@@ -116,7 +113,7 @@ function darken(hex, amount) {
       fillColor: isGray ? greycolor : color,
       fillOpacity: 1,
       strokeColor: isGray ? "#808080" : darkColor,
-      strokeWeight: isHovered ? 2 : 1,
+      strokeWeight: isHovered ? 3 : 1,
       scale: isHovered ? 1.3 : 1,
       anchor: new Point(13, 32),
     };
