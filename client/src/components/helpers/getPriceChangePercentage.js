@@ -1,19 +1,12 @@
-import {
-  ResponsiveContainer,
-  AreaChart,
-  Area,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-} from "recharts";
-import "./Charts.scss";
+import { useContext } from "react";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
+import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
+import { getPriceHistory } from "../helpers/getDataFromPrices";
 
-const RentIncreaseChart = (props) => {
+const getPriceChangePercentage = (currentProperty) => {
   const data = [];
-  const prices = props.prices;
-  const properties = props.properties;
-  const currentPropertyPrices = props.currentPropertyPrices;
+  const { prices, properties } = useContext(DataBaseContext);
+  const currentPropertyPrices = getPriceHistory(currentProperty.id, prices);
   const averageIncreasePerYear = {
     2015: [],
     2016: [],
@@ -26,16 +19,19 @@ const RentIncreaseChart = (props) => {
     2023: [],
   };
 
-  for (let price of currentPropertyPrices) {
-    if (price.admin_status === "approved") {
-      data.push({
-        date: parseInt(price.date.substring(0, 4)),
-        price: parseInt(price.price),
-      });
+  const addPricesToData = () => {
+    for (let price of currentPropertyPrices) {
+      if (price.admin_status === "approved") {
+        data.push({
+          date: parseInt(price.date.substring(0, 4)),
+          price: parseInt(price.price),
+        });
+      }
     }
-  }
+    getRentIncreaseAverages(prices, properties, data);
+  };
 
-  const getRentIncreaseAverages = (prices, properties) => {
+  const getRentIncreaseAverages = (prices, properties, data) => {
     const priceObject = {};
     const allIncreasesPerYear = {
       2014: [],
@@ -80,7 +76,7 @@ const RentIncreaseChart = (props) => {
       }
     }
 
-    // Now we have an allIncreasesPerYear object, that contains an array with the percentage increase for each property, for each year
+    // now we have an allIncreasesPerYear object, that contains an array with the percentage increase for each property, for each year
     // Loop through that data to get the average increase per year, and push that to our data array
     for (let i = 2015; i <= 2023; i++) {
       let sum = 0;
@@ -90,13 +86,10 @@ const RentIncreaseChart = (props) => {
       averageIncreasePerYear[i] =
         Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100;
     }
-
-    // console.log("averageIncrease", averageIncreasePerYear);
-
-    return;
+    showPricesBasedOnAverages();
   };
 
-  // Multiplies the initial price by the average rent increase percentage, to compare
+  // Multiplies the initial property price by the average rent increase percentage, to compare
   // what it would be like if this property followed the market trend exactly
   const showPricesBasedOnAverages = () => {
     for (let i = 0; i < data.length; i++) {
@@ -158,75 +151,26 @@ const RentIncreaseChart = (props) => {
         );
       }
     }
+    percentIncreaseVsMarketAverage();
   };
 
-  getRentIncreaseAverages(prices, properties);
-  showPricesBasedOnAverages();
+  // convert the price difference into a percentage, comparing how much higher or lower the current
+  // property's price is vs market trends. Above 0 is above market value, below 0 is below market
+  // value. So below 0 means you're getting a better deal
 
-  // console.log("data", data);
-
-  for (const dat of data) {
-    if (dat.compare_at_price === NaN) {
-      console.log("dat", dat);
+  const percentIncreaseVsMarketAverage = () => {
+    for (const d of data) {
+      d.price_difference_percentage =
+        Math.round((d.price / d.compare_at_price - 1) * 100 * 10) / 10;
     }
-  }
-
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active && data[0].compare_at_price && payload.length > 1) {
-      return (
-        <div className="custom-tooltip">
-          <p className="label tooltip-text">{`Year: ${label}`}</p>
-          <p className="tooltip-text blue">{`Actual price: $${payload[0].value}`}</p>
-          <p className="tooltip-text red">{`Market-adjusted price: $${payload[1].value}`}</p>
-          {console.log("load", payload)}
-        </div>
-      );
-    }
-    return null;
   };
 
-  // console.log("data", data[0].compare_at_price);
+  // Call function to populate the data
+  addPricesToData();
 
-  return data.length < 3 ? (
-    <div>Not enough data</div>
-  ) : (
-    <div>
-      <div className="chart-title">
-        Property price vs average market increase:
-      </div>
-      <ResponsiveContainer width="100%" height={300}>
-        <AreaChart
-          data={data}
-          margin={{ top: 5, right: 20, bottom: 5, left: 0 }}
-        >
-          <defs>
-            <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#5AB8F8" stopOpacity={0.75} />
-              <stop offset="75%" stopColor="#5AB8F8" stopOpacity={0.2} />
-            </linearGradient>
-          </defs>
+  // console.log("dataLogLog", data[data.length - 1].price_difference_percentage);
 
-          <Area dataKey="price" stroke="#5AB8F8" fill="url(#color)" />
-          <Area dataKey="compare_at_price" stroke="red" fill="#DEDEDE" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
-          <XAxis dataKey="date" />
-          <YAxis
-            dataKey="price"
-            domain={[
-              parseInt(data[0].price) - 500,
-              parseInt(data[data.length - 1].price) + 200,
-            ]}
-            tickCount={6}
-            tickFormatter={(price) => `$${price}`}
-          />
-          <Tooltip
-            content={<CustomTooltip />}
-            wrapperStyle={{ outline: "none" }}
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
-  );
+  return <div>{data[data.length - 1].price_difference_percentage}</div>;
 };
 
-export default RentIncreaseChart;
+module.exports = getPriceChangePercentage();

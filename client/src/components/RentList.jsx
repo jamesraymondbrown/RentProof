@@ -16,6 +16,7 @@ import {
   getBathroomsFromPrices,
 } from "./helpers/getDataFromPrices";
 import LazyLoad from "react-lazyload";
+import WelcomeCard from "./WelcomeCard";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -54,11 +55,10 @@ const RentList = () => {
     }
   }, [showCharts]);
 
-
   return (
     <div className="RentList">
       <div className="slider-container">
-        <BackButton/>
+        <BackButton />
 
         <MultiRangeSlider style={{ height: "20px" }} />
 
@@ -134,16 +134,32 @@ const RentList = () => {
           </table>
         </React.Fragment>
       ) : (
-        <img
-          src="https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
-          alt="Rent List"
-          className="image"
-        />
+        <>
+          <img
+            src="https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
+            alt="Rent List"
+            className="image"
+          />
+          <WelcomeCard />
+          {/* <table className="home-right-property-table-top">
+            <thead>
+              <tr>
+                <th>Properties</th>
+                <th>Prices</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{properties.length}</td>
+                <td>{prices.length}</td>
+              </tr>
+            </tbody>
+          </table> */}
+        </>
       )}
       <ChartsPanel />
     </div>
   );
-
 };
 
 export default RentList;
