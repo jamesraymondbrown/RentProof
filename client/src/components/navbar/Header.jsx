@@ -11,12 +11,9 @@ const Header = () => {
   return (
     <header>
       <div className="nav-area">
-        <div className="title-subtitle">
-          <Link to="/" id="logo">
-            RentProof
-          </Link>
-          {/* <h3 id="logo-subtitle">Why? Because the rent is too damn high!</h3> */}
-        </div>
+        <Link to="/" className="logo">
+          RentProof
+        </Link>
         <Button
           label="Site Info"
           icon="pi pi-external-link"

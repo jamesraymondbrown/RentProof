@@ -15,6 +15,7 @@ import PropertyList from "./components/create/CreatePropertyList";
 import Register from "./components/session/Register";
 import RentList from "./components/RentList";
 import LoadingSpinner from "./components/LoadingSpinner";
+import Dashboard from "./components/admin/Dashboard";
 
 function App() {
   console.log("Rendering App...");
@@ -23,7 +24,7 @@ function App() {
   const userId = ReactSession.get("id");
   const userRole = ReactSession.get("role");
   const userName = ReactSession.get("name");
-  // console.log(userId, userRole, userName);
+  console.log(userId, userRole, userName);
 
   const {
     users,
@@ -55,7 +56,7 @@ function App() {
               </Route>
 
               <Route exact path="/admin/dashboard">
-                <div className="admin-background"></div>
+                <Dashboard />
               </Route>
 
               <Route exact path="/admin/pending">
