@@ -194,11 +194,7 @@ INSERT INTO properties (province, city, street_address, latitude, longitude) VAL
 ('BC', 'Vancouver', '1811 Adanac St, Vancouver', 49.2778146, -123.0677228),
 ('BC', 'Vancouver', '1435 E 14th Ave, Vancouver', 49.2577952, -123.0753306),
 ('BC', 'Vancouver', '3588 Hull St, Vancouver', 49.25245349999999, -123.0640644),
-<<<<<<< HEAD
 ('BC', 'Vancouver', '3615 Victoria Drive, Vancouver', 49.2528246, -123.0664445),
-=======
-('BC', 'Vancouver', '3615 Victoria Drive #401, Vancouver', 49.2528246, -123.0664445),
->>>>>>> 47b02eca199eeba75926c0e121c0bdb82542c639
 ('BC', 'Vancouver', '7448 14th Ave, Burnaby', 49.2171607, -122.9413653),
 ('BC', 'Vancouver', '211 11th St, New Westminster', 49.2029781, -122.921849),
 ('BC', 'Vancouver', '1303 8th Ave, New Westminster', 49.2095379, -122.936265),
