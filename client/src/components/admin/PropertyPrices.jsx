@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 import axios from 'axios';
 import { DataTable } from 'primereact/datatable';
@@ -11,24 +11,24 @@ import './Dashboard.scss'
 
 export default function PropertyPrices() {
 
-  const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
+  const { properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
 
   const [expandedRows, setExpandedRows] = useState(null);
   const toast = useRef(null);
 
-    const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState({
     global: {value: null, matchMode: FilterMatchMode.CONTAINS}
-    })
+  })
   
-   const deletePricesForProperty = (property) => {
-  return prices
-    .filter(price => {
-      return price.property_id !== property.id
-    })
-    .map(price => {
-      return price
-    })
-}
+  const deletePricesForProperty = (property) => {
+    return prices
+      .filter(price => {
+        return price.property_id !== property.id
+      })
+      .map(price => {
+        return price
+      })
+  }
 
   const handleDelete = (id) => {
     console.log("Clicked Delete Property")
@@ -71,7 +71,7 @@ export default function PropertyPrices() {
             if (price.property_id === propertyId) {
               const newPrice = {
                 ...price,
-                priceDel: <Button label="x" className="p-button-danger" onClick={() => priceDelete(newPrice.id)} />
+                priceDel: <Button label="Delete" className="p-button-danger" onClick={() => priceDelete(newPrice.id)} />
               }
               propertyPriceArray.push(newPrice)
             }
@@ -87,16 +87,16 @@ export default function PropertyPrices() {
       city: property.city,
       province: property.province,
       propertyPrices: getPricesForProperty(property.id, prices),
-      deleteProp: <Button label="x" className="p-button-danger" onClick={() => handleDelete(property.id)} /> 
+      deleteProp: <Button label="Delete" className="p-button-danger" onClick={() => handleDelete(property.id)} /> 
     }  
   }))
 
     const onRowExpand = (event) => {
-        toast.current.show({severity: 'info', summary: 'Property Expanded', detail: event.data.name, life: 2000});
+        toast.current.show({severity: 'info', summary: 'Property Expanded', detail: event.data.name, life: 1500});
     }
 
     const onRowCollapse = (event) => {
-        toast.current.show({severity: 'success', summary: 'Property Collapsed', detail: event.data.name, life: 2000});
+        toast.current.show({severity: 'success', summary: 'Property Collapsed', detail: event.data.name, life: 1500});
     }
 
     const expandAll = () => {
@@ -109,10 +109,6 @@ export default function PropertyPrices() {
         setExpandedRows(null);
     }
 
-    // const imageBodyTemplate = (rowData) => {
-    //     return <img src={`https://primefaces.org/cdn/primereact/images/product/${rowData.image}`} alt={rowData.image} width="100px" className="shadow-4" />;
-    // }
-
     const allowExpansion = (rowData) => {
         return true
     };
@@ -122,10 +118,10 @@ export default function PropertyPrices() {
       return (
         <div className="p-3">
           <h5>Price history for property {data.id}: {data.address}</h5>
-          <DataTable value={data.propertyPrices}
+          <DataTable value={data.propertyPrices.reverse()}
             responsiveLayout="scroll"
             paginator
-            rows={4}
+            rows={3}
           >
             <Column field="id" header="Id" sortable></Column>
             <Column field="date" header="Date" sortable></Column>
@@ -165,11 +161,10 @@ export default function PropertyPrices() {
           rowExpansionTemplate={rowExpansionTemplate}
           dataKey="id"
           header={header}
-          // scrollable scrollHeight="600px"
-          paginator
-          rows={6}
+          scrollable scrollHeight="650px"
+          // paginator
+          // rows={6}
           filters={filters}
-          responsive='true'
         >
             <Column expander={allowExpansion} style={{ width: '3em' }} />
             <Column field="id" header="Id" sortable />

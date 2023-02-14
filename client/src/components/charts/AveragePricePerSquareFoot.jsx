@@ -127,7 +127,7 @@ const AveragePricePerSquareFoot = (props) => {
     for (let i = 1; i < prices.length; i++) {
       allPricesPerYear[prices[i].date.substring(0, 4)].push(prices[i]);
     }
-    console.log("allPricesPer", allPricesPerYear);
+    // console.log("allPricesPer", allPricesPerYear);
 
     for (let i = 2014; i <= 2023; i++) {
       let priceSum = 0;
@@ -140,7 +140,7 @@ const AveragePricePerSquareFoot = (props) => {
       const averagePricePerFoot =
         Math.round((priceSum / squareFootSum) * 100) / 100;
 
-      console.log("pricePerFoot", averagePricePerFoot);
+      // console.log("pricePerFoot", averagePricePerFoot);
       data.push({
         date: i,
         Price: averagePricePerFoot,

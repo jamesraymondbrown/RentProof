@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { DataBaseContext } from "./providers/DataBaseProvider";
 import { PropertyIdProvider } from "./providers/PropertyIdProvider";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -7,7 +7,6 @@ import "./App.css";
 import AddPrice from "./components/create/AddPrice";
 import AddProperty from "./components/create/AddProperty";
 import AdminPending from "./components/admin/AdminPending";
-import AdminPropertyList from "./components/admin/AdminPropertyList";
 import Login from "./components/session/Login";
 import Map from "./components/map/Map";
 import Header from "./components/navbar/Header";
@@ -26,16 +25,7 @@ function App() {
   const userName = ReactSession.get("name");
   console.log(userId, userRole, userName);
 
-  const {
-    users,
-    setUsers,
-    properties,
-    setProperties,
-    prices,
-    setPrices,
-    isLoading,
-    setLoading,
-  } = useContext(DataBaseContext);
+  const { isLoading } = useContext(DataBaseContext);
 
   return isLoading ? (
     <LoadingSpinner />
