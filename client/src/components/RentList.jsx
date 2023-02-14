@@ -16,7 +16,7 @@ import {
   getBathroomsFromPrices,
 } from "./helpers/getDataFromPrices";
 import LazyLoad from "react-lazyload";
-import { Card } from "primereact/card";
+import WelcomeCard from "./WelcomeCard";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -54,6 +54,9 @@ const RentList = () => {
       // setChartData(data)
     }
   }, [showCharts]);
+
+  console.log("prices", prices);
+  console.log("properties", properties);
 
   return (
     <div className="RentList">
@@ -140,16 +143,7 @@ const RentList = () => {
             alt="Rent List"
             className="image"
           />
-          <Card title="Title">
-            <p className="m-0">
-              Welcome to RentProof! We're currently tracking {prices.length}{" "}
-              prices across {properties.length} different properties. Do you
-              have any info to share that might help your fellow renters?{" "}
-              <a href="http://localhost:8000/login">login</a> or{" "}
-              <a href="http://localhost:8000/register">create an account</a> to
-              get started!!!
-            </p>
-          </Card>
+          <WelcomeCard />
           {/* <table className="home-right-property-table-top">
             <thead>
               <tr>
