@@ -193,8 +193,6 @@ const AllPropertiesPriceChart = (props) => {
     return null;
   };
 
-  console.log("dataLog", data);
-
   return (
     <div>
       <div className="chart-title">Average rent price:</div>
