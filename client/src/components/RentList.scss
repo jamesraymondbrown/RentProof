@@ -1,30 +1,43 @@
 .home-right {
   border-left: 2px solid #88c2ee !important;
   border-right: 2px solid #88c2ee !important;
+  height: 90vh;
 }
 
 .RentList {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: rgb(235, 247, 251);
-  height: 90vh;
+  height: 100%;
 }
 
-.img-container{
-    // max-width: 10em;
-    // width: 10em;
-    // height: 10em;
-    max-height: 13em;
-    min-height: 13em;
-    margin: 1em;
-    display: flex;
-    border-radius: 10%;
-    border-color: blanchedalmond;
-    transition: all 0.3s ease-in-out;}
+// .img-container{
+//     max-height: 13em;
+//     min-height: 13em;
+//     margin: 1em;
+//     display: flex;
+//     border-radius: 10%;
+//     border-color: blanchedalmond;
+//     transition: all 0.3s ease-in-out;
+//     border: 4px solid red;
+// }
 
 .slider-container {
-  border-radius: 5px;
-  margin: 0.25em;
+  width: 100%;
+  // margin: 0.25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-container .container {
+  width: 100%;
+}
+
+.slider-container .filter-container {
+  width: 100%;
 }
 
 .home-right-property-table-top {
@@ -47,32 +60,28 @@
 
 .home-right-property-table-top thead tr th {
   color: #2d3138;
-  width: 33%;
-}
-
-.home-right-property-table-bottom thead tr th {
-  color: #2d3138;
-  width: 33%;
-  padding-top: 0.25em;
-}
-
-.home-right-property-table tbody tr td {
-  color: #2d3138;
-  width: 33%;
+  width: 9vw;
 }
 
 .home-right-property-table-top tbody tr td {
   color: #2d3138;
-  width: 33%;
+  width: 9vw;
+}
+
+.home-right-property-table-bottom thead tr th {
+  color: #2d3138;
+  width: 9vw;
 }
 
 .home-right-property-table-bottom tbody tr td {
   color: #2d3138;
-  width: 33%;
+  width: 9vw;
 }
 
 .p-panel-header {
   background-color: rgb(33, 107, 255) !important;
+  width: 27vw !important;
+  height: 50px;
 }
 
 .p-panel-icons #ChartsPanel_label {
@@ -90,15 +99,14 @@
 }
 
 .image {
- width: 100%;
- max-height: fit-content;
-  display: flex;
+  width: 400px;
+  height: 300px;
   border-radius: 5%;
   border-color: blanchedalmond;
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.10);
+    transform: scale(1.05);
   }
 
   &.focus {
@@ -108,17 +116,9 @@
     left: 50%;
   }
 }
-.info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #1a202c;
-}
+
 .price {
-  border-color: var(--chakra-colors-gray-200);
-  box-sizing: border-box;
   color: #2d3138;
-  display: inline-block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 42px;
   font-weight: 200;

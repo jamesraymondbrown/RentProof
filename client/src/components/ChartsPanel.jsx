@@ -13,6 +13,7 @@ import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../providers/DataBaseProvider";
 import "primeicons/primeicons.css";
 import "./ChartsPanel.scss";
+import AveragePricePerSquareFoot from "./charts/AveragePricePerSquareFoot";
 
 const ChartsPanel = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -28,7 +29,7 @@ const ChartsPanel = () => {
 
   return (
     <Panel
-      header="Price Charts"
+      header="Price Info"
       righticon="pi pi-times"
       toggleable
       style={{ color: "#59B9F8" }}
@@ -101,6 +102,12 @@ const ChartsPanel = () => {
       {!state.currentProperty.id && (
         <div className="RentChart">
           {prices ? <AllPropertiesPercentChart /> : <div>Loading...</div>}
+        </div>
+      )}
+
+      {!state.currentProperty.id && (
+        <div className="RentChart">
+          {prices ? <AveragePricePerSquareFoot /> : <div>Loading...</div>}
         </div>
       )}
     </Panel>

@@ -61,23 +61,26 @@ const RentIncreaseChart = (props) => {
     }
 
     // Loop through each property to get an integer for querying the priceObject object
-    for (let i = 1; i < properties.length + 1; i++) {
+    for (let property of properties) {
       // Another loop for getting the index of the array inside of each priceObject index (priceObject is an object full of arrays)
-      for (let j = 1; j < priceObject[i].length; j++) {
-        // Compare the current year's price with last year's price, and push the difference as a percentage to the increasePerYear object
-        allIncreasesPerYear[priceObject[i][j].date.substring(0, 4)].push(
-          Math.round(
-            ((parseInt(priceObject[i][j].price) -
-              parseInt(priceObject[i][j - 1].price)) /
-              parseInt(priceObject[i][j - 1].price)) *
-              100 *
-              10
-          ) / 10
-        );
+      for (let i = 1; i < priceObject[property.id].length; i++) {
+        if (priceObject[property.id].length > 3) {
+          allIncreasesPerYear[
+            priceObject[property.id][i].date.substring(0, 4)
+          ].push(
+            Math.round(
+              ((parseInt(priceObject[property.id][i].price) -
+                parseInt(priceObject[property.id][i - 1].price)) /
+                parseInt(priceObject[property.id][i - 1].price)) *
+                100 *
+                10
+            ) / 10
+          );
+        }
       }
     }
 
-    // now we have an allIncreasesPerYear object, that contains an array with the percentage increase for each property, for each year
+    // Now we have an allIncreasesPerYear object, that contains an array with the percentage increase for each property, for each year
     // Loop through that data to get the average increase per year, and push that to our data array
     for (let i = 2015; i <= 2023; i++) {
       let sum = 0;
@@ -88,12 +91,10 @@ const RentIncreaseChart = (props) => {
         Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100;
     }
 
+    // console.log("averageIncrease", averageIncreasePerYear);
+
     return;
   };
-
-  if (data.length < 2) {
-    return <div>Not enough data</div>;
-  }
 
   // Multiplies the initial price by the average rent increase percentage, to compare
   // what it would be like if this property followed the market trend exactly
@@ -162,12 +163,21 @@ const RentIncreaseChart = (props) => {
   getRentIncreaseAverages(prices, properties);
   showPricesBasedOnAverages();
 
+  // console.log("data", data);
+
+  for (const dat of data) {
+    if (dat.compare_at_price === NaN) {
+      console.log("dat", dat);
+    }
+  }
+
   const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
+    if (active && data.compare_at_price && payload.length) {
       return (
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
           <p className="tooltip-text blue">{`Actual price: $${payload[0].value}`}</p>
+          {}
           <p className="tooltip-text red">{`Market-adjusted price: $${payload[1].value}`}</p>
           {/* {console.log("load", payload)} */}
         </div>
@@ -176,9 +186,11 @@ const RentIncreaseChart = (props) => {
     return null;
   };
 
-  // console.log("data", data);
+  console.log("data", data);
 
-  return (
+  return data.length < 3 ? (
+    <div>Not enough data...</div>
+  ) : (
     <div>
       <div className="chart-title">
         Property price vs average market increase:

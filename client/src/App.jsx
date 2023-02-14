@@ -18,8 +18,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import Dashboard from "./components/admin/Dashboard";
 
 function App() {
-
-  console.log("Rendering App...")
+  console.log("Rendering App...");
 
   ReactSession.setStoreType("sessionStorage");
   const userId = ReactSession.get("id");
@@ -27,13 +26,22 @@ function App() {
   const userName = ReactSession.get("name");
   console.log(userId, userRole, userName);
 
-  const { users, setUsers, properties, setProperties, prices, setPrices, isLoading, setLoading } = useContext(DataBaseContext);
+  const {
+    users,
+    setUsers,
+    properties,
+    setProperties,
+    prices,
+    setPrices,
+    isLoading,
+    setLoading,
+  } = useContext(DataBaseContext);
 
   return isLoading ? (
     <LoadingSpinner />
   ) : (
-      <Router>
-        <PropertyIdProvider>
+    <Router>
+      <PropertyIdProvider>
         <div className="App">
           <div>
             <Header />
@@ -86,18 +94,17 @@ function App() {
                 <Register />
               </div>
               </Route>
-              
-            <Route exact path="/login">
-              <div className="login-background">
-                <Login />
-              </div>
-            </Route>
-              
-          </Switch>
+
+              <Route exact path="/login">
+                <div className="login-background">
+                  <Login />
+                </div>
+              </Route>
+            </Switch>
+          </div>
         </div>
-        </div>
-        </PropertyIdProvider>
-      </Router>
+      </PropertyIdProvider>
+    </Router>
   );
 }
 

@@ -20,6 +20,8 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
     state,
   } = useContext(MarkerFilterContext);
 
+  // console.log("state.currentProperty ➤", state.currentProperty);
+
 function percentageToHexColor(percentage, lightness = 0, saturation = 100) {
   let R, G, B;
   percentage -= 60;
@@ -82,8 +84,9 @@ function darken(hex, amount) {
 }
 
 
-// console.log("state.prevProperty ➤", state.prevProperty);
-  const isGray = state.prevProperty.includes(id);
+// console.log("state.prevProperty ➤", state.currentProperty);
+  const isGray =
+    state.prevProperty.includes(id) && state.currentProperty.id !== id;
   const costVSavg = cost / 25;
   const saturation = state.prevProperty.includes(id) ? 0 : 100;
   const markerColor = percentageToHexColor(costVSavg, 120);
@@ -118,7 +121,8 @@ function darken(hex, amount) {
       anchor: new Point(13, 32),
     };
   }
-  
+  // console.log("state.currentProperty.id === id ➤", state.currentProperty.id === id);
+  // console.log("state.prevProperty.includes(id) ➤", state.prevProperty.includes(id));
 
  return (
    <div>

@@ -1,6 +1,6 @@
 header {
   height: 10vh;
-  background-color: #5AB8F8;
+  background-color: #5ab8f8;
   color: white;
   border: 1px solid #88c2ee;
   display: flex;
@@ -14,10 +14,9 @@ header {
   margin-left: 2.5vw;
 }
 
-.logo {
-  text-decoration: none;
-  font-size: 3rem;
-  color: inherit;
+.title-subtitle {
+  display: flex;
+  flex-direction: column;
 }
 
 header .p-button {
@@ -29,7 +28,7 @@ header .p-button:hover {
 }
 
 .m-0 {
-  font-size: 1.2em;;
+  font-size: 1.2em;
 }
 
 .menus {
@@ -37,7 +36,6 @@ header .p-button:hover {
   align-items: center;
   flex-wrap: wrap;
   gap: 4em;
-  
 }
 
 .menu-items {
@@ -55,7 +53,7 @@ header .p-button:hover {
   font-size: inherit;
   color: inherit;
   text-decoration: none;
-  border: 2px solid #5AB8F8;
+  border: 2px solid #5ab8f8;
 }
 
 .menu-items a:hover {
@@ -79,9 +77,10 @@ header .p-button:hover {
   width: 100%;
 }
 
-.menu-items > a, .menu-items button {
+.menu-items > a,
+.menu-items button {
   text-align: left;
-  padding: .7rem 1rem;
+  padding: 0.7rem 1rem;
 }
 
 .menu-items a:hover,
@@ -99,14 +98,14 @@ header .p-button:hover {
   font-size: 0.875rem;
   z-index: 9999;
   min-width: 10rem;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
   list-style: none;
   background-color: #60a8df;
   border-radius: 0.5rem;
   display: none;
-  margin-top: 4em;;
+  margin-top: 4em;
 }
 
 .dropdown.show {
-  display: block;  
+  display: block;
 }
