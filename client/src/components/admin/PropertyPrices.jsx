@@ -122,7 +122,7 @@ export default function PropertyPrices() {
         <DataTable value={data.propertyPrices.reverse()}
           responsiveLayout="scroll"
           paginator
-          rows={3}
+          rows={5}
         >
           <Column field="id" header="Id" sortable></Column>
           <Column field="date" header="Date" sortable></Column>
