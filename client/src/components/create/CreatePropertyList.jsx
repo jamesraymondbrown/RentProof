@@ -67,8 +67,8 @@ export default function PropertyList() {
         sortMode="multiple"
         filters={filters}
         paginator
-        rows={6}
-        rowsPerPageOptions={[2, 4, 6]}
+        rows={5}
+        rowsPerPageOptions={[1,2,3,4,5]}
       >
         <Column sortable field="id" header="Id" />
         <Column sortable field="address" header="Address" />

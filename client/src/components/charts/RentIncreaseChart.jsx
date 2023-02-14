@@ -54,9 +54,7 @@ const RentIncreaseChart = (props) => {
 
   return (
     <div>
-      <div className="chart-title">
-        Selected property rent increase percentage:
-      </div>
+      <div className="chart-title">Rent increase per year:</div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
           data={data}
