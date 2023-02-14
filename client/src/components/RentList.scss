@@ -10,6 +10,17 @@
   background-color: rgb(235, 247, 251);
 }
 
+.img-container{
+    // max-width: 10em;
+    // width: 10em;
+    // height: 10em;
+    max-height: 15em;
+    margin: 1em;
+    display: flex;
+    border-radius: 10%;
+    border-color: blanchedalmond;
+    transition: all 0.3s ease-in-out;}
+
 .slider-container {
   border: 1px solid #88c2ee;
   border-radius: 5px;
@@ -100,9 +111,10 @@
 }
 
 .image {
-  margin: 1em;
+ width: 100%;
+ max-height: fit-content;
   display: flex;
-  border-radius: 10%;
+  border-radius: 5%;
   border-color: blanchedalmond;
   transition: all 0.3s ease-in-out;
 
