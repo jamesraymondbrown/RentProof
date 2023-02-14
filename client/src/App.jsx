@@ -15,6 +15,7 @@ import PropertyList from "./components/create/CreatePropertyList";
 import Register from "./components/session/Register";
 import RentList from "./components/RentList";
 import LoadingSpinner from "./components/LoadingSpinner";
+import Dashboard from "./components/admin/Dashboard";
 
 function App() {
 
@@ -48,8 +49,7 @@ function App() {
             </Route>
               
             <Route exact path="/admin/dashboard">
-              <div className="admin-background">
-              </div>
+              <Dashboard />
             </Route>
               
             <Route exact path="/admin/pending">

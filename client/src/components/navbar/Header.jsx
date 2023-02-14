@@ -12,7 +12,7 @@ const Header = () => {
     <header>
       <div className="nav-area">
         <Link to="/" className="logo">
-          Rent Tracker
+          RentProof
         </Link>
         <Button label="Site Info" icon="pi pi-external-link" onClick={() => setVisible(true)} />
         <Dialog header="On This Page" visible={visible} style={{ width: '50vw' }} onHide={() => setVisible(false)}>
