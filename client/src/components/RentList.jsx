@@ -16,6 +16,7 @@ import {
   getBathroomsFromPrices,
 } from "./helpers/getDataFromPrices";
 import LazyLoad from "react-lazyload";
+import { Card } from "primereact/card";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
@@ -54,11 +55,10 @@ const RentList = () => {
     }
   }, [showCharts]);
 
-
   return (
     <div className="RentList">
       <div className="slider-container">
-        <BackButton/>
+        <BackButton />
 
         <MultiRangeSlider style={{ height: "20px" }} />
 
@@ -134,16 +134,41 @@ const RentList = () => {
           </table>
         </React.Fragment>
       ) : (
-        <img
-          src="https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
-          alt="Rent List"
-          className="image"
-        />
+        <>
+          <img
+            src="https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
+            alt="Rent List"
+            className="image"
+          />
+          <Card title="Title">
+            <p className="m-0">
+              Welcome to RentProof! We're currently tracking {prices.length}{" "}
+              prices across {properties.length} different properties. Do you
+              have any info to share that might help your fellow renters?{" "}
+              <a href="http://localhost:8000/login">login</a> or{" "}
+              <a href="http://localhost:8000/register">create an account</a> to
+              get started!!!
+            </p>
+          </Card>
+          {/* <table className="home-right-property-table-top">
+            <thead>
+              <tr>
+                <th>Properties</th>
+                <th>Prices</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{properties.length}</td>
+                <td>{prices.length}</td>
+              </tr>
+            </tbody>
+          </table> */}
+        </>
       )}
       <ChartsPanel />
     </div>
   );
-
 };
 
 export default RentList;
