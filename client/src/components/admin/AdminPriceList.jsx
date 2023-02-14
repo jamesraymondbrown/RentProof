@@ -10,7 +10,7 @@ import './Dashboard.scss'
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 
-export default function AdminPropertyList() {
+export default function AdminPriceList() {
 
   console.log("Ran Admin Property List")
   
@@ -68,7 +68,7 @@ export default function AdminPropertyList() {
             global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
         })}
       />
-      <DataTable value={tableProperties} header="Manage Properties" sortMode="multiple" filters={filters}
+      <DataTable value={tableProperties} header="Manage Prices" sortMode="multiple" filters={filters}
         paginator
         rows={5}
         // rowsPerPageOptions={[1,2,3,4]}

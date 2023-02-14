@@ -2,42 +2,91 @@
   height: 90vh;
   width: 100vw;
   display: flex;
-  flex-direction: column;
-}
-
-.dashboard-top {
-  height: 45vh;
-  display: flex;
   flex-direction: row;
 }
 
-.dashboard-bottom {
-  height: 45vh;
-  display: flex;
-  flex-direction: row;
-}
-
-.dashboard-top-left {
+.dashboard-left {
   border: 4px solid blue;
   background-color: rgba(0, 0, 255, .2);
-  width: 50vw;
+  height: 90vh;
+  width: 33.33vw;
 }
 
-.dashboard-top-right {
-  border: 4px solid red;
-  background-color: rgba(255, 0, 0, .2);
-  width: 50vw;
+.dashboard-center {
+  // border: 4px solid red;
+  // background-color: rgba(255, 0, 0, .2);
+  height: 90vh;
+  width: 33.33vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dashboard-bottom-left {
+.dashboard-right {
   border: 4px solid green;
   background-color: rgba(0, 128, 0, .2);
-  width: 50vw;
+  height: 90vh;
+  width: 33.33vw;
 }
 
-.dashboard-bottom-right {
-  border: 4px solid orange;
-  background-color: rgba(255, 165, 0, .2);
-  width: 50vw;
+.admin-all-properties {
+  // border: 4px solid orange;
+  height: 80vh;
+  width: 32vw;
+  display: flex;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+
+.admin-all-properties .p-datatable {
+  height: 80vh;
+  width: 32vw;
+  margin-top: 1em !important;
+}
+
+.admin-all-properties .p-datatable-table {
+  width: 32vw !important;
+}
+
+.admin-all-properties .p-inputtext {
+  margin-left: 10%;
+  width: 80%;
+  background-color: rgba(255, 255, 255, .92);
+}
+
+.admin-all-properties .p-datatable-header {
+  font-size: 1.2rem !important;
+  background-color: #5AB8F8 !important;
+  color: white !important;
+  border: 1px solid #c7e6fd !important;
+}
+
+.admin-all-properties .p-datatable-thead tr th,
+.admin-all-properties .p-datatable-thead tr th div,
+.admin-all-properties .p-datatable-thead tr th .p-column-header-content {
+  font-size: 1rem; 
+  background-color: rgba(255, 255, 255, .92) !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.admin-all-properties .p-datatable-tbody tr {
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, .92) !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+.admin-all-properties .p-datatable-tbody tr td button {
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-all-properties .p-paginator {
+  background-color: rgba(255, 255, 255, .92) !important;
 }
 

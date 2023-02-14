@@ -58,16 +58,6 @@ function App() {
               </div>
             </Route>
               
-            <Route exact path="/admin/properties">
-              <div className="admin-background">
-                <div className="add-property-body">
-                  <div className="all-properties">
-                    <AdminPropertyList />  
-                  </div> 
-                </div>  
-              </div>
-            </Route>
-              
             <Route exact path="/create/update">
               <div className="create-background" >
               <div className="create-body">

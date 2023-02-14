@@ -12,10 +12,6 @@ export let menuItems = [
       {
         title: 'Pending',
         url: '/admin/pending',
-      },
-      {
-        title: 'Properties',
-        url: '/admin/properties',
       }
     ]
   },
