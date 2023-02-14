@@ -61,6 +61,10 @@ export default function PropertyPrices() {
         console.log(error);
       });
   }
+
+  const trimSqlDate = (date) => {
+    return date.split('').splice(0, 10).join('')
+  }
   
   let tableProperties
     (properties && prices) && (tableProperties = properties.map((property) => {
@@ -70,6 +74,7 @@ export default function PropertyPrices() {
             if (price.property_id === propertyId) {
               const newPrice = {
                 ...price,
+                date: trimSqlDate(price.date),
                 priceDel: <Button label="Delete" className="p-button-danger" onClick={() => priceDelete(newPrice.id)} />
               }
               propertyPriceArray.push(newPrice)
