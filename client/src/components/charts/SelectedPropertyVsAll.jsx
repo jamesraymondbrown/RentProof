@@ -172,14 +172,13 @@ const RentIncreaseChart = (props) => {
   }
 
   const CustomTooltip = ({ active, payload, label }) => {
-    if (active && data.compare_at_price && payload.length) {
+    if (active && data[0].compare_at_price && payload.length > 1) {
       return (
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
           <p className="tooltip-text blue">{`Actual price: $${payload[0].value}`}</p>
-          {}
           <p className="tooltip-text red">{`Market-adjusted price: $${payload[1].value}`}</p>
-          {/* {console.log("load", payload)} */}
+          {console.log("load", payload)}
         </div>
       );
     }
@@ -189,7 +188,7 @@ const RentIncreaseChart = (props) => {
   // console.log("data", data);
 
   return data.length < 3 ? (
-    <div>Not enough data...</div>
+    <div>Not enough data</div>
   ) : (
     <div>
       <div className="chart-title">
