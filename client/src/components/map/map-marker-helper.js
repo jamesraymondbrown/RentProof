@@ -388,15 +388,27 @@ const testProperty = {
     "longitude": "-123.157720200"
   }
 
-const deletePricesForProperty = (property) => {
-  return prices
-    .filter(price => {
-      return price.property_id !== property.id
-    })
-    // .reverse()
-    .map(price => {
-      return price
-    })
-}
+// const deletePricesForProperty = (property) => {
+//   return prices
+//     .filter(price => {
+//       return price.property_id !== property.id
+//     })
+//     // .reverse()
+//     .map(price => {
+//       return price
+//     })
+// }
 
-console.log(deletePricesForProperty(testProperty))
+// console.log(deletePricesForProperty(testProperty))
+
+const getPricesForProperty = (propertyId, prices) => {
+      let propertyPriceArray = []
+        for (let price of prices) {
+          if (price.property_id === propertyId) {
+            propertyPriceArray.push(price)
+          }
+        }
+      return propertyPriceArray
+}
+    
+console.log(getPricesForProperty(10, prices))

@@ -1,5 +1,6 @@
 import AdminPropertyList from './AdminPropertyList';
 import AdminPriceList from './AdminPriceList';
+import PropertyPrices from './PropertyPrices';
 import './Dashboard.scss'
 
 const Dashboard = () => {
@@ -8,7 +9,8 @@ const Dashboard = () => {
   
   return (
     <div className="admin-background">
-      <div className="dashboard">
+      <PropertyPrices />
+      {/* <div className="dashboard">
         <div className="dashboard-left">         
                     
         </div>
@@ -22,7 +24,7 @@ const Dashboard = () => {
             <AdminPriceList />  
           </div>     
         </div>       
-      </div>
+      </div> */}
     </div>
   );
 }

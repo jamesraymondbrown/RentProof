@@ -25,7 +25,6 @@ export default function AdminPropertyList() {
     .filter(price => {
       return price.property_id !== property.id
     })
-    // .reverse()
     .map(price => {
       return price
     })
@@ -55,7 +54,7 @@ export default function AdminPropertyList() {
       address: property.street_address,
       city: property.city,
       province: property.province,
-      delete: <Button label="X" className="p-button-danger" onClick={() => handleDelete(property.id)} />,
+      delete: <Button label="x" className="p-button-danger" onClick={() => handleDelete(property.id)} />,
     }  
   }))
   
@@ -68,9 +67,9 @@ export default function AdminPropertyList() {
             global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
         })}
       />
-      <DataTable value={tableProperties} header="Manage Properties" sortMode="multiple" filters={filters}
+      <DataTable value={tableProperties} header="Properties" sortMode="multiple" filters={filters}
         paginator
-        rows={5}
+        rows={4}
         // rowsPerPageOptions={[1,2,3,4]}
       >
         <Column sortable field="id" header="Id" />

@@ -12,7 +12,7 @@ import "primereact/resources/primereact.min.css"
 
 export default function AdminPriceList() {
 
-  console.log("Ran Admin Property List")
+  console.log("Ran Admin Price List")
   
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
   
@@ -20,44 +20,51 @@ export default function AdminPriceList() {
     global: {value: null, matchMode: FilterMatchMode.CONTAINS}
   })
 
-  const deletePricesForProperty = (property) => {
-  return prices
-    .filter(price => {
-      return price.property_id !== property.id
-    })
-    // .reverse()
-    .map(price => {
-      return price
-    })
-}
+//   const deletePricesForProperty = (property) => {
+//   return prices
+//     .filter(price => {
+//       return price.property_id !== property.id
+//     })
+//     // .reverse()
+//     .map(price => {
+//       return price
+//     })
+// }
 
-  const handleDelete = (id) => {
-    console.log("Clicked Delete")
-    axios.delete(`http://localhost:8001/properties/${id}`)
-      .then((response) => {
-        console.log('Property Deleted', response.data);
-        const index = properties.findIndex((p) => p.id === response.data.id);
-        const newProperties = [...properties]
-        newProperties.splice(index, 1)
-        setProperties(newProperties)
-        const newPrices = deletePricesForProperty(response.data)
-        setPrices(newPrices)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // const handleDelete = (id) => {
+  //   console.log("Clicked Delete")
+  //   axios.delete(`http://localhost:8001/properties/${id}`)
+  //     .then((response) => {
+  //       console.log('Property Deleted', response.data);
+  //       const index = properties.findIndex((p) => p.id === response.data.id);
+  //       const newProperties = [...properties]
+  //       newProperties.splice(index, 1)
+  //       setProperties(newProperties)
+  //       const newPrices = deletePricesForProperty(response.data)
+  //       setPrices(newPrices)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
+
+  const trimSqlDate = (date) => {
+    const newDate = date.split('').splice(0,10)
+    return newDate
   }
   
-  let tableProperties
-  properties && (tableProperties = properties.map((property) => {
+  let tablePrices
+  prices && (tablePrices = prices.map((price) => {
     return {
-      id: property.id,
-      address: property.street_address,
-      city: property.city,
-      province: property.province,
-      delete: <Button label="X" className="p-button-danger" onClick={() => handleDelete(property.id)} />,
+      property: price.property_id,
+      id: price.id,
+      date: trimSqlDate(price.date),
+      price: price.price,
+      delete: <Button label="x" className="p-button-danger" />,
     }  
   }))
+
+  // onClick={() => handleDelete(property.id)}
   
   return (
     <div>
@@ -68,15 +75,15 @@ export default function AdminPriceList() {
             global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
         })}
       />
-      <DataTable value={tableProperties} header="Manage Prices" sortMode="multiple" filters={filters}
+      <DataTable value={tablePrices} header="Prices" sortMode="multiple" filters={filters}
         paginator
         rows={5}
         // rowsPerPageOptions={[1,2,3,4]}
       >
+        <Column sortable field="property" header="Property Id" />
         <Column sortable field="id" header="Id" />
-        <Column sortable field="address" header="Address" />
-        <Column sortable field="city" header="City" />
-        <Column sortable field="province" header="Province" />
+        <Column sortable field="date" header="Date" />
+        <Column sortable field="price" header="Price" />
         <Column field="delete" header="Delete" />
       </DataTable>
     </div>
