@@ -113,7 +113,7 @@ export default function PropertyPrices() {
   const rowExpansionTemplate = (data) => {       
     return (
       <div className="property-prices">
-        <h5>Price history for property {data.id}: {data.address}</h5>
+        <h5>Price history for {data.id}</h5>
         <DataTable value={data.propertyPrices.reverse()}
           responsiveLayout="scroll"
           paginator
@@ -122,7 +122,7 @@ export default function PropertyPrices() {
           <Column field="id" header="Id" sortable></Column>
           <Column field="date" header="Date" sortable></Column>
           <Column field="price" header="Price" sortable></Column>
-          <Column field="priceDel"  header="Delete" />
+          <Column field="priceDel" header="Delete" />
         </DataTable>
       </div>
     );
@@ -131,8 +131,8 @@ export default function PropertyPrices() {
   const header = (
     <div className="table-header-container">
       {/* <h3>Products and Prices</h3> */}
-      <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} className="mr-2" />
-      <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} />
+      <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} className="expand" />
+      <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} className="collapse" />
       <InputText
       placeholder="Search"
       onInput={(e) =>
@@ -158,7 +158,7 @@ export default function PropertyPrices() {
         scrollable scrollHeight="650px"
         filters={filters}
       >
-        <Column expander={allowExpansion} style={{ width: '3em' }} />
+        <Column expander={allowExpansion} className="expand-icon"/>
         <Column field="id" header="Id" sortable />
         <Column field="address" header="Address" sortable />
         <Column field="city" header="City" sortable />
