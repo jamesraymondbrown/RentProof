@@ -5,9 +5,9 @@ import Marker from "./Marker.jsx";
 import {
   getBedroomsFromPrices,
   getBathroomsFromPrices,
-  getCostFromPrices
-} from "../helpers/getDataFromPrices"
-import { DataBaseContext } from "../../providers/DataBaseProvider"
+  getCostFromPrices,
+} from "../helpers/getDataFromPrices";
+import { DataBaseContext } from "../../providers/DataBaseProvider";
 
 export default function MapDisplay(props) {
   const { isLoaded } = useLoadScript({
@@ -16,23 +16,29 @@ export default function MapDisplay(props) {
 
   const { users, setUsers, properties, setProperties, prices, setPrices } =
     useContext(DataBaseContext);
- 
+
   let markers = [];
 
   if (properties && prices) {
-    
     const propertiesWithAtLeastOneApprovedPrice = (properties, prices) => {
       return properties
-        .filter(property => {
-          return prices.some(price => ((price.property_id === property.id) && price.admin_status === "approved"));
+        .filter((property) => {
+          return prices.some(
+            (price) =>
+              price.property_id === property.id &&
+              price.admin_status === "approved"
+          );
         })
         .reverse()
-        .map(property => {
+        .map((property) => {
           return property;
         });
-    }
+    };
 
-    const markerProperties = propertiesWithAtLeastOneApprovedPrice(properties, prices)
+    const markerProperties = propertiesWithAtLeastOneApprovedPrice(
+      properties,
+      prices
+    );
 
     markers = markerProperties.map((property) => {
       return (
@@ -50,8 +56,8 @@ export default function MapDisplay(props) {
           bathrooms={getBathroomsFromPrices(property, prices)}
         />
       );
-    })
-  };
+    });
+  }
 
   function Map() {
     return (

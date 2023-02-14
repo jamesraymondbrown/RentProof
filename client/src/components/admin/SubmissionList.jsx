@@ -67,8 +67,8 @@ export default function SubmissionList() {
 
   let pendingList
   pending && (pendingList = pending.map((submission) => {
-    const photoURL = `http://localhost:8001/files/photos/${submission.photo}`
-    const documentURL = `http://localhost:8001/files/documents/${submission.documentation}` 
+    const photoURL = submission.photo
+    const documentURL = submission.documentation 
     return {
       id: submission.id,
       photo: <a target="_blank" href={photoURL} ><img src={photoURL} alt="Image" id="pending-img" width='120px' height='90px' /></a>,

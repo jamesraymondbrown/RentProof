@@ -1,57 +1,64 @@
+.home-right {
+  border-left: 2px solid #88c2ee !important;
+  border-right: 2px solid #88c2ee !important;
+}
+
 .RentList {
   display: flex;
   flex-direction: column;
   background-color: rgb(235, 247, 251);
-  border-left: 2px solid #88c2ee;
-  border-right: 2px solid #88c2ee;
+  height: 90vh;
 }
 
-.home-right {
-  background-color: rgb(235, 247, 251);
-}
+.img-container{
+    // max-width: 10em;
+    // width: 10em;
+    // height: 10em;
+    max-height: 13em;
+    min-height: 13em;
+    margin: 1em;
+    display: flex;
+    border-radius: 10%;
+    border-color: blanchedalmond;
+    transition: all 0.3s ease-in-out;}
 
 .slider-container {
-  border: 1px solid #88c2ee;
   border-radius: 5px;
   margin: 0.25em;
 }
 
 .home-right-property-table-top {
-  margin-top: 1em;
   margin-left: 0.25em;
   margin-right: 0.25em;
-  border: 1px solid #88c2ee;
   border-bottom: none;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  font-size: .85em;
 }
 
 .home-right-property-table-bottom {
-  margin-bottom: 1em;
   margin-left: 0.25em;
   margin-right: 0.25em;
-  border: 1px solid #88c2ee;
   border-top: none;
   border-bottom-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  font-size: .85em;
 }
 
 .home-right-property-table-top thead tr th {
   color: #2d3138;
   width: 33%;
-  padding-top: 0.25em;
 }
 
 .home-right-property-table-bottom thead tr th {
   color: #2d3138;
   width: 33%;
-  padding-top: 0.5em;
+  padding-top: 0.25em;
 }
 
 .home-right-property-table tbody tr td {
   color: #2d3138;
   width: 33%;
-  padding-top: 0.25em;
 }
 
 .home-right-property-table-top tbody tr td {
@@ -62,7 +69,6 @@
 .home-right-property-table-bottom tbody tr td {
   color: #2d3138;
   width: 33%;
-  padding-bottom: 0.25em;
 }
 
 .p-panel-header {
@@ -84,14 +90,15 @@
 }
 
 .image {
-  margin: 1em;
+ width: 100%;
+ max-height: fit-content;
   display: flex;
-  border-radius: 10%;
+  border-radius: 5%;
   border-color: blanchedalmond;
   transition: all 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.10);
   }
 
   &.focus {
@@ -102,26 +109,12 @@
   }
 }
 .info {
-  font-family: "Helvetica Neue";
-  font-size: 16px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  border: 0px;
-  border-bottom: #e6e6e6;
-  border-color: var(--chakra-colors-gray-200);
-  box-sizing: border-box;
   color: #1a202c;
-  display: flex;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  margin: 0px 25px;
-  overflow-wrap: break-word;
-  padding-bottom: 0px;
-  padding-top: 0px;
 }
 .price {
-  font-family: "Helvetica Neue";
-  font-size: 42px;
   border-color: var(--chakra-colors-gray-200);
   box-sizing: border-box;
   color: #2d3138;
@@ -130,51 +123,6 @@
   font-size: 42px;
   font-weight: 200;
   letter-spacing: 1.04px;
-  overflow-wrap: break-word;
-  padding-right: 15px;
-}
-
-.name {
-  font-family: "Helvetica Neue";
-  font-size: 16px;
-  border-color: var(--chakra-colors-gray-200);
-  box-sizing: border-box;
-  color: #1a202c;
-  display: inline-block;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  max-width: 60%;
-  overflow-wrap: break-word;
-  padding-left: 15px;
-  padding-top: 5px;
-}
-.undername {
-  font-family: "Helvetica Neue";
-  font-size: 14px;
-  border-color: var(--chakra-colors-gray-200);
-  box-sizing: border-box;
-  color: #212126;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.26px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.divider {
-  font-family: "Helvetica Neue";
-  font-size: 16px;
-  align-self: center;
-  border-color: var(--chakra-colors-gray-200);
-  border-right: #e7e7e7;
-  box-sizing: border-box;
-  color: #1a202c;
-  display: flex;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  height: 40px;
   overflow-wrap: break-word;
 }
 
