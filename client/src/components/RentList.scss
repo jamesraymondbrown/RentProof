@@ -10,6 +10,17 @@
   height: 90vh;
 }
 
+.img-container{
+    // max-width: 10em;
+    // width: 10em;
+    // height: 10em;
+    max-height: 15em;
+    margin: 1em;
+    display: flex;
+    border-radius: 10%;
+    border-color: blanchedalmond;
+    transition: all 0.3s ease-in-out;}
+
 .slider-container {
   border-radius: 5px;
   margin: 0.25em;
@@ -78,13 +89,10 @@
 }
 
 .image {
-  margin: 1em;
-  width: 400px;
-  height: 300px;
-  align-self: center;
-  justify-self: center;
+ width: 100%;
+ max-height: fit-content;
   display: flex;
-  border-radius: 10%;
+  border-radius: 5%;
   border-color: blanchedalmond;
   transition: all 0.3s ease-in-out;
 

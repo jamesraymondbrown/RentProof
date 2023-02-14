@@ -1,3 +1,5 @@
+
+import React, { useMemo } from "react";
 import PropertyRentChart from "./charts/PropertyRentChart";
 import RentIncreaseChart from "./charts/RentIncreaseChart";
 import AllPropertiesPercentChart from "./charts/AllPropertiesPercentChart";
@@ -17,6 +19,13 @@ const ChartsPanel = () => {
   const { users, setUsers, properties, setProperties, prices, setPrices } =
     useContext(DataBaseContext);
 
+  const priceHistory = useMemo(
+    () => (prices ? getPriceHistory(state.currentProperty.id, prices) : null),
+    [prices, state.currentProperty.id]
+  );
+
+
+
   return (
     <Panel
       header="Price Charts"
@@ -29,10 +38,8 @@ const ChartsPanel = () => {
       {state.currentProperty.id && (
         <div className="selected-property-charts">
           <div className="RentChart">
-            {prices && state.currentProperty.id ? (
-              <PropertyRentChart
-                prices={getPriceHistory(state.currentProperty.id, prices)}
-              />
+            {priceHistory ? (
+              <PropertyRentChart prices={priceHistory} />
             ) : (
               <div>Loading...</div>
             )}

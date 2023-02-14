@@ -1,5 +1,5 @@
 import "./RentList.scss";
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import BathFilter from "./filters/BathFilter";
 import BedFilter from "./filters/BedFilter";
 import ChartsPanel from "./ChartsPanel";
@@ -14,11 +14,45 @@ import {
   getBedroomsFromPrices,
   getBathroomsFromPrices,
 } from "./helpers/getDataFromPrices";
+import LazyLoad from "react-lazyload";
 
 const RentList = () => {
   const { state } = useContext(MarkerFilterContext);
   const { users, setUsers, properties, setProperties, prices, setPrices } =
     useContext(DataBaseContext);
+
+  const [showCharts, setShowCharts] = useState(false);
+  const [chartData, setChartData] = useState(null);
+
+  const cost = useMemo(() => {
+    return prices ? getCostFromPrices(state.currentProperty, prices) : "";
+  }, [prices, state.currentProperty]);
+
+  const photo = useMemo(() => {
+    return prices
+      ? getPhotoFromPrices(state.currentProperty, prices)
+      : "https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg";
+  }, [prices, state.currentProperty]);
+
+  const size = useMemo(() => {
+    return prices ? getSizeFromPrices(state.currentProperty, prices) : "";
+  }, [prices, state.currentProperty]);
+
+  const bedrooms = useMemo(() => {
+    return prices ? getBedroomsFromPrices(state.currentProperty, prices) : "";
+  }, [prices, state.currentProperty]);
+
+  const bathrooms = useMemo(() => {
+    return prices ? getBathroomsFromPrices(state.currentProperty, prices) : "";
+  }, [prices, state.currentProperty]);
+
+  useEffect(() => {
+    if (showCharts) {
+      // fetch chart data from API
+      // setChartData(data)
+    }
+  }, [showCharts]);
+
 
   return (
     <div className="RentList">
@@ -29,28 +63,27 @@ const RentList = () => {
 
         <BathFilter />
       </div>
-      <img
-        src={
-          prices && state.currentProperty.id
-            ? getPhotoFromPrices(state.currentProperty, prices)
-            : "https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
-        }
-        alt="Rent List"
-        className="image"
-      />
-
-      {state.currentProperty.id && (
-        <div className="info">
-          <div className="BubbleDetail_priceContainer__Zfrap">
-            <div className="price">
-              ${prices ? getCostFromPrices(state.currentProperty, prices) : ""}
+      {state.currentProperty.id ? (
+        <React.Fragment>
+          <div className="img-container">
+            <img
+              src={
+                prices
+                  ? getPhotoFromPrices(state.currentProperty, prices)
+                  : "https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
+              }
+              alt="Rent List"
+              className="image"
+            />
+          </div>
+          <div className="info">
+            <div className="BubbleDetail_priceContainer__Zfrap">
+              <div className="price">
+                $
+                {prices ? getCostFromPrices(state.currentProperty, prices) : ""}
+              </div>
             </div>
           </div>
-        </div>
-      )}
-
-      {state.currentProperty.id && (
-        <React.Fragment>
           <table className="home-right-property-table-top">
             <thead>
               <tr>
@@ -97,11 +130,17 @@ const RentList = () => {
             </tbody>
           </table>
         </React.Fragment>
+      ) : (
+        <img
+          src="https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
+          alt="Rent List"
+          className="image"
+        />
       )}
-
       <ChartsPanel />
     </div>
   );
+
 };
 
 export default RentList;
