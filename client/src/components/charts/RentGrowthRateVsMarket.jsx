@@ -229,7 +229,7 @@ const RentGrowthRateVsMarket = (props) => {
     return <div>Not enough data</div>;
   }
 
-  console.log("dataLogLog", data);
+  // console.log("dataLogLog", data);
 
   return (
     <div>

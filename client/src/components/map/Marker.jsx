@@ -1,7 +1,7 @@
 import React, { useState, useContext, lazy, Suspense } from "react";
-import RentGrowthRateVsMarket from "../charts/RentGrowthRateVsMarket";
+import { getPriceChangePercentage } from "../helpers/getPriceChangePercentages";
 import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
-import { getPriceHistory } from "../helpers/getDataFromPrices";
+
 const GoogleMapMarker = lazy(() =>
   import("@react-google-maps/api").then((module) => ({
     default: module.Marker,
@@ -94,9 +94,9 @@ function Marker({
     let result = ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
     return "#" + result;
   }
-// console.log("getPriceHistory(id, prices) ➤", getPriceHistory(id, prices));
- 
-  const costVSavg = cost / 25;
+  
+  const costVSavg = (getPriceChangePercentage(id, prices, properties)*4)+100;
+
 
   const isGray =
     state.prevProperty.includes(id) && state.currentProperty.id !== id;
