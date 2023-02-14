@@ -6,8 +6,12 @@ const GoogleMapMarker = lazy(() =>
   }))
 );
 
+<script src="https://maps.googleapis.com/maps/api/js?key=REACT_APP_GOOGLE_MAPS_API_KEY"></script>;
+
+
 function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
   const [isHovered, setIsHovered] = useState(false);
+
   const {
     selectedBedrooms,
     selectedBathrooms,
@@ -16,6 +20,8 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
     maxF,
     state,
   } = useContext(MarkerFilterContext);
+
+
 
 function percentageToHexColor(percentage, lightness = 0, saturation = 100) {
   let R, G, B;
@@ -85,31 +91,37 @@ function darken(hex, amount) {
   const saturation = state.prevProperty.includes(id) ? 0 : 100;
   const markerColor = percentageToHexColor(costVSavg, 120);
   const markerColorgreyed = desaturate(markerColor, 0.5);
-  const markerColorDark = darken(markerColor, 0.7);
+  const markerColorgreyeddark = darken(desaturate(markerColor, 0.5), 0.3);
+  const markerColorDarker = darken(markerColor, 0.7);
+  const markerColorDark = darken(markerColor, 0.4);
+  const Point = window.google.maps.Point;
+  const Circle = window.google.maps.SymbolPath.CIRCLE;
 
-
-const pinSymbol2 = function (color, greycolor, isGray, isHovered) {
-  return {
-    path: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z",
-    fillColor: isGray ? greycolor : color,
-    fillOpacity: 1,
-    strokeColor: isGray ? "#808080" : "#000",
-    strokeWeight: isHovered ? 3 : 2,
-    scale: 0.5,
-    // anchor: [0.5, 0.5] doesnt work
+  
+  const pinSymbol2 = function (color, greycolor, darkColor, isGray, isHovered) {
+    return {
+      path: Circle,
+      fillColor: isGray ? greycolor : color,
+      strokeColor: isGray ? "#808080" : darkColor,
+      strokeWeight: isHovered ? 0.5 : 0.5,
+      fillOpacity: 1,
+      scale: isHovered ? 5.2 : 4,
+      anchor: new Point(0.2, 4.8),
+    };
   };
-};
-function pinSymbol1(color, greycolor, darkColor, isGray, isHovered) {
-  return {
-    path: "M23.667 11.84c0 7.52-10.048 19.52-11.5 19.52s-11.5-12-11.5-19.52C.667 5.743 5.816.8 12.167.8c6.35 0 11.5 4.943 11.5 11.04",
-    fillColor: isGray ? greycolor : color,
-    fillOpacity: 1,
-    strokeColor: isGray ? "#808080" : darkColor,
-    strokeWeight: isHovered ? 3 : 2,
-    scale: 1,
-  };
-}
-
+  
+  function pinSymbol1(color, greycolor, darkColor, isGray, isHovered) {
+    return {
+      path: "M23.667 11.84c0 7.52-10.048 19.52-11.5 19.52s-11.5-12-11.5-19.52C.667 5.743 5.816.8 12.167.8c6.35 0 11.5 4.943 11.5 11.04",
+      fillColor: isGray ? greycolor : color,
+      fillOpacity: 1,
+      strokeColor: isGray ? "#808080" : darkColor,
+      strokeWeight: isHovered ? 2 : 1,
+      scale: isHovered ? 1.3 : 1,
+      anchor: new Point(13, 32),
+    };
+  }
+  
 
  return (
    <div>
@@ -127,6 +139,35 @@ function pinSymbol1(color, greycolor, darkColor, isGray, isHovered) {
            icon={pinSymbol1(
              markerColor,
              markerColorgreyed,
+             markerColorDarker,
+             isGray,
+             isHovered
+           )}
+           onMouseOver={() => {
+             setIsHovered(true);
+           }}
+           onMouseOut={() => {
+             setIsHovered(false);
+           }}
+           animation={(() => {
+             if (state.currentProperty.id === id) {
+               return 1;
+             }
+             if (state.prevProperty.includes(id)) {
+               return null;
+             }
+             return 2;
+           })()}
+         />
+         Marker 2
+         <GoogleMapMarker
+           position={position}
+           title={title}
+           zIndex={isGray ? 0 : 1}
+           onClick={() => handleClickMarker(id)}
+           icon={pinSymbol2(
+             markerColorDarker,
+             markerColorgreyeddark,
              markerColorDark,
              isGray,
              isHovered
@@ -147,34 +188,6 @@ function pinSymbol1(color, greycolor, darkColor, isGray, isHovered) {
              return 2;
            })()}
          />
-         {/* Marker 2
-         <GoogleMapMarker
-           position={position}
-           title={title}
-           zIndex={isGray ? 2 : 3}
-           onClick={() => handleClickMarker(id)}
-           icon={pinSymbol2(
-             markerColor,
-             markerColorgreyed,
-             isGray,
-             isHovered
-           )}
-           onMouseOver={() => {
-             setIsHovered(true);
-           }}
-           onMouseOut={() => {
-             setIsHovered(false);
-           }}
-           animation={(() => {
-             if (state.currentProperty.id === id) {
-               return 1;
-             }
-             if (state.prevProperty.includes(id)) {
-               return null;
-             }
-             return 2;
-           })()}
-         /> */}
        </Suspense>
      ) : null}
    </div>
