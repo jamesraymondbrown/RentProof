@@ -67,7 +67,7 @@ useEffect(() => {
     ...prevState,
     currentProperty: selectedProperty,
   }));
-}, [selectedProperty]);
+}, [selectedProperty, state.currentProperty.id]);
 
 
   useEffect(() => {

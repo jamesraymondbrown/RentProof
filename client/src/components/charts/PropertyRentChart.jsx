@@ -36,7 +36,7 @@ const PropertyRentChart = (props) => {
 
   return (
     <div>
-      <div className="chart-title">Selected property price history:</div>
+      <div className="chart-title">Property price history:</div>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart
           data={data}

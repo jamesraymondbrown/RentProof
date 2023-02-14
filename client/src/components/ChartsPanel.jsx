@@ -1,6 +1,7 @@
 import PropertyRentChart from "./charts/PropertyRentChart";
 import RentIncreaseChart from "./charts/RentIncreaseChart";
 import AllPropertiesPercentChart from "./charts/AllPropertiesPercentChart";
+import AllPropertiesPriceChart from "./charts/AllPropertiesPriceChart";
 import SelectedPropertyVsAll from "./charts/SelectedPropertyVsAll";
 import RentGrowthRateVsMarket from "./charts/RentGrowthRateVsMarket";
 import { Panel } from "primereact/panel";
@@ -79,6 +80,13 @@ const ChartsPanel = () => {
               <div>Loading...</div>
             )}
           </div>
+        </div>
+      )}
+
+      {/* Chart showing the average rent price across all properties */}
+      {!state.currentProperty.id && (
+        <div className="RentChart">
+          {prices ? <AllPropertiesPriceChart /> : <div>Loading...</div>}
         </div>
       )}
 
