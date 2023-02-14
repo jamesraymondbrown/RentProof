@@ -1,12 +1,13 @@
 import "./RentList.scss";
 import React, { useState, useEffect, useMemo } from "react";
-import BathFilter from "./filters/BathFilter";
+import BackButton from "./BackButton";
+import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import BedFilter from "./filters/BedFilter";
+import BathFilter from "./filters/BathFilter";
 import ChartsPanel from "./ChartsPanel";
 import { useContext } from "react";
 import { MarkerFilterContext } from "../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../providers/DataBaseProvider";
-import MultiRangeSlider from "./multiRangeSlider/MultiRangeSlider";
 import {
   getCostFromPrices,
   getPhotoFromPrices,
@@ -57,6 +58,8 @@ const RentList = () => {
   return (
     <div className="RentList">
       <div className="slider-container">
+        <BackButton/>
+
         <MultiRangeSlider style={{ height: "20px" }} />
 
         <BedFilter />
