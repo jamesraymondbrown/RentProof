@@ -55,9 +55,6 @@ const RentList = () => {
     }
   }, [showCharts]);
 
-  console.log("prices", prices);
-  console.log("properties", properties);
-
   return (
     <div className="RentList">
       <div className="slider-container">

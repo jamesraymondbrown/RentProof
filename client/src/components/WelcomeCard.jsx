@@ -9,11 +9,18 @@ const WelcomeCard = () => {
   return prices === null || properties === null ? (
     <div>loading...</div>
   ) : (
-    <Card title="Welcome to Rentproof!" className="welcome-card welcome-title">
+    <Card
+      title="Welcome to Rentproof!"
+      subTitle=""
+      className="welcome-card welcome-title"
+    >
       <p className="m-0 welcome-card welcome-message">
-        Welcome to RentProof! We're currently tracking {prices.length} prices
-        across {properties.length} different properties. Do you have info to
-        share that might help your fellow renters?{" "}
+        Welcome to RentProof! We're currently tracking{" "}
+        <strong>{prices.length}</strong> prices across{" "}
+        <strong>{properties.length}</strong> different properties.
+      </p>
+      <p className="m-0 welcome-card welcome-message">
+        Do you have info to share that might help your fellow renters?{" "}
         <a href="http://localhost:8000/register">Create an account</a> or{" "}
         <a href="http://localhost:8000/login">login</a> to get started!
       </p>
