@@ -11,15 +11,13 @@
 }
 
 .img-container{
-    // max-width: 10em;
-    // width: 10em;
-    // height: 10em;
-    max-height: 15em;
-    margin: 1em;
-    display: flex;
-    border-radius: 10%;
-    border-color: blanchedalmond;
-    transition: all 0.3s ease-in-out;}
+  height: 15em;
+  margin: 1em;
+  display: flex;
+  border-radius: 10%;
+  border-color: blanchedalmond;
+  transition: all 0.3s ease-in-out;
+}
 
 .slider-container {
   border: 1px solid #88c2ee;
@@ -53,22 +51,6 @@
   padding-top: 0.25em;
 }
 
-// #right-title {
-//   padding-right: 3.5em;
-// }
-
-// #right-text {
-//   padding-right: 4em;
-// }
-
-// #left-title {
-//   padding-left: 3.5em;
-// }
-
-// #left-text {
-//   padding-left: 4em;
-// }
-
 .home-right-property-table-bottom thead tr th {
   color: #2d3138;
   width: 33%;
@@ -92,27 +74,9 @@
   padding-bottom: 0.25em;
 }
 
-.p-panel-header {
-  background-color: rgb(33, 107, 255) !important;
-}
-
-.p-panel-icons #ChartsPanel_label {
-  background-color: #59b9f8;
-  border: 1px solid white;
-  color: white;
-}
-
-.p-panel-content {
-  background-color: rgb(235, 247, 251) !important;
-}
-
-.selected-property-charts {
-  background-color: rgb(235, 247, 251);
-}
-
 .image {
- width: 100%;
- max-height: fit-content;
+  width: 100%;
+  max-height: 100%;
   display: flex;
   border-radius: 5%;
   border-color: blanchedalmond;
@@ -129,6 +93,7 @@
     left: 50%;
   }
 }
+
 .info {
   font-family: "Helvetica Neue";
   font-size: 16px;
@@ -139,14 +104,8 @@
   border-color: var(--chakra-colors-gray-200);
   box-sizing: border-box;
   color: #1a202c;
-  display: flex;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  margin: 0px 25px;
-  overflow-wrap: break-word;
-  padding-bottom: 0px;
-  padding-top: 0px;
 }
+
 .price {
   font-family: "Helvetica Neue";
   font-size: 42px;
@@ -160,6 +119,7 @@
   letter-spacing: 1.04px;
   overflow-wrap: break-word;
   padding-right: 15px;
+  margin-left: 0.5em;
 }
 
 .name {
