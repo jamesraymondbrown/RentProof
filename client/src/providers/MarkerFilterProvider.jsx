@@ -82,6 +82,7 @@ useEffect(() => {
     <MarkerFilterContext.Provider
       value={{
         state,
+        setState,
         handleClickBeds,
         handleClickBaths,
         handleClickMarker,
