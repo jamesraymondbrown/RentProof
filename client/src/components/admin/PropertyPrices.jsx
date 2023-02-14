@@ -64,7 +64,6 @@ export default function PropertyPrices() {
   
   let tableProperties
     (properties && prices) && (tableProperties = properties.map((property) => {
-
       const getPricesForProperty = (propertyId, prices) => {
         let propertyPriceArray = []
           for (let price of prices) {
@@ -77,9 +76,7 @@ export default function PropertyPrices() {
             }
           }
         return propertyPriceArray
-      }
-      
-      
+      }      
 
     return {
       id: property.id,
@@ -91,88 +88,83 @@ export default function PropertyPrices() {
     }  
   }))
 
-    const onRowExpand = (event) => {
-        toast.current.show({severity: 'info', summary: 'Property Expanded', detail: event.data.name, life: 1500});
-    }
+  const onRowExpand = (event) => {
+      toast.current.show({severity: 'info', summary: 'Property Expanded', detail: event.data.name, life: 1500});
+  }
 
-    const onRowCollapse = (event) => {
-        toast.current.show({severity: 'success', summary: 'Property Collapsed', detail: event.data.name, life: 1500});
-    }
+  const onRowCollapse = (event) => {
+      toast.current.show({severity: 'success', summary: 'Property Collapsed', detail: event.data.name, life: 1500});
+  }
 
-    const expandAll = () => {
-        let _expandedRows = {};
-        tableProperties.forEach(tableProperty => _expandedRows[`${tableProperty.id}`] = true);
-        setExpandedRows(_expandedRows);
-    }
+  const expandAll = () => {
+    let _expandedRows = {};
+    tableProperties.forEach(tableProperty => _expandedRows[`${tableProperty.id}`] = true);
+    setExpandedRows(_expandedRows);
+  }
 
-    const collapseAll = () => {
-        setExpandedRows(null);
-    }
+  const collapseAll = () => {
+    setExpandedRows(null);
+  }
 
-    const allowExpansion = (rowData) => {
-        return true
-    };
+  const allowExpansion = (rowData) => {
+    return true
+  };
 
-  const rowExpansionTemplate = (data) => {
-       
-      return (
-        <div className="p-3">
-          <h5>Price history for property {data.id}: {data.address}</h5>
-          <DataTable value={data.propertyPrices.reverse()}
-            responsiveLayout="scroll"
-            paginator
-            rows={3}
-          >
-            <Column field="id" header="Id" sortable></Column>
-            <Column field="date" header="Date" sortable></Column>
-            <Column field="price" header="Price" sortable></Column>
-            <Column field="priceDel"  header="Delete" />
-          </DataTable>
-        </div>
-
-        
-      );
-    }
-
-    const header = (
-      <div className="table-header-container">
-        {/* <h3>Products and Prices</h3> */}
-        <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} className="mr-2" />
-        <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} />
-        <InputText
-        placeholder="Search"
-        onInput={(e) =>
-          setFilters({
-            global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
-        })}
-      />
-        </div>
-    );
-
+  const rowExpansionTemplate = (data) => {       
     return (
-        <div className="card">
-        <Toast ref={toast} />
-        <DataTable  value={tableProperties}
-          expandedRows={expandedRows}
-          onRowToggle={(e) => setExpandedRows(e.data)}
-          onRowExpand={onRowExpand}
-          onRowCollapse={onRowCollapse}
+      <div className="property-prices">
+        <h5>Price history for property {data.id}: {data.address}</h5>
+        <DataTable value={data.propertyPrices.reverse()}
           responsiveLayout="scroll"
-          rowExpansionTemplate={rowExpansionTemplate}
-          dataKey="id"
-          header={header}
-          scrollable scrollHeight="650px"
-          // paginator
-          // rows={6}
-          filters={filters}
+          paginator
+          rows={3}
         >
-            <Column expander={allowExpansion} style={{ width: '3em' }} />
-            <Column field="id" header="Id" sortable />
-            <Column field="address" header="Address" sortable />
-            <Column field="city" header="City" sortable />
-          <Column field="province" header="Province" sortable />
-          <Column field="deleteProp" header="Delete" />
+          <Column field="id" header="Id" sortable></Column>
+          <Column field="date" header="Date" sortable></Column>
+          <Column field="price" header="Price" sortable></Column>
+          <Column field="priceDel"  header="Delete" />
         </DataTable>
-    </div>
+      </div>
     );
+  }
+
+  const header = (
+    <div className="table-header-container">
+      {/* <h3>Products and Prices</h3> */}
+      <Button icon="pi pi-plus" label="Expand All" onClick={expandAll} className="mr-2" />
+      <Button icon="pi pi-minus" label="Collapse All" onClick={collapseAll} />
+      <InputText
+      placeholder="Search"
+      onInput={(e) =>
+        setFilters({
+          global: { value: e.target.value, matchMode: FilterMatchMode.CONTAINS }
+      })}
+      />
+    </div>
+  );
+
+  return (
+    <div className="card">
+      <Toast ref={toast} />
+      <DataTable  value={tableProperties}
+        expandedRows={expandedRows}
+        onRowToggle={(e) => setExpandedRows(e.data)}
+        onRowExpand={onRowExpand}
+        onRowCollapse={onRowCollapse}
+        responsiveLayout="scroll"
+        rowExpansionTemplate={rowExpansionTemplate}
+        dataKey="id"
+        header={header}
+        scrollable scrollHeight="650px"
+        filters={filters}
+      >
+        <Column expander={allowExpansion} style={{ width: '3em' }} />
+        <Column field="id" header="Id" sortable />
+        <Column field="address" header="Address" sortable />
+        <Column field="city" header="City" sortable />
+        <Column field="province" header="Province" sortable />
+        <Column field="deleteProp" header="Delete" />
+      </DataTable>
+    </div>
+  );
 }
