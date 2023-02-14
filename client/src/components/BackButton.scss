@@ -1,37 +1,28 @@
-.btn-back {
-    padding: 5.5px 10px;
-    font-size: 16px;
-    letter-spacing: .26px;
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
+.back-button {
+  background-color: #5AB8F8;
+  border: 1px solid #88c2ee;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: .26px;
+  line-height: 1.42857143;
+  margin-top: 5px;
+  padding: 5.5px 10px;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
 }
-.btn-outline {
-    background: #fff;
+
+.back-button:hover {
+  background-color: royalblue
 }
-.btn {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    display: inline-block;
-    margin-bottom: 0;
-    // padding: 6px 12px;
-    font-weight: 400;
-    // font-size: 14px;
-    line-height: 1.42857143;
-    white-space: nowrap;
-    text-align: center;
-    vertical-align: middle;
-    // background-image: none;
-    // border: 1px solid transparent;
-    // border-radius: 4px;
-    cursor: pointer;
-    // -webkit-user-select: none;
-    // -moz-user-select: none;
-    user-select: none;
-    touch-action: manipulation;
-}
-.btn-outline:active, .btn-outline:active:hover {
-    color: #5ab8f8;
-    background-color: #c8e6fc;
-    border-color: #c7e6fd;
-    outline: none;
-    box-shadow: none;
+
+.back-arrow {
+  color: white !important;
 }

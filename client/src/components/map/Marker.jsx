@@ -20,7 +20,7 @@ function Marker({ bedrooms, bathrooms, cost, position, title, label, id }) {
     state,
   } = useContext(MarkerFilterContext);
 
-  console.log("state.currentProperty ➤", state.currentProperty);
+  // console.log("state.currentProperty ➤", state.currentProperty);
 
 function percentageToHexColor(percentage, lightness = 0, saturation = 100) {
   let R, G, B;

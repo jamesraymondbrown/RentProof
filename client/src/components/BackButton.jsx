@@ -11,14 +11,14 @@ export default function BackButton() {
 
   return (
     <button
-      className="btn btn-outline btn-back BubbleDetail_btnBack__2aeZ1"
+      className="back-button"
       onClick={handleClick}
     >
-      <svg height="8" width="14" className="BubbleDetail_backArrow__29V4h">
+      <svg height="8" width="14" className="back-arrow">
         <title>back-arrow</title>
         <path
           d="M.64 4.219L4.017.844V3.64h9.156v1.156H4.016v2.797z"
-          fill="#5AB8F8"
+          fill="white"
           fillRule="evenodd"
         ></path>
       </svg>

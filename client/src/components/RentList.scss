@@ -24,8 +24,20 @@
 // }
 
 .slider-container {
-  border-radius: 5px;
-  margin: 0.25em;
+  width: 100%;
+  // margin: 0.25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-container .container {
+  width: 100%;
+}
+
+.slider-container .filter-container {
+  width: 100%;
 }
 
 .home-right-property-table-top {
@@ -59,7 +71,6 @@
 .home-right-property-table-bottom thead tr th {
   color: #2d3138;
   width: 9vw;
-  padding-top: 0.25em;
 }
 
 .home-right-property-table-bottom tbody tr td {
@@ -70,6 +81,7 @@
 .p-panel-header {
   background-color: rgb(33, 107, 255) !important;
   width: 27vw !important;
+  height: 50px;
 }
 
 .p-panel-icons #ChartsPanel_label {
