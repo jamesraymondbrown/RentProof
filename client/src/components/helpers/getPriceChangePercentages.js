@@ -1,13 +1,9 @@
-import { useContext } from "react";
-import { DataBaseContext } from "../../providers/DataBaseProvider";
-import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
-import { getPriceHistory } from "../helpers/getDataFromPrices";
+import { getPriceHistory } from "./getDataFromPrices";
 
-const getPriceChangePercentage = (currentProperty) => {
+export const getPriceChangePercentage = (currentProperty_id, prices, properties) => {
   const data = [];
-  const { prices, properties } = useContext(DataBaseContext);
-  const currentPropertyPrices = getPriceHistory(currentProperty.id, prices);
-  const averageIncreasePerYear = {
+  const currentPropertyPrices = getPriceHistory(currentProperty_id, prices);
+    const averageIncreasePerYear = {
     2015: [],
     2016: [],
     2017: [],
@@ -89,8 +85,6 @@ const getPriceChangePercentage = (currentProperty) => {
     showPricesBasedOnAverages();
   };
 
-  // Multiplies the initial property price by the average rent increase percentage, to compare
-  // what it would be like if this property followed the market trend exactly
   const showPricesBasedOnAverages = () => {
     for (let i = 0; i < data.length; i++) {
       if (data[i].date === 2014) {
@@ -154,10 +148,6 @@ const getPriceChangePercentage = (currentProperty) => {
     percentIncreaseVsMarketAverage();
   };
 
-  // convert the price difference into a percentage, comparing how much higher or lower the current
-  // property's price is vs market trends. Above 0 is above market value, below 0 is below market
-  // value. So below 0 means you're getting a better deal
-
   const percentIncreaseVsMarketAverage = () => {
     for (const d of data) {
       d.price_difference_percentage =
@@ -170,7 +160,7 @@ const getPriceChangePercentage = (currentProperty) => {
 
   // console.log("dataLogLog", data[data.length - 1].price_difference_percentage);
 
-  return <div>{data[data.length - 1].price_difference_percentage}</div>;
+  return data[data.length - 1].price_difference_percentage;
+
 };
 
-module.exports = getPriceChangePercentage();
