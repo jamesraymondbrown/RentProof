@@ -14,12 +14,12 @@ const Header = () => {
         <Link to="/" className="logo">
           RentProof
         </Link>
-        <Button
+        {/* <Button
           label="Site Info"
           icon="pi pi-external-link"
           onClick={() => setVisible(true)}
-        />
-        <Dialog
+        /> */}
+        {/* <Dialog
           header="On This Page"
           visible={visible}
           style={{ width: "50vw" }}
@@ -39,7 +39,7 @@ const Header = () => {
             increases in your area, and when you click on a marker you can see
             property-specific rental data too.
           </p>
-        </Dialog>
+        </Dialog> */}
         <Navbar />
       </div>
     </header>

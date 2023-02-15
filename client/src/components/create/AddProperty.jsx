@@ -5,7 +5,7 @@ import './AddProperty.scss'
 
 const AddProperty = () => {
 
-  console.log("Ran Add Property")
+  // console.log("Ran Add Property")
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
 
   const [province, setProvince] = useState('');

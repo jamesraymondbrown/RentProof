@@ -27,6 +27,18 @@ header .p-button:hover {
   background-color: blue !important;
 }
 
+div > div:nth-child(1) > header > div > nav > ul > li:nth-child(1) > button > a {
+  border: none !important;
+}
+
+div > div:nth-child(1) > header > div > nav > ul > li:nth-child(2) > button > a {
+  border: none !important;
+}
+
+div > div:nth-child(1) > header > div > nav > ul > li:nth-child(3) > button > a {
+  border: none !important;
+}
+
 .m-0 {
   font-size: 1.2em;
 }

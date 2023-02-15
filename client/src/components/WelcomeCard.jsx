@@ -1,6 +1,7 @@
 import { DataBaseContext } from "../providers/DataBaseProvider";
 import { Card } from "primereact/card";
 import { useContext } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom";
 import "./WelcomeCard.scss";
 
 const WelcomeCard = () => {
@@ -10,7 +11,7 @@ const WelcomeCard = () => {
     <div>loading...</div>
   ) : (
     <Card
-      title="Welcome to Rentproof!"
+      title="Welcome to RentProof!"
       subTitle=""
       className="welcome-card welcome-title"
     >
@@ -21,8 +22,8 @@ const WelcomeCard = () => {
       </p>
       <p className="m-0 welcome-card welcome-message">
         Do you have info to share that might help your fellow renters?{" "}
-        <a href="http://localhost:8000/register">Create an account</a> or{" "}
-        <a href="http://localhost:8000/login">login</a> to get started!
+        <Link to="/register" className="welcome-link">Create an account</Link> or{" "}
+        <Link to="/login" className="welcome-link">login</Link> to get started!
       </p>
     </Card>
   );

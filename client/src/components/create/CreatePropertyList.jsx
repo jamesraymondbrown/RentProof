@@ -13,7 +13,7 @@ import "./CreatePropertyList.scss";
 
 export default function PropertyList() {
 
-  console.log("Ran Property List")
+  // console.log("Ran Property List")
   
   const { users, setUsers, properties, setProperties, prices, setPrices } = useContext(DataBaseContext);
   const { updateId, setUpdateId } = useContext(PropertyIdContext);

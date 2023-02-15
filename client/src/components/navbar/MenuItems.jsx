@@ -11,7 +11,7 @@ const MenuItems = ({ items }) => {
 
   const userRole = ReactSession.get("role");
 
-  const history = useHistory()
+  // const history = useHistory()
   const [dropdown, setDropdown] = useState(false);
 
   const logout = () => {
@@ -45,7 +45,7 @@ const MenuItems = ({ items }) => {
           />
         </>
       ) : (
-          <button>
+          <button className="nav-buttons">
             {!userRole && menuLogin}
             {userRole && menuLogout}
           </button>

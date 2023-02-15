@@ -29,7 +29,7 @@ export const DataBaseProvider = (props) => {
       .then(
         setTimeout(() => {
           setLoading(false);
-        }, 700)
+        }, 200)
       );
   }, []);
 

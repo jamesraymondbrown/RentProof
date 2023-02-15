@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom/cjs/react-router-dom";
+
 const Dropdown = ({ submenus, dropdown }) => {
   return (
     <ul className={`dropdown ${dropdown ? "show" : ""}`}>
       {submenus.map((submenu, index) => (
         <li key={index} className="menu-items">
-          <a href={submenu.url}>{submenu.title}</a>
+          <Link to={submenu.url}>{submenu.title}</Link>
         </li>
       ))}
     </ul>
