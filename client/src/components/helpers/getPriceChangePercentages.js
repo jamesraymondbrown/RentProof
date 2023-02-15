@@ -1,9 +1,13 @@
 import { getPriceHistory } from "./getDataFromPrices";
 
-export const getPriceChangePercentage = (currentProperty_id, prices, properties) => {
+export const getPriceChangePercentage = (
+  currentProperty_id,
+  prices,
+  properties
+) => {
   const data = [];
   const currentPropertyPrices = getPriceHistory(currentProperty_id, prices);
-    const averageIncreasePerYear = {
+  const averageIncreasePerYear = {
     2015: [],
     2016: [],
     2017: [],
@@ -158,9 +162,11 @@ export const getPriceChangePercentage = (currentProperty_id, prices, properties)
   // Call function to populate the data
   addPricesToData();
 
-  // console.log("dataLogLog", data[data.length - 1].price_difference_percentage);
+  console.log("dataLogLog", data[data.length - 1].price_difference_percentage);
+
+  if (isNaN(data[data.length - 1].price_difference_percentage)) {
+    data[data.length - 1].price_difference_percentage = 0;
+  }
 
   return data[data.length - 1].price_difference_percentage;
-
 };
-
