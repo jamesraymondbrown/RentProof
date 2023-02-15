@@ -24,6 +24,7 @@ function Marker({
   id,
   prices,
   properties,
+  clusterer
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const {
@@ -54,7 +55,8 @@ function Marker({
       cost > minF ? (
         <Suspense fallback={<div>Loading...</div>}>
           <GoogleMapMarker
-            position={position}
+              position={position}
+              clusterer={clusterer}
             title={title}
             zIndex={isGray ? 0 : 1}
             onClick={() => handleClickMarker(id)}

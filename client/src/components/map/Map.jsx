@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, MarkerClusterer, useLoadScript } from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
 import {
@@ -40,25 +40,32 @@ export default function MapDisplay(props) {
       prices
     );
 
-    markers = markerProperties.map((property) => {
-      return (
-        <Marker
-          key={property.id}
-          id={property.id}
-          position={{
-            lat: Number(property.latitude),
-            lng: Number(property.longitude),
-          }}
-          title={property.address}
-          cost={getCostFromPrices(property, prices)}
-          label={getCostFromPrices(property, prices)}
-          bedrooms={getBedroomsFromPrices(property, prices)}
-          bathrooms={getBathroomsFromPrices(property, prices)}
-          properties={properties}
-          prices={prices}
-        />
-      );
-    });
+    markers =      
+      <MarkerClusterer>
+        {(clusterer) =>        
+          markerProperties.map((property) => {
+            return (
+              <Marker
+                key={property.id}
+                id={property.id}
+                position={{
+                  lat: Number(property.latitude),
+                  lng: Number(property.longitude),
+                }}
+                title={property.address}
+                cost={getCostFromPrices(property, prices)}
+                label={getCostFromPrices(property, prices)}
+                bedrooms={getBedroomsFromPrices(property, prices)}
+                bathrooms={getBathroomsFromPrices(property, prices)}
+                properties={properties}
+                prices={prices}
+                clusterer={clusterer}
+              />
+            )
+          })
+        }
+      </MarkerClusterer>
+    
   }
 
   function Map() {
@@ -68,7 +75,7 @@ export default function MapDisplay(props) {
         center={{ lat: 49.28, lng: -123.12 }}
         mapContainerClassName="map-container"
       >
-        {markers}
+       {markers}
       </GoogleMap>
     );
   }
