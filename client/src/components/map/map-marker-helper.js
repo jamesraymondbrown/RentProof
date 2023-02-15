@@ -81,6 +81,13 @@ const properties = [
   }
 ]
 
+const getPropertyById = (id) => {
+  return properties
+    .filter(property => property.id === id)
+}
+console.log(getPropertyById(4))
+
+
 const prices = [
   {
     "id": 1,
@@ -379,14 +386,14 @@ const prices = [
 
 // console.log(prices.length)
 
-const testProperty = {
-    "id": 10,
-    "province": "BC",
-    "city": "Vancouver",
-    "street_address": "1550 Duchess Ave, West Vancouver",
-    "latitude": "49.329546400",
-    "longitude": "-123.157720200"
-  }
+// const testProperty = {
+//     "id": 10,
+//     "province": "BC",
+//     "city": "Vancouver",
+//     "street_address": "1550 Duchess Ave, West Vancouver",
+//     "latitude": "49.329546400",
+//     "longitude": "-123.157720200"
+//   }
 
 // const deletePricesForProperty = (property) => {
 //   return prices
@@ -401,14 +408,14 @@ const testProperty = {
 
 // console.log(deletePricesForProperty(testProperty))
 
-const getPricesForProperty = (propertyId, prices) => {
-      let propertyPriceArray = []
-        for (let price of prices) {
-          if (price.property_id === propertyId) {
-            propertyPriceArray.push(price)
-          }
-        }
-      return propertyPriceArray
-}
+// const getPricesForProperty = (propertyId, prices) => {
+//       let propertyPriceArray = []
+//         for (let price of prices) {
+//           if (price.property_id === propertyId) {
+//             propertyPriceArray.push(price)
+//           }
+//         }
+//       return propertyPriceArray
+// }
     
-console.log(getPricesForProperty(10, prices))
+// console.log(getPricesForProperty(10, prices))
