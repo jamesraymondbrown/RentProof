@@ -162,7 +162,7 @@ export const getPriceChangePercentage = (
   // Call function to populate the data
   addPricesToData();
 
-  console.log("dataLogLog", data[data.length - 1].price_difference_percentage);
+  // console.log("dataLogLog", data[data.length - 1].price_difference_percentage);
 
   if (isNaN(data[data.length - 1].price_difference_percentage)) {
     data[data.length - 1].price_difference_percentage = 0;

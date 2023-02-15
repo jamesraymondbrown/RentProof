@@ -1,5 +1,9 @@
 import React, { useContext } from "react";
-import { GoogleMap, MarkerClusterer, useLoadScript } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  MarkerClusterer,
+  useLoadScript,
+} from "@react-google-maps/api";
 import "./Map.scss";
 import Marker from "./Marker.jsx";
 import {
@@ -40,9 +44,9 @@ export default function MapDisplay(props) {
       prices
     );
 
-    markers =      
-      <MarkerClusterer>
-        {(clusterer) =>        
+    markers = (
+      <MarkerClusterer minimumClusterSize={6}>
+        {(clusterer) =>
           markerProperties.map((property) => {
             return (
               <Marker
@@ -61,11 +65,11 @@ export default function MapDisplay(props) {
                 prices={prices}
                 clusterer={clusterer}
               />
-            )
+            );
           })
         }
       </MarkerClusterer>
-    
+    );
   }
 
   function Map() {
@@ -75,7 +79,7 @@ export default function MapDisplay(props) {
         center={{ lat: 49.28, lng: -123.12 }}
         mapContainerClassName="map-container"
       >
-       {markers}
+        {markers}
       </GoogleMap>
     );
   }
