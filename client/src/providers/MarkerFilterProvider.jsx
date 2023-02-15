@@ -45,7 +45,7 @@ export const MarkerFilterProvider = ({ children }) => {
       .get(`http://localhost:8001/properties/${id}`)
       .then((response) => {
         setSelectedProperty(response.data);
-        console.log("response.data ➤", response.data);
+        // console.log("response.data ➤", response.data);
       })
       .catch((error) => console.error(error));
   };

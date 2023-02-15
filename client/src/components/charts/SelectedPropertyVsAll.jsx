@@ -167,7 +167,7 @@ const RentIncreaseChart = (props) => {
 
   for (const dat of data) {
     if (dat.compare_at_price === NaN) {
-      console.log("dat", dat);
+      // console.log("dat", dat);
     }
   }
 
@@ -185,7 +185,7 @@ const RentIncreaseChart = (props) => {
     return null;
   };
 
-  // console.log("data", data[0].compare_at_price);
+  // console.log("data", data);
 
   return data.length < 3 ? (
     <div>Not enough data</div>
