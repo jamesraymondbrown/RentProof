@@ -55,13 +55,14 @@ function Marker({
       cost > minF ? (
         <Suspense fallback={<div>Loading...</div>}>
           <GoogleMapMarker
-              position={position}
-              clusterer={clusterer}
+            position={position}
+            clusterer={clusterer}
             title={title}
             zIndex={isGray ? 0 : 1}
             onClick={() => handleClickMarker(id)}
             icon={{
-              url: require(`../Docs/marker${
+              url: require(`../Docs/GoogleSheetsTheme/marker${
+                // edit GoogleSheetsTheme to another theme
                 isGray ? "grey" : ""
               }${costVSavg}.png`),
               scaledSize: isHovered
