@@ -62,6 +62,7 @@ const MultiRangeSlider = () => {
       <div className="slider__left-value">${minVal /* update this first*/}</div>
       <input
         type="range"
+        step="100"
         min={min}
         max={max}
         value={minVal}
@@ -76,6 +77,7 @@ const MultiRangeSlider = () => {
       />
       <input
         type="range"
+        step="100"
         min={min}
         max={max}
         value={maxVal}
