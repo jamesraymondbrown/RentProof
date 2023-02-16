@@ -73,7 +73,7 @@ const RentList = () => {
               src={
                 prices
                   ? getPhotoFromPrices(state.currentProperty, prices)
-                  : "https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
+                  : "https://imgur.com/QjyKoRq"
               }
               alt="Rent List"
               className="image"
@@ -136,9 +136,9 @@ const RentList = () => {
       ) : (
         <>
           <img
-            src="https://media.npr.org/assets/img/2013/12/10/ap101018123881-ca0472fba716df4b485fff878b558284cdc89ab9.jpg"
+            src="/too_damn_dry.png"
             alt="Rent List"
-            className="image"
+            className="image too_damn_dry"
           />
           <WelcomeCard />
           {/* <table className="home-right-property-table-top">
