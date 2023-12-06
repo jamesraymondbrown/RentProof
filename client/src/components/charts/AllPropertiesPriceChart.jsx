@@ -13,34 +13,16 @@ import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 
 const AllPropertiesPriceChart = (props) => {
-  // const [data, setData] = [];
   const data = [];
-  // const prices = props.prices;
-  // const properties = props.properties;
-  const {
-    selectedBedrooms,
-    selectedBathrooms,
-    handleClickMarker,
-    minF,
-    maxF,
-    state,
-  } = useContext(MarkerFilterContext);
+  const { selectedBedrooms, selectedBathrooms } =
+    useContext(MarkerFilterContext);
 
   let { prices, properties } = useContext(DataBaseContext);
-
-  // console.log(
-  //   "beds, baths, min, max",
-  //   selectedBedrooms,
-  //   selectedBathrooms,
-  //   minF,
-  //   maxF
-  // );
 
   if (selectedBedrooms.length && !selectedBathrooms.length) {
     const updatedProperties = [];
     const updatedPrices = [];
 
-    // loop through selected bedrooms
     for (const bedrooms of selectedBedrooms) {
       // search prices chart for properties with that number of bedrooms
       for (const price of prices) {
@@ -70,15 +52,11 @@ const AllPropertiesPriceChart = (props) => {
     const updatedProperties = [];
     const updatedPrices = [];
 
-    // loop through selected bedrooms
     for (const bathrooms of selectedBathrooms) {
-      // search prices chart for properties with that number of bedrooms
       for (const price of prices) {
         if (price.number_of_bathrooms === bathrooms) {
           updatedPrices.push(price);
 
-          // this is to ensure that the same property won't get pushed multiple times
-          // (this returns "-1" if the property isn't already in our new array, which allows the next part to push that property)
           const index = updatedProperties.findIndex(
             (property) => property.id === price.property_id
           );
@@ -131,9 +109,6 @@ const AllPropertiesPriceChart = (props) => {
     prices = updatedPrices;
   }
 
-  // console.log("properties", properties);
-  // console.log("prices", prices);
-
   const getAveragePrices = (prices, properties) => {
     const allPricesPerYear = {
       2014: [],
@@ -151,16 +126,6 @@ const AllPropertiesPriceChart = (props) => {
     // Compare all prices to that of the year previous, and send the calculated rent increase to an allIncreasesPerYear object
     for (let i = 1; i < prices.length; i++) {
       allPricesPerYear[prices[i].date.substring(0, 4)].push(prices[i]);
-      // if (prices[i].date.substring(0, 4) > prices[i - 1].date.substring(0, 4)) {
-      //   (
-      //     Math.round(
-      //       ((parseInt(prices[i].price) - parseInt(prices[i - 1].price)) /
-      //         parseInt(prices[i - 1].price)) *
-      //         100 *
-      //         10
-      //     ) / 10
-      //   );
-      // }
     }
 
     for (let i = 2014; i <= 2023; i++) {
@@ -186,7 +151,6 @@ const AllPropertiesPriceChart = (props) => {
         <div className="custom-tooltip">
           <p className="label tooltip-text">{`Year: ${label}`}</p>
           <p className="tooltip-text">{`Average rent price: $${payload[0].value}`}</p>
-          {/* {console.log("load", payload)} */}
         </div>
       );
     }
@@ -210,15 +174,11 @@ const AllPropertiesPriceChart = (props) => {
 
           <Area dataKey="Price" stroke="#5AB8F8" fill="url(#color)" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
-          <XAxis
-            dataKey="date"
-            // ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
-          />
+          <XAxis dataKey="date" />
           <YAxis
             dataKey="Price"
             domain={[500, 6000]}
             tickCount={6}
-            // ticks={[3, 6, 9, 12, 15]}
             tickFormatter={(price) => `$${price}`}
           />
           <Tooltip
@@ -226,19 +186,6 @@ const AllPropertiesPriceChart = (props) => {
             wrapperStyle={{ outline: "none" }}
           />
         </AreaChart>
-        {/* <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-          <Line type="monotone" dataKey="price" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="date" />
-          <YAxis
-            dataKey="price"
-            domain={[
-              parseInt(data[0].price) - 500,
-              parseInt(data[data.length - 1].price) + 500,
-            ]}
-          />
-          <Tooltip />
-        </LineChart> */}
       </ResponsiveContainer>
     </div>
   );

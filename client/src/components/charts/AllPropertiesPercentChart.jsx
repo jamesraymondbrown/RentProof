@@ -13,28 +13,11 @@ import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 import { DataBaseContext } from "../../providers/DataBaseProvider";
 
 const AllPropertiesPercentChart = (props) => {
-  // const [data, setData] = [];
   const data = [];
-  // const prices = props.prices;
-  // const properties = props.properties;
-  const {
-    selectedBedrooms,
-    selectedBathrooms,
-    handleClickMarker,
-    minF,
-    maxF,
-    state,
-  } = useContext(MarkerFilterContext);
+  const { selectedBedrooms, selectedBathrooms } =
+    useContext(MarkerFilterContext);
 
   let { prices, properties } = useContext(DataBaseContext);
-
-  // console.log(
-  //   "beds, baths, min, max",
-  //   selectedBedrooms,
-  //   selectedBathrooms,
-  //   minF,
-  //   maxF
-  // );
 
   if (selectedBedrooms.length && !selectedBathrooms.length) {
     const updatedProperties = [];
@@ -131,9 +114,6 @@ const AllPropertiesPercentChart = (props) => {
     prices = updatedPrices;
   }
 
-  // console.log("properties", properties);
-  // console.log("prices", prices);
-
   const getRentIncreaseAverages = (prices, properties) => {
     const allIncreasesPerYear = {
       2014: [],
@@ -197,7 +177,6 @@ const AllPropertiesPercentChart = (props) => {
           <p className="label tooltip-text">{`Year: ${label}`}</p>
           <p className="tooltip-text">{`Average increase: ${payload[0].value}%`}</p>
           <p className="tooltip-text">{`Allowable increase for existing leases: ${payload[1].value}%`}</p>
-          {/* {console.log("load", payload)} */}
         </div>
       );
     }
@@ -226,10 +205,7 @@ const AllPropertiesPercentChart = (props) => {
             fill="url(#color)"
           />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
-          <XAxis
-            dataKey="date"
-            // ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
-          />
+          <XAxis dataKey="date" />
           <YAxis
             dataKey="increase"
             domain={[0, 15]}
@@ -242,19 +218,6 @@ const AllPropertiesPercentChart = (props) => {
             wrapperStyle={{ outline: "none" }}
           />
         </AreaChart>
-        {/* <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-          <Line type="monotone" dataKey="price" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="date" />
-          <YAxis
-            dataKey="price"
-            domain={[
-              parseInt(data[0].price) - 500,
-              parseInt(data[data.length - 1].price) + 500,
-            ]}
-          />
-          <Tooltip />
-        </LineChart> */}
       </ResponsiveContainer>
     </div>
   );
