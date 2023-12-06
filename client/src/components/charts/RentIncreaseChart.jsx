@@ -20,14 +20,11 @@ const RentIncreaseChart = (props) => {
           <p className="label tooltip-text">{`Year: ${label}`}</p>
           <p className="tooltip-text">{`Increase percentage: ${payload[0].value}%`}</p>
           <p className="tooltip-text">{`Increase amount: $${payload[0].payload.increase_amount}`}</p>
-          {/* {console.log("load", payload)} */}
         </div>
       );
     }
     return null;
   };
-
-  // %R = (RF-RI)/RI *100
 
   for (let i = 1; i < prices.length; i++) {
     if (prices[i].admin_status === "approved") {
@@ -45,8 +42,6 @@ const RentIncreaseChart = (props) => {
       });
     }
   }
-
-  // console.log("data", data);
 
   if (data.length < 2) {
     return <div>Not enough data</div>;
@@ -69,10 +64,7 @@ const RentIncreaseChart = (props) => {
 
           <Area dataKey="increase" stroke="#5AB8F8" fill="url(#color)" />
           <CartesianGrid stroke="#ccc" strokeDasharray="5 5" opacity={0.75} />
-          <XAxis
-            dataKey="date"
-            // ticks={["2014", "2016", "2018", "2020", "2022", "2024"]}
-          />
+          <XAxis dataKey="date" />
           <YAxis
             dataKey="increase"
             domain={[0, 15]}
@@ -85,19 +77,6 @@ const RentIncreaseChart = (props) => {
             wrapperStyle={{ outline: "none" }}
           />
         </AreaChart>
-        {/* <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-          <Line type="monotone" dataKey="price" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-          <XAxis dataKey="date" />
-          <YAxis
-            dataKey="price"
-            domain={[
-              parseInt(data[0].price) - 500,
-              parseInt(data[data.length - 1].price) + 500,
-            ]}
-          />
-          <Tooltip />
-        </LineChart> */}
       </ResponsiveContainer>
     </div>
   );
