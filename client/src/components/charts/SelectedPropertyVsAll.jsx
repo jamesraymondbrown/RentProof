@@ -9,10 +9,10 @@ import {
 } from "recharts";
 import "./Charts.scss";
 
-const RentIncreaseChart = (props) => {
+const SelectedPropertyVsAll = (props) => {
   const data = [];
   const prices = props.prices;
-  const properties = props.properties;
+  const allProperties = props.properties;
   const currentPropertyPrices = props.currentPropertyPrices;
   const averageIncreasePerYear = {
     2015: [],
@@ -25,15 +25,6 @@ const RentIncreaseChart = (props) => {
     2022: [],
     2023: [],
   };
-
-  for (let price of currentPropertyPrices) {
-    if (price.admin_status === "approved") {
-      data.push({
-        date: parseInt(price.date.substring(0, 4)),
-        price: parseInt(price.price),
-      });
-    }
-  }
 
   const getRentIncreaseAverages = (prices, properties) => {
     const priceObject = {};
@@ -55,14 +46,14 @@ const RentIncreaseChart = (props) => {
       priceObject[property.id] = [];
     }
 
-    // Push the price data for each property into the correct array
+    // Push the price data for each property into the corresponding priceObject array
     for (const price of prices) {
       priceObject[price.property_id].push(price);
     }
 
-    // Loop through each property to get an integer for querying the priceObject object
-    for (let property of properties) {
-      // Another loop for getting the index of the array inside of each priceObject index (priceObject is an object full of arrays)
+    // Loop through each property to get its ID, for querying the priceObject
+    for (const property of properties) {
+      // Query the priceObject using property.id
       for (let i = 1; i < priceObject[property.id].length; i++) {
         if (priceObject[property.id].length > 3) {
           allIncreasesPerYear[
@@ -80,7 +71,7 @@ const RentIncreaseChart = (props) => {
       }
     }
 
-    // Now we have an allIncreasesPerYear object, that contains an array with the percentage increase for each property, for each year
+    // Now we have an allIncreasesPerYear object, that contains an array with the percentage increase for each property, per year
     // Loop through that data to get the average increase per year, and push that to our data array
     for (let i = 2015; i <= 2023; i++) {
       let sum = 0;
@@ -90,8 +81,6 @@ const RentIncreaseChart = (props) => {
       averageIncreasePerYear[i] =
         Math.round((sum / allIncreasesPerYear[i].length) * 100) / 100;
     }
-
-    // console.log("averageIncrease", averageIncreasePerYear);
 
     return;
   };
@@ -160,16 +149,18 @@ const RentIncreaseChart = (props) => {
     }
   };
 
-  getRentIncreaseAverages(prices, properties);
-  showPricesBasedOnAverages();
-
-  // console.log("data", data);
-
-  for (const dat of data) {
-    if (dat.compare_at_price === NaN) {
-      // console.log("dat", dat);
+  // Populate the data object with prices and dates
+  for (let price of currentPropertyPrices) {
+    if (price.admin_status === "approved") {
+      data.push({
+        date: parseInt(price.date.substring(0, 4)),
+        price: parseInt(price.price),
+      });
     }
   }
+
+  getRentIncreaseAverages(prices, allProperties);
+  showPricesBasedOnAverages();
 
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && data[0].compare_at_price && payload.length > 1) {
@@ -178,14 +169,11 @@ const RentIncreaseChart = (props) => {
           <p className="label tooltip-text">{`Year: ${label}`}</p>
           <p className="tooltip-text blue">{`Actual price: $${payload[0].value}`}</p>
           <p className="tooltip-text red">{`Market-adjusted price: $${payload[1].value}`}</p>
-          {console.log("load", payload)}
         </div>
       );
     }
     return null;
   };
-
-  // console.log("data", data);
 
   return data.length < 3 ? (
     <div>Not enough data</div>
@@ -229,4 +217,4 @@ const RentIncreaseChart = (props) => {
   );
 };
 
-export default RentIncreaseChart;
+export default SelectedPropertyVsAll;

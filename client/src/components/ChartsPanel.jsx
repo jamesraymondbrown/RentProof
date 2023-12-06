@@ -1,4 +1,3 @@
-
 import React, { useMemo } from "react";
 import PropertyRentChart from "./charts/PropertyRentChart";
 import RentIncreaseChart from "./charts/RentIncreaseChart";
@@ -24,8 +23,6 @@ const ChartsPanel = () => {
     () => (prices ? getPriceHistory(state.currentProperty.id, prices) : null),
     [prices, state.currentProperty.id]
   );
-
-
 
   return (
     <Panel
