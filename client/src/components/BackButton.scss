@@ -1,16 +1,16 @@
 .back-button {
-  background-color: #5AB8F8;
+  background-color: #5ab8f8;
   border: 1px solid #88c2ee;
   border-radius: 3px;
   color: white;
   cursor: pointer;
   display: inline-block;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  letter-spacing: .26px;
+  letter-spacing: 0.26px;
   line-height: 1.42857143;
-  margin-top: 5px;
+  margin: 5px 0;
   padding: 5.5px 10px;
   text-align: center;
   touch-action: manipulation;
@@ -20,7 +20,7 @@
 }
 
 .back-button:hover {
-  background-color: royalblue
+  background-color: royalblue;
 }
 
 .back-arrow {

@@ -2,9 +2,6 @@ import React, { useState, useContext, lazy, Suspense } from "react";
 import { getPriceChangePercentage } from "../helpers/getPriceChangePercentages";
 import { MarkerFilterContext } from "../../providers/MarkerFilterProvider";
 
-
-
-
 const GoogleMapMarker = lazy(() =>
   import("@react-google-maps/api").then((module) => ({
     default: module.Marker,
@@ -12,7 +9,6 @@ const GoogleMapMarker = lazy(() =>
 );
 
 <script src="https://maps.googleapis.com/maps/api/js?key=REACT_APP_GOOGLE_MAPS_API_KEY"></script>;
-
 
 function Marker({
   bedrooms,
@@ -24,7 +20,7 @@ function Marker({
   id,
   prices,
   properties,
-  clusterer
+  clusterer,
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const {
@@ -36,14 +32,15 @@ function Marker({
     state,
   } = useContext(MarkerFilterContext);
 
-
-  
   let costVSavg = getPriceChangePercentage(id, prices, properties);
-  if (costVSavg <= -20) {costVSavg = -20}
+  if (costVSavg <= -20) {
+    costVSavg = -20;
+  }
   costVSavg = Math.floor((costVSavg + 20) / 2.4);
-  if (costVSavg>=14){costVSavg=14}
-  //  console.log("costVSavg ➤", costVSavg); 
-
+  if (costVSavg >= 14) {
+    costVSavg = 14;
+  }
+  //  console.log("costVSavg ➤", costVSavg);
 
   const isGray =
     state.prevProperty.includes(id) && state.currentProperty.id !== id;

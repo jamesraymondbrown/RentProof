@@ -58,13 +58,13 @@ const RentList = () => {
   return (
     <div className="RentList">
       <div className="slider-container">
-        <BackButton />
-
         <MultiRangeSlider style={{ height: "20px" }} />
 
         <BedFilter />
 
         <BathFilter />
+
+        {state.currentProperty.id ? <BackButton /> : <></>}
       </div>
       {state.currentProperty.id ? (
         <React.Fragment>
